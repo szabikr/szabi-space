@@ -8,12 +8,13 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-ga": "^2.7.0",
     "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "aws s3 sync build/ s3://szabi-space",
+    "deploy": "aws s3 sync build/ s3://szabi.space",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
