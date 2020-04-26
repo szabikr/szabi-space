@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import logoBlueTrans from './assets/logo/logo-blue-trans.png';
 
 import ReactGA from 'react-ga';
 
@@ -27,6 +28,9 @@ function App() {
             <a target="_blank" rel="noopener noreferrer" href="https://dev.to/szabikr">dev.to</a> |&nbsp;
             <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/szabolcs-keresztes-598935ba">LinkedIn</a>
           </code>
+        </div>
+        <div>
+          <img src={ logoBlueTrans } alt="Logo" />
         </div>
       </footer>
 
