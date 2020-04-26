@@ -11,7 +11,8 @@ header {
 footer {
   position: absolute;
   bottom: 0;
-  height: 378px;
+  /* height: 378px; */
+  height: 240px;
   width: 100%;
 
   padding: 12px 0;
@@ -23,9 +24,17 @@ footer {
 
 footer div {
   text-align: center;
-  margin: 12px 0;
+  padding: 12px 0;
+}
+
+footer div:nth-child(2) {
+  margin-top: 24px;
+}
+
+footer div:last-child {
+  padding-bottom: 144px;
 }
 
 #footer-logo {
-  width: 108px;
+  height: 216px;
 }
