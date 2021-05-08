@@ -1,0 +1,22 @@
+name: Deployment Pipeline
+on: [push]
+jobs:
+  Test:
+    needs: [Build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Run unit tests
+        run: yarn test
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Build NextJS App
+        run: yarn build
