@@ -6,4 +6,5 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: ls ${{ github.workspace }}
+      - name: Build NextJS App
+        run: yarn build
