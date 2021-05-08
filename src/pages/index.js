@@ -1,5 +1,5 @@
-function HomePage() {
+function App() {
   return <div>Welcome to <strong>szabi.space</strong>!</div>
 }
 
-export default HomePage
+export default App;
