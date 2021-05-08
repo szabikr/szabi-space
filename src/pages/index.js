@@ -9,6 +9,7 @@ function App() {
         <li>Jest with Testing Library</li>
         <li>AWS S3, Lambda, API Gateway</li>
         <li>CI/CD with GitHub Actions</li>
+        <li>CSS3</li>
       </ul>
     </>
   )
