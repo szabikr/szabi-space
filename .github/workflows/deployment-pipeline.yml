@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build artifacts
-        run: yarn build
+        run: yarn build:export
       - name: Configure AWS crendentials
         uses: aws-actions/configure-aws-credentials@v1
         with: 
