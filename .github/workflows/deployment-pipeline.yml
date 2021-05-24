@@ -25,7 +25,7 @@ jobs:
         # if it's a feature branch
         # and zip up the artifacts with with the correct file name build_${branchName}.zip
         # then sync it up to a dev-builds-szabi.space S3 bucket
-        run: ./deployment-scripts/build-dev-artifacts.sh
+        run: bash deployment-scripts/build-dev-artifacts.sh
       - name: Configure AWS crendentials
         uses: aws-actions/configure-aws-credentials@v1
         with: 
