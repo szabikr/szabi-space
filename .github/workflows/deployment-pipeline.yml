@@ -18,17 +18,17 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Show branch name
-        run: echo "branch name is $GITHUB_REF"
+        run: echo "branch name is ${GITHUB_REF##*/}"
       # - name: Install dependencies
       #   run: yarn install --frozen-lockfile
       # - name: Build NextJS App
       #   run: yarn build
       # - name: Build and sync feature/bug/maintenance artifacts
-      #   if: ${{ github.ref != 'refs/heads/main' }}
+      # #   if: ${{ github.ref != 'refs/heads/main' }}
       #   # if it's a feature branch
       #   # and zip up the artifacts with with the correct file name build_${branchName}.zip
       #   # then sync it up to a dev-builds-szabi.space S3 bucket
-      #   run: bash deployment-scripts/build-dev-artifacts.sh ${github.ref##*/}
+      #   run: bash deployment-scripts/build-dev-artifacts.sh ${GITHUB_REF##*/}
       # - name: Configure AWS crendentials
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with: 
