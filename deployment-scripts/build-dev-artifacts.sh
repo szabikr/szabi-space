@@ -10,4 +10,5 @@ branchName=$1
 
 branchName=$(sed 's/\//_/g' <<<$branchName)
 
+mkdir artifacts
 zip -r artifacts/build_${branchName}.zip .next/
