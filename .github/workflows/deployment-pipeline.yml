@@ -12,6 +12,7 @@ jobs:
   #       run: yarn test
   Build:
     # needs: [Test]
+    if: ${{ github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
