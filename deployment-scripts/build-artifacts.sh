@@ -5,8 +5,6 @@ branchName="bug/fixing-index"
 
 branchName=$(sed 's/\//_/g' <<<$branchName)
 
-# replace / before zipping 
-
 echo "Branch name: $branchName"
 zip -r artifacts/build_${branchName}.zip .next/
 
