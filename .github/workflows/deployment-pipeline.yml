@@ -25,7 +25,7 @@ jobs:
         # if it's a feature branch
         # and zip up the artifacts with with the correct file name build_${branchName}.zip
         # then sync it up to a dev-builds-szabi.space S3 bucket
-        run: bash deployment-scripts/build-dev-artifacts.sh ${{ github.ref }}
+        run: bash deployment-scripts/build-dev-artifacts.sh ${GITHUB_REF##*/}
       - name: Configure AWS crendentials
         uses: aws-actions/configure-aws-credentials@v1
         with: 
@@ -34,7 +34,7 @@ jobs:
           aws-region: eu-west-1
       - name: Sync pages to dev S3
         if: ${{ github.ref != 'refs/heads/main' }}
-        run: aws s3 sync artifacts/build_${{github.ref}} s3://dev-builds-szabi.space
+        run: aws s3 sync artifacts/build_${GITHUB_REF##*/} s3://dev-builds-szabi.space
       
         # then I want to get the version numbers (major, minor, patch) [from an S3 bucket]
   # Deploy:
