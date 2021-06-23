@@ -16,7 +16,9 @@ function App() {
         <a 
           href="/Szabi_Keresztes_Software_Engineer_CV.pdf"
           target="_blank"
-        >here</a>
+        >
+          here
+        </a>
       </p>
     </>
   )
