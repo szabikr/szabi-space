@@ -10,6 +10,14 @@ function App() {
         <li>AWS S3, Lambda, API Gateway</li>
         <li>CI/CD with GitHub Actions</li>
       </ul>
+      <p>
+        Check out my CV
+        {' '}
+        <a 
+          href="/Szabi_Keresztes_Software_Engineer_CV.pdf"
+          target="_blank"
+        >here</a>
+      </p>
     </>
   )
 }
