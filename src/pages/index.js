@@ -1,4 +1,6 @@
-function App() {
+import Weather from '../components/weather'
+
+export default function App() {
   return (
     <>
       <h1>Welcome to <strong>szabi.space</strong></h1>
@@ -21,8 +23,7 @@ function App() {
           here
         </a>
       </p>
+      <Weather />
     </>
   )
 }
-
-export default App;
