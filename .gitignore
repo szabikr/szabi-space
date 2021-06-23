@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# deployment
+/artifacts
+/workspace
+
 # production
 /build
 /.next
