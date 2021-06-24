@@ -3,6 +3,7 @@ export default function Logo() {
     <img
       src="/logo-transparent.png"
       alt="szabi.space logo"
+      width="280"
     />
   )
 }
