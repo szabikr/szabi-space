@@ -50,7 +50,6 @@ export default function App() {
           </code>
         </p>
         <div style={{ paddingTop: 24}}>
-          <Logo />
           <h3>Weather report for you</h3>
           <Weather />
         </div>
