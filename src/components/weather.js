@@ -27,7 +27,7 @@ export default function Weather() {
   }, [lat, long])
 
   if (typeof data.main == 'undefined') {
-    return <div>Weather should display here...</div>
+    return <div>Weather based on location should display here...</div>
   }
   
   return (
