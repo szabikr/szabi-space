@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Weather from '../components/weather'
 import Logo from '../components/logo'
 
@@ -51,6 +52,9 @@ export default function App() {
         </p>
         <div style={{ paddingTop: 24}}>
           <h3>Weather report for you</h3>
+          <Link href="/weather-page">
+            <a>Weather page</a>
+          </Link>
           <Weather />
         </div>
       </footer>
