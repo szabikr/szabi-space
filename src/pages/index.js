@@ -52,9 +52,6 @@ export default function App() {
         </p>
         <div style={{ paddingTop: 24}}>
           <h3>Weather report for you</h3>
-          <Link href="/weather-page">
-            <a>Weather page</a>
-          </Link>
           <Weather />
         </div>
       </footer>
