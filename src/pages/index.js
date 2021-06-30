@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Weather from '../components/weather'
 import Logo from '../components/logo'
 
@@ -15,7 +16,7 @@ export default function App() {
         <ul>
           <li>Front-end State Management</li>
           <li>UI/UX Development</li>
-          <li>Agile Delivery</li>
+          <li><Link href="/agile"><a>Agile Delivery</a></Link></li>
         </ul>
 
         <h3>Currently experimenting with</h3>
