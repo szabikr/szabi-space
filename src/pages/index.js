@@ -16,7 +16,7 @@ export default function App() {
         <ul>
           <li>Front-end State Management</li>
           <li>UI/UX Development</li>
-          <li>Agile Delivery</li>
+          <li><Link href="/agile"><a>Agile Delivery</a></Link></li>
         </ul>
 
         <h3>Currently experimenting with</h3>
@@ -52,9 +52,6 @@ export default function App() {
         </p>
         <div style={{ paddingTop: 24}}>
           <h3>Weather report for you</h3>
-          <Link href="/weather-page">
-            <a>Weather page</a>
-          </Link>
           <Weather />
         </div>
       </footer>
