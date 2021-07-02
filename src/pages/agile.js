@@ -39,7 +39,7 @@ export default function AgilePage() {
         <li>User stories</li>
         <li>Board</li>
         <li>Ceremonies</li>
-        <li>Plan -> Build -> Reflect -> Plan ...</li>
+        <li>Plan -{'>'} Build -{'>'} Reflect -{'>'} Plan ...</li>
       </ul>
 
       <img
