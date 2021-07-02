@@ -45,14 +45,14 @@ export default function AgilePage() {
       <img
         src="/assets/scrum-lifecycle.png"
         alt="scrum lifecycle"
-        width="300"
+        width="100%"
       />
       <p><i>source: https://www.scrum.org/</i></p>
 
       <img
         src="/assets/too-busy-to-improve.png"
         alt="too busy to improve illustration"
-        width="300"
+        width="100%"
       />
     </>
   )
