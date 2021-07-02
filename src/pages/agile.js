@@ -49,6 +49,7 @@ export default function AgilePage() {
       />
       <p><i>source: https://www.scrum.org/</i></p>
 
+      <h3>Always look for a better way</h3>
       <img
         src="/assets/too-busy-to-improve.png"
         alt="too busy to improve illustration"
