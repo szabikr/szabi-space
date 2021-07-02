@@ -24,7 +24,7 @@ export default function AgilePage() {
       </ul>
 
       <h3>Multi-disciplinary, self organising teams</h3>
-      <p>Bring yourself to work</p>
+      <p>"Bring yourself to work"</p>
       <ul>
         <li>"T" shaped individuals</li>
         <li>Forming, Storming, Norming and Performing</li>
@@ -45,14 +45,14 @@ export default function AgilePage() {
       <img
         src="/assets/scrum-lifecycle.png"
         alt="scrum lifecycle"
-        width="280"
+        width="300"
       />
       <p><i>source: https://www.scrum.org/</i></p>
 
       <img
         src="/assets/too-busy-to-improve.png"
         alt="too busy to improve illustration"
-        width="280"
+        width="300"
       />
     </>
   )
