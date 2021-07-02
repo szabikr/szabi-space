@@ -31,7 +31,7 @@ export default function App() {
           Check out my CV
           {' '}
           <a 
-            href="/Szabi_Keresztes_Software_Engineer_CV.pdf"
+            href="/assets/Szabi_Keresztes_Software_Engineer_CV.pdf"
             target="_blank"
           >
             here
