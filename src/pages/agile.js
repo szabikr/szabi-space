@@ -1,7 +1,7 @@
 export default function AgilePage() {
   return (
     <>
-      <h1>Agile is a <strong>philosophy</strong> rather then a methodology or process</h1>
+      <h1>Agile is a <strong>philosophy</strong> rather then a process or methodology</h1>
       <h3>Manifesto</h3>
       <p>We are uncovering better ways of developing software by doing it and helping others do it. Through this work we have come to value:</p>
       <ul>
