@@ -1,0 +1,21 @@
+
+/* Small - Phones, TV */
+@media screen and (max-width: 640px) {
+  .container {
+    margin: 0, 12px;
+  }
+}
+ 
+/* Medium - Tablet, Large Phone */
+@media screen and (min-width: 641px) and (max-width: 1007px) {
+  .container {
+    margin: 0, 24px;
+  }
+}
+ 
+/* Large - Laptop, Desktop */
+@media screen and (min-width: 1008px) {
+  .container {
+    margin: 0, 24px;
+  }
+}
