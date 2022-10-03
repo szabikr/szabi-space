@@ -1,12 +1,9 @@
-
-import { render, screen } from '@testing-library/react';
-import App from '../../pages/index';
+import { render, screen } from '@testing-library/react'
+import App from '../../pages/index'
 
 describe('App', () => {
   it('renders without crashing', () => {
-    render(<App />);
-    expect(
-      screen.getByText(/welcome to/i)
-    ).toBeInTheDocument();
-  });
-});
+    render(<App />)
+    expect(screen.getByText(/Szabi/i)).toBeInTheDocument()
+  })
+})
