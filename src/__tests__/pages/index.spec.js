@@ -4,6 +4,8 @@ import App from '../../pages/index'
 describe('App', () => {
   it('renders without crashing', () => {
     render(<App />)
-    expect(screen.getByText(/Szabi/i)).toBeInTheDocument()
+    expect(
+      screen.getByText(/Hi. I'm Szabi. A Software Engineer./i),
+    ).toBeInTheDocument()
   })
 })
