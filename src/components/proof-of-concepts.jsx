@@ -7,7 +7,7 @@ export default function ProofOfConcepts() {
       <p>Implementations that solve well defined problems.</p>
       <ul>
         {proofOfConcepts.map((poc) => (
-          <li>
+          <li key={poc.name}>
             <h4>
               <a href={poc.repoLink} target="_blank" rel="noopener noreferrer">
                 {poc.name}

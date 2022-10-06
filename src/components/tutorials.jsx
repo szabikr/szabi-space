@@ -7,7 +7,7 @@ export default function Tutorials() {
       <p>Challenges to enhance skills of different technologies.</p>
       <ul>
         {tutorials.map((tutorial) => (
-          <li>
+          <li key={tutorial.name}>
             <h4>
               <a
                 href={tutorial.repoLink}

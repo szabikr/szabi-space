@@ -10,7 +10,7 @@ export default function Projects() {
       </p>
       <ul>
         {projects.map((project) => (
-          <li>
+          <li key={project.name}>
             <h4>
               <a
                 href={project.repoLink}
