@@ -1,0 +1,26 @@
+import { tutorials } from '../data'
+
+export default function Tutorials() {
+  return (
+    <section>
+      <h3>Tutorials</h3>
+      <p>Challenges to enhance skills of different technologies.</p>
+      <ul>
+        {tutorials.map((tutorial) => (
+          <li>
+            <h4>
+              <a
+                href={tutorial.repoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {tutorial.name}
+              </a>
+            </h4>
+            <p>{tutorial.technology}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
