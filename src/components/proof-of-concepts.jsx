@@ -1,6 +1,6 @@
-import { proofOfConcepts } from '../data'
+import Link from 'next/Link'
 
-export default function ProofOfConcepts() {
+export default function ProofOfConcepts({ proofOfConcepts }) {
   return (
     <section>
       <h3>Proof of Concepts</h3>
@@ -9,9 +9,19 @@ export default function ProofOfConcepts() {
         {proofOfConcepts.map((poc) => (
           <li key={poc.name}>
             <h4>
-              <a href={poc.repoLink} target="_blank" rel="noopener noreferrer">
-                {poc.name}
-              </a>
+              {poc.pageUrl ? (
+                <Link href={poc.pageUrl}>
+                  <a>{poc.name}</a>
+                </Link>
+              ) : (
+                <a
+                  href={poc.repoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {poc.name}
+                </a>
+              )}
             </h4>
             <p>{poc.description}</p>
           </li>

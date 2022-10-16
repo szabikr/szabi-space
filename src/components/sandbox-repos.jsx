@@ -1,6 +1,4 @@
-import { sandboxRepos } from '../data'
-
-export default function SandboxRepos() {
+export default function SandboxRepos({ sandboxRepos }) {
   return (
     <section>
       <h3>Sandbox repos</h3>

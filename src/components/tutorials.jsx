@@ -1,6 +1,4 @@
-import { tutorials } from '../data'
-
-export default function Tutorials() {
+export default function Tutorials({ tutorials }) {
   return (
     <section>
       <h3>Tutorials</h3>

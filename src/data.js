@@ -80,6 +80,7 @@ export const proofOfConcepts = [
     name: 'Authentication',
     description: 'OAuth 2.0',
     repoLink: 'https://github.com/szabikr/move-to-done',
+    pageUrl: '/proof-of-concepts/authentication',
   },
   {
     name: 'React Boilerplate',

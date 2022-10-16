@@ -1,6 +1,4 @@
-import { projects } from '../data'
-
-export default function Projects() {
+export default function Projects({ projects }) {
   return (
     <section>
       <h3>Projects</h3>
