@@ -56,3 +56,49 @@ export const sandboxRepos = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png',
   },
 ]
+
+export const projects = [
+  {
+    name: 'Habit Tracker',
+    description: 'Application',
+    repoLink: 'https://github.com/szabikr/habit-tracker',
+  },
+  {
+    name: 'Szabi.space',
+    description: 'This website',
+    repoLink: 'https://github.com/szabikr/szabi-space',
+  },
+  {
+    name: 'use-fetch-on-interval',
+    description: 'Custom react hook',
+    repoLink: 'https://github.com/szabikr/use-fetch-on-interval',
+  },
+]
+
+export const proofOfConcepts = [
+  {
+    name: 'Authentication',
+    description: 'OAuth 2.0',
+    repoLink: 'https://github.com/szabikr/move-to-done',
+    pageUrl: '/proof-of-concepts/authentication',
+  },
+  {
+    name: 'React Boilerplate',
+    description: 'Build tools setup',
+    repoLink:
+      'https://github.com/szabikr/sandbox-react/tree/main/build-tools-setup',
+  },
+]
+
+export const tutorials = [
+  {
+    name: 'Todo API',
+    technology: 'NodeJS',
+    repoLink: 'https://github.com/szabikr/todo-api-tutorial',
+  },
+  {
+    name: 'Quote Analyser',
+    technology: 'React',
+    repoLink: 'https://github.com/szabikr/quote-analyser',
+  },
+]
