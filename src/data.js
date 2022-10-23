@@ -62,6 +62,7 @@ export const projects = [
     name: 'Habit Tracker',
     description: 'Application',
     repoLink: 'https://github.com/szabikr/habit-tracker',
+    pageUrl: '/projects/habit-tracker',
   },
   {
     name: 'Szabi.space',
