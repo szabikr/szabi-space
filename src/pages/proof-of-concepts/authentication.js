@@ -27,17 +27,20 @@ export default function Authentication({ repoLink }) {
             authentication tokens, there's always a possiblity that somebody
             steals the token on flight.
           </p>
-          Common cyber attacks in the browsers that I considered are:
-          <ol>
-            <li>
-              Cross Site Scripting (XSS) - makes storing{' '}
-              <code>access_token</code> in <code>localStorage</code> not viable
-            </li>
-            <li>
-              Cross Site Request Forgery (CSRF) - makes storing{' '}
-              <code>access_token</code> in browser cookies not viable
-            </li>
-          </ol>
+          <p>
+            Common cyber attacks in the browsers that I considered are:
+            <ol>
+              <li>
+                Cross Site Scripting (XSS) - makes storing{' '}
+                <code>access_token</code> in <code>localStorage</code> not
+                viable
+              </li>
+              <li>
+                Cross Site Request Forgery (CSRF) - makes storing{' '}
+                <code>access_token</code> in browser cookies not viable
+              </li>
+            </ol>
+          </p>
           <p>
             For any authorised requests the user must have an{' '}
             <code>access_token</code> which is going to be valid only for a

@@ -1,12 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-import { remark } from 'remark'
-import html from 'remark-html'
-
 import { projects } from '../../data'
 import GithubAnchor from '../../components/github-anchor'
 
-export default function HabitTracker({ repoLink, refactoringContentHtml }) {
+export default function HabitTracker({ repoLink }) {
   return (
     <>
       <header>
@@ -14,7 +9,6 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
         <GithubAnchor repoLink={repoLink} />
       </header>
       <main>
-        <section dangerouslySetInnerHTML={{ __html: refactoringContentHtml }} />
         <section>
           <h2>Change Log</h2>
           <h3>v1.0.0 - Activities and Journal Entries</h3>
@@ -51,17 +45,20 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
             that we're doing journaling in the same application, we need more
             complex storage file structure:
           </p>
-          <ol>
-            <li>
-              <code>activity.txt</code> contains the activities just as how it
-              was the <code>data.txt</code>
-            </li>
-            <li>
-              <code>journal_entry.txt</code> contains the journal entries, with
-              an
-              <code>id</code>, <code>record_date</code> and <code>record</code>
-            </li>
-          </ol>
+          <p>
+            <ol>
+              <li>
+                <code>activity.txt</code> contains the activities just as how it
+                was the <code>data.txt</code>
+              </li>
+              <li>
+                <code>journal_entry.txt</code> contains the journal entries,
+                with an
+                <code>id</code>, <code>record_date</code> and{' '}
+                <code>record</code>
+              </li>
+            </ol>
+          </p>
           <p>
             With this I'm creating a dependency to the <code>user_input</code>{' '}
             files and their parsing. But that's alright, because a CLI needs to
@@ -99,19 +96,7 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
 
 export async function getStaticProps(context) {
   const repoLink = projects.find((poc) => poc.name == 'Habit Tracker').repoLink
-  const refactoringFilename = path.join(
-    process.cwd(),
-    'content/projects/habit-tracker/refactoring.md',
-  )
-  const refactoringFileContent = fs.readFileSync(refactoringFilename, 'utf8')
-  const processedContent = await remark()
-    .use(html)
-    .process(refactoringFileContent)
-  const contentHtml = processedContent.toString()
   return {
-    props: {
-      repoLink,
-      refactoringContentHtml: contentHtml,
-    },
+    props: { repoLink },
   }
 }
