@@ -1,8 +1,7 @@
-export default function Tutorials({ tutorials }) {
+export default function Tutorials({ tutorials, content }) {
   return (
     <section>
-      <h3>Tutorials</h3>
-      <p>Challenges to enhance skills of different technologies.</p>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
       <ul>
         {tutorials.map((tutorial) => (
           <li key={tutorial.name}>

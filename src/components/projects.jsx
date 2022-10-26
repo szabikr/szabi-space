@@ -1,13 +1,9 @@
 import Link from 'next/link'
 
-export default function Projects({ projects }) {
+export default function Projects({ projects, content }) {
   return (
     <section>
-      <h3>Projects</h3>
-      <p>
-        Work that I'm doing or have done in the past and I consider them usable
-        pieces of software.
-      </p>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
       <ul>
         {projects.map((project) => (
           <li key={project.name}>
