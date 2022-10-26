@@ -6,7 +6,7 @@ The application has to contain a **parser** that takes a user input file such as
 
 User Input File Example
 
-```
+```txt
 10 Aug
 developing my habit tracker; Career | just built a new feature
 walk; Health & Fitness | the weather was exceptionally good today
@@ -26,7 +26,7 @@ Today I don't feel like doing any of my activities, but I wrote something in the
 
 User Input File Format
 
-```
+```txt
 day of month month name (short version)
 activity name 1; life aspect [ | more information]
 activity name 2; life aspect [ | more information]
@@ -43,7 +43,7 @@ DataClasses
 
 `Activity` contains an activity that happened throughout the day. More than one activity can be done in a day. `JournalEntry` contains just the record of that entry and each day can have only one journal entry, but it is not mandatory.
 
-```
+```txt
 Activity
 - activity_name: str
 - activity_date: date
@@ -67,7 +67,7 @@ Let's see the functions:
 
 Retrieves the List of Activities from a user input file:
 
-```
+```python
 def read_activities_from_user_input(file_name: str) -> List[Activity]:
     try:
         f = open(file_name, "r", encoding="utf-8")
@@ -121,7 +121,7 @@ def read_activities_from_user_input(file_name: str) -> List[Activity]:
 
 Retrieves the List of Journal Entries from a user input file
 
-```
+```python
 def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
     try:
         f = open(file_name, "r", encoding="utf-8")

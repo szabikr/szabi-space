@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import { remark } from 'remark'
-import html from 'remark-html'
+
+import { marked } from 'marked'
 
 import { projects } from '../../data'
 import GithubAnchor from '../../components/github-anchor'
@@ -14,7 +14,10 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
         <GithubAnchor repoLink={repoLink} />
       </header>
       <main>
-        <section dangerouslySetInnerHTML={{ __html: refactoringContentHtml }} />
+        <section
+          class="language-txt"
+          dangerouslySetInnerHTML={{ __html: refactoringContentHtml }}
+        />
         <section>
           <h2>Change Log</h2>
           <h3>v1.0.0 - Activities and Journal Entries</h3>
@@ -99,19 +102,16 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
 
 export async function getStaticProps(context) {
   const repoLink = projects.find((poc) => poc.name == 'Habit Tracker').repoLink
-  const refactoringFilename = path.join(
+  const markdownFilePath = path.join(
     process.cwd(),
     'content/projects/habit-tracker/refactoring.md',
   )
-  const refactoringFileContent = fs.readFileSync(refactoringFilename, 'utf8')
-  const processedContent = await remark()
-    .use(html)
-    .process(refactoringFileContent)
-  const contentHtml = processedContent.toString()
+  const markdown = fs.readFileSync(markdownFilePath, 'utf8')
+  const html = marked.parse(markdown)
   return {
     props: {
       repoLink,
-      refactoringContentHtml: contentHtml,
+      refactoringContentHtml: html,
     },
   }
 }
