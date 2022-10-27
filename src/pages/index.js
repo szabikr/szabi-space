@@ -1,10 +1,7 @@
-import { projects, proofOfConcepts, tutorials, sandboxRepos } from '../data'
+import { projects, proofOfConcepts, tutorials, sandboxes } from '../data'
 
+import Spaces from '../components/spaces'
 import Profiles from '../components/profiles'
-import Projects from '../components/projects'
-import ProofOfConcepts from '../components/proof-of-concepts'
-import SandboxRepos from '../components/sandbox-repos'
-import Tutorials from '../components/tutorials'
 import { getHtmlContent } from '../lib/content-parser'
 
 export default function App(props) {
@@ -15,22 +12,10 @@ export default function App(props) {
       </header>
       <main>
         <Profiles />
-        <Projects
-          projects={props.projects}
-          content={props.projectsContentHtml}
-        />
-        <ProofOfConcepts
-          proofOfConcepts={props.proofOfConcepts}
-          content={props.proofOfConceptsContentHtml}
-        />
-        <Tutorials
-          tutorials={props.tutorials}
-          content={props.tutorialsContentHtml}
-        />
-        <SandboxRepos
-          sandboxRepos={props.sandboxRepos}
-          content={props.sandboxesContentHtml}
-        />
+        <Spaces {...props.projects} />
+        <Spaces {...props.proofOfConcepts} />
+        <Spaces {...props.tutorials} />
+        <Spaces {...props.sandboxes} />
       </main>
       <footer></footer>
     </>
@@ -52,14 +37,22 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      projects,
-      projectsContentHtml,
-      proofOfConcepts,
-      proofOfConceptsContentHtml,
-      tutorials,
-      tutorialsContentHtml,
-      sandboxRepos,
-      sandboxesContentHtml,
+      projects: {
+        spaces: projects,
+        content: projectsContentHtml,
+      },
+      proofOfConcepts: {
+        spaces: proofOfConcepts,
+        content: proofOfConceptsContentHtml,
+      },
+      tutorials: {
+        spaces: tutorials,
+        content: tutorialsContentHtml,
+      },
+      sandboxes: {
+        spaces: sandboxes,
+        content: sandboxesContentHtml,
+      },
     },
   }
 }
