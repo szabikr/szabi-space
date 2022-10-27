@@ -1,28 +1,28 @@
 import Link from 'next/link'
 
-export default function Projects({ projects, content }) {
+export default function Spaces({ spaces, content }) {
   return (
     <section>
       <div dangerouslySetInnerHTML={{ __html: content }} />
       <ul>
-        {projects.map((project) => (
-          <li key={project.name}>
+        {spaces.map((space) => (
+          <li key={space.name}>
             <h4>
-              {project.pageUrl ? (
-                <Link href={project.pageUrl}>
-                  <a>{project.name}</a>
+              {space.pageUrl ? (
+                <Link href={space.pageUrl}>
+                  <a>{space.name}</a>
                 </Link>
               ) : (
                 <a
-                  href={project.repoLink}
+                  href={space.repoLink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {project.name}
+                  {space.name}
                 </a>
               )}
             </h4>
-            <p>{project.description}</p>
+            <p>{space.description}</p>
           </li>
         ))}
       </ul>
