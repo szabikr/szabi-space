@@ -96,8 +96,10 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
 
 export async function getStaticProps(context) {
   const repoLink = projects.find((poc) => poc.name == 'Habit Tracker').repoLink
+  const withSyntaxHl = true
   const refactoringContentHtml = await getHtmlContent(
     'projects/habit-tracker/refactoring.md',
+    withSyntaxHl,
   )
 
   return {

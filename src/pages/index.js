@@ -38,14 +38,17 @@ export default function App(props) {
 }
 
 export async function getStaticProps(context) {
-  console.log('starting convert all the markdown content...')
-  const projectsContentHtml = await getHtmlContent('projects.md')
-  const proofOfConceptsContentHtml = await getHtmlContent(
-    'proof-of-concepts.md',
-  )
-  const tutorialsContentHtml = await getHtmlContent('tutorials.md')
-  const sandboxesContentHtml = await getHtmlContent('sandboxes.md')
-  console.log('finished converting all the markdown content...')
+  const [
+    projectsContentHtml,
+    proofOfConceptsContentHtml,
+    tutorialsContentHtml,
+    sandboxesContentHtml,
+  ] = await Promise.all([
+    getHtmlContent('projects.md'),
+    getHtmlContent('proof-of-concepts.md'),
+    getHtmlContent('tutorials.md'),
+    getHtmlContent('sandboxes.md'),
+  ])
 
   return {
     props: {
