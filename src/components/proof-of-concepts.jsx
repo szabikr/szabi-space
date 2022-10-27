@@ -1,10 +1,9 @@
 import Link from 'next/link'
 
-export default function ProofOfConcepts({ proofOfConcepts }) {
+export default function ProofOfConcepts({ proofOfConcepts, content }) {
   return (
     <section>
-      <h3>Proof of Concepts</h3>
-      <p>Implementations that solve well defined problems.</p>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
       <ul>
         {proofOfConcepts.map((poc) => (
           <li key={poc.name}>

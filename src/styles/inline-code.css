@@ -1,0 +1,36 @@
+:not(pre) > code {
+  background: hsl(230, 1%, 98%);
+  color: hsl(230, 8%, 24%);
+  font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono',
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  padding: 0.2em 0.3em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+/* Selection */
+:not(pre) > code::-moz-selection,
+:not(pre) > code *::-moz-selection {
+  background: hsl(230, 1%, 90%);
+  color: inherit;
+}
+
+:not(pre) > code::selection,
+:not(pre) > code *::selection {
+  background: hsl(230, 1%, 90%);
+  color: inherit;
+}
