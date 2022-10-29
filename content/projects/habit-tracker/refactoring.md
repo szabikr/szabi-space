@@ -68,6 +68,17 @@ Let's see the functions:
 Retrieves the List of Activities from a user input file:
 
 ```python
+# read_activities.py
+
+import logging
+from typing import List
+
+import utils
+from activities.activity import Activity
+from activities.guess_life_aspect import guess_life_aspect
+
+logger = logging.getLogger(__name__)
+
 def read_activities_from_user_input(file_name: str) -> List[Activity]:
     try:
         f = open(file_name, "r", encoding="utf-8")
@@ -84,7 +95,7 @@ def read_activities_from_user_input(file_name: str) -> List[Activity]:
             break
 
         try:
-            activity_date = utils.get_activity_date(line)
+            activity_date = utils.extend_date(line) # extends date with current year
         except ValueError:
             logger.exception(f"'{line}' is not a correct date format, no activities will be read from '{file_name}'")
             f.close()
@@ -100,7 +111,7 @@ def read_activities_from_user_input(file_name: str) -> List[Activity]:
                     line = f.readline().strip()
                 break
 
-            raw_activity_props, more_info = parse_activity_line(line)
+            raw_activity_props, more_info = utils.parse_activity_line(line)
 
             activity_props = (prop.strip() for prop in raw_activity_props.split(";"))
             activity_name = next(activity_props)
@@ -122,6 +133,16 @@ def read_activities_from_user_input(file_name: str) -> List[Activity]:
 Retrieves the List of Journal Entries from a user input file
 
 ```python
+# read_journal_entries.py
+
+import logging
+from typing import List
+
+import utils
+from journal.journal_entry import JournalEntry
+
+logger = logging.getLogger(__name__)
+
 def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
     try:
         f = open(file_name, "r", encoding="utf-8")
@@ -139,7 +160,7 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
             break
 
         try:
-            record_date = utils.get_activity_date(line)
+            record_date = utils.extend_date(line) # extends date with current year
         except ValueError:
             logger.exception(f"'{line}' is not a correct date format, no journal entries will be read from '{file_name}'")
             f.close()
@@ -172,12 +193,12 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
 
 ## Problems with the Current Solution
 
-Firstly, I think the current solution is **not self explanatory**, it could use some comments and additional documentation in order for a new developer to understand what's going on.
+Firstly, I think the current solution is **not self explanatory**, it could use some comments and additional documentation in order for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- Who knows what's gonna happen??!"_, we all know this situation.
 
 The 3 nested `while` loops are pretty much unavoidable with this approach, however as the format of the user input files are getting more complex, the more `while` loops we will need to introduce, making the code **not scalable**.
 
 Both functions have to change all the time because they **take on more than one responsibility**. They read the file, they must be aware of the user input file format. Even though there are 2 distinct functions for each of the DataClasses there's still a high chance that both of these functions need to change if the format of Activity or the format of JournalEntry changes.
 
-The dependency on the file opening function makes these code blocks **difficult to test**.
+The dependency on the file opening function and their imperative nature makes these code blocks **difficult to test**.
 
-And finally, there's quite a lot of repeition going on, both functions have bunch of common elements so the code **is not DRY**.
+And finally, there's quite a lot of repetition going on, both functions have bunch of common elements so the code **is not DRY**.
