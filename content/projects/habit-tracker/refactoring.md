@@ -191,7 +191,7 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
     return journal_entries
 ```
 
-## Problems with the Current Solution
+### Problems with the Current Solution
 
 Firstly, I think the current solution is **not self explanatory**, it could use some comments and additional documentation in order for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- Who knows what's gonna happen??!"_, we all know this situation.
 
@@ -202,3 +202,146 @@ Both functions have to change all the time because they **take on more than one 
 The dependency on the file opening function and their imperative nature makes these code blocks **difficult to test**.
 
 And finally, there's quite a lot of repetition going on, both functions have bunch of common elements so the code **is not DRY**.
+
+### Repository Tag
+
+You can check out the entire code for the _Current Solution_ on [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), it's Tag v1.0.0.
+
+### Solution
+
+Perhaps the main issue is that we are processing the file line by line. A better approach would be to load the entire contents of the file into memory. A `List[str]` representing the lines of the file would be ideal. Would like to mention that the largest file so far is `6.5KB`, if and when the file size grows so that it's not efficient to load all of it into memory then I'll consider using a generator function instead.
+
+A function that solves this issue might look something like:
+
+```python
+import logging
+from pathlib import Path
+from typing import List
+
+logger = logging.getLogger(__name__)
+
+def read_user_input(filename: str) -> List[str]:
+    user_input_dir = "user_input"
+    file = Path.cwd().joinpath(user_input_dir, filename)
+
+    try:
+        with file.open("r", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+    except FileNotFoundError:
+        logger.exception(f"File '{file}' does not exist")
+        return []
+    return lines
+```
+
+Next step is to identify well definined units in the codebase that could be abstracted out into functions. At a first glance I can see 3 of these units:
+
+1. Extract a `journal_entry`/`activity` date
+
+```python
+...
+    try:
+        habtis_date = utils.extend_date(line) # extends date with current year
+    except ValueError:
+        logger.exception(f"'{line}' is not a correct date format, no data will be read from '{file_name}'")
+        f.close()
+        return []
+...
+```
+
+2. Parse an `activity` line
+
+```python
+...
+    raw_activity_props, more_info = utils.parse_activity_line(line)
+
+    activity_props = (prop.strip() for prop in raw_activity_props.split(";"))
+    activity_name = next(activity_props)
+    try:
+        life_aspect = next(activity_props)
+    except StopIteration:
+        life_aspect = guess_life_aspect(activity_name)
+        if not life_aspect:
+            logger.exception(f"'{line}' is not a correct activity description, no activities will be read from '{file_name}'")
+            f.close()
+            return []
+...
+```
+
+3. Parse multiple lines of `journal_entry`
+
+```python
+...
+    record = ""
+    while True:
+        line = f.readline().strip()
+        if not line or line == "":
+            break
+
+        if record != "":
+            raw_new_line = r"\n"
+            record = f"{record}{raw_new_line}"
+        record = f"{record}{line}"
+...
+```
+
+### Writing new code
+
+I took the liberty to refactor these individual codeblocks, make them simpler, reduce unnecessary abstractions and define them in the context of functions. Functions that have arguments with types and return type.
+
+In regards to parsing the journal entry and activity lines, my initial approach was to construct the `Activity` and `JournalEntry` dataclasses within the parser functions and return them. But that would violate the single responsibility principle because now the function would have two reasons to change. One when the `user_input` file format changes and the other when the dataclass changes. So I think the best way is to return the parsed values as `Tuple` or `NamedTuple`.
+
+1. Extract a `journal_entry`/`activity` date
+
+Unpack the `extend_date` abstraction and catch date formatting errors.
+
+```python
+def parse_habits_date(partial_date: str) -> date:
+    full_date = f"{partial_date} {date.today().year}"
+    try:
+        habits_date = datetime.strptime(full_date, '%d %b %Y').date()
+    except ValueError:
+        logger.exception(f"Partial date '{partial_date}' has incorrect format, use '%d %b', i.e. 10 Aug")
+        return None
+    return habits_date
+```
+
+2. Parse an `activity` line
+
+In case of the second codeblock there is the `parse_activity_line` function call that is totally an unnecessary abstraction considering that the entire codeblock is about parsing the activity line, so its implementation can just be places within the function. And `guess_life_aspect` is a different concern, so it shouldn't be part of the parser at all. In case the `life_aspect` is not defined in the activity line, a `None` result should be returned. A solution which declares a so called `ParsedActivity` NamedTuple would look like this:
+
+```python
+from collections import namedtuple
+
+ParsedActivityFields = ["activity_name", "life_aspect", "more_info"]
+ParsedActivity = namedtuple("ParsedActivity", ParsedActivityFields)
+
+def parse_activity(line: str) -> ParsedActivity:
+    activity_parts = line.split("|")
+    raw_activity_props = activity_parts[0]
+    try:
+        more_info = activity_parts[1].strip()
+    except IndexError:
+        more_info = None
+
+    activity_props = raw_activity_props.split(";")
+    activity_name = activity_props[0].strip()
+    try:
+        life_aspect = activity_props[1].strip()
+    except IndexError:
+        life_aspect = None
+
+    return ParsedActivity(activity_name, life_aspect, more_info)
+```
+
+3. Parse multiple lines of `journal_entry`
+
+Parsing the journal entry lines is a super simple opperation, essentially we want to chain all the lines together separated by a new line (`\n`) character.
+
+```python
+from typing import List
+
+def parse_journal_entry(lines: List[str]) -> str:
+    return r"\n".join(lines)
+```
+
+You might think, _"Why do we even need a separate function for a one liner?"_. The question is valid, but considering that this one liner solves a problem specific for our domain, it deserves its own function. Also if the format of journal entry in the `user_input` file changes we know exactly which part of the codebase has to be altered.
