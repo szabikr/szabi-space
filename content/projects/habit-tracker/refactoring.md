@@ -345,3 +345,177 @@ def parse_journal_entry(lines: List[str]) -> str:
 ```
 
 You might think, _"Why do we even need a separate function for a one liner?"_. The question is valid, but considering that this one liner solves a problem specific for our domain, it deserves its own function. Also if the format of journal entry in the `user_input` file changes we know exactly which part of the codebase has to be altered.
+
+### From a different angle
+
+So far we've looked at how individual lines that rerpresent activities and journal entry records are processed. Now lets take a look at how the contents of a `user_input` file will be broken down and fed into these parser functions.
+
+After receiving the lines of a user input file from `read_user_input` function we need to split those lines into different lists that represent individual days. The `user_input` format defines that each day must be separated by a new line, so between two days there always going to be an empty string (`""`) and that's how we know what is the delimiter.
+I tried to find an already exisiting function in the python standard library that splits a list using an element as a delimiter, but I couldn't find one so I decided to build my own. An implementation might look something like:
+
+```python
+from typing import List
+
+def split_list(l: List[str], delimiter="", keep_delimiter=False) -> List[List[str]]:
+    result = []
+    chunk = []
+    for element in l:
+        if element == delimiter:
+            result.append(chunk)
+            chunk = []
+            if keep_delimiter:
+                chunk.append(element)
+        else:
+            chunk.append(element)
+    result.append(chunk)
+    return result
+```
+
+Tried to introduce the problem in a generic way so that it can be used for other things as well, because this is a well defined algorithm I'm thinking to put this into a `utils` library that can be used across packages or even projects.
+
+Now that we have a list of things that happened in each individual day, we can loop through it and parse the days. The name of this function is describing this approach very well:
+
+```python
+from typing import List
+from collections import namedtuple
+
+ParsedDayFields = ["raw_date", "raw_activities", "raw_journal_entry"]
+ParsedDay = namedtuple("ParsedDay", ParsedDayFields)
+
+def parse_day(lines: List[str]) -> ParsedDay:
+    raw_date = lines[0]
+
+    try:
+        journal_entry_index = lines.index("journal:")
+    except ValueError:
+        journal_entry_index = None
+
+    if journal_entry_index:
+        raw_activities = lines[1:journal_entry_index]
+
+        # we do not want to include the 'journal:' tag
+        raw_journal_entry = lines[journal_entry_index + 1:len(lines)]
+    else:
+        raw_activities = lines[1:len(lines)]
+        raw_journal_entry = None
+
+    return ParsedDay(raw_date, raw_activities, raw_journal_entry)
+```
+
+The argument of `parse_day` is going to be the list of lines that represent that particular day and we want to return a `NamedTuple` that will contain each of the sections of a day in separate properties (date, activities, journal entry). Even though these values will hold the raw data just as it was defined in the user input file, this is a useful data transformation because now we hold the sections of the day in different variables. And calling the parsing methods will be a piece of cake.
+
+But before we come full circle we need to define the method that builds an `Activity` and `JournalEntry` instance from the parsed data. Lets call them builder functions, although they could be dataclass constructor overloads which I'm going to consider implementing in another iteration of this development.
+
+1. Building up the `Activity` instance
+
+```python
+import logging
+from datetime import date
+
+from activities.activity import Activity
+from activities.guess_life_aspect import guess_life_aspect
+from parse_activity import ParsedActivity
+from exceptions import ActivityValueError
+
+logger = logging.getLogger(__name__)
+
+def build_activity(parsed_activity: ParsedActivity, activity_date: date) -> Activity:
+    if not activity_date:
+        logger.error(f"activity_date is not defined")
+        raise ActivityValueError("Activity date is missing")
+    life_aspect = parsed_activity.life_aspect or guess_life_aspect(parsed_activity.activity_name)
+    if not life_aspect:
+        logger.error(f"Parsed activity '{parsed_activity}' is missing life aspect and can't be guessed")
+        raise ActivityValueError("Life aspect is missing")
+    return Activity(parsed_activity.activity_name, activity_date, life_aspect, parsed_activity.more_info)
+```
+
+The code is pretty self explanatory, however I would like to mention that in this function we deal with getting data from different places such as guessing the `life_aspect` property from previous records, given that the `activity_name` has already been used before. Also, in this part of the code we are going to raise crucial exceptions, that will indicate the rest of the program that the `user_input` might be written incorrectly and needs intervention.
+If everything is good, a fresh new `Activity` instance will be returned.
+
+2. Building up the `JournalEntry` instance
+
+```python
+from datetime import date
+
+from exceptions import JournalEntryValueError
+from journal.journal_entry import JournalEntry
+
+def build_journal_entry(parsed_record: str, record_date: date) -> JournalEntry:
+    if not parsed_record:
+        return None
+    if not record_date:
+        raise JournalEntryValueError
+    return JournalEntry(parsed_record, record_date)
+```
+
+Building the `JournalEntry` object is much simpler, however if the `record_date` is not defined and there's a valid `parsed_record` we do want to raise an exception and stop the parsing process.
+
+### Piece it together (needs revision)
+
+Now that we have all the building blocks necessary, let's put the pieces together and see how would the refactored solution look like.
+
+We use the `read_user_input` function to get the contents of the `user_input` file as a list of strings (`List[str]`) and we call the following `parse_user_input` function with that list of strings and wait for a `NamedTuple` called `UserInput` which contains a list of activities (`List[Activity]`) and a list of journal entries (`List[JournalEntry]`) in return.
+
+```python
+from typing import List
+from collections import namedtuple
+
+from read_user_input import read_user_input
+from split_list import split_list
+
+from parse_day import parse_day
+from parse_habits_date import parse_habits_date
+from parse_activity import parse_activity
+from parse_journal_entry import parse_journal_entry
+
+from build_activity import build_activity
+from build_journal_entry import build_journal_entry
+
+UserInputFields = ["activities", "journal_entries"]
+UserInput = namedtuple("UserInput", UserInputFields)
+
+def parse_user_input(lines: List[str]) -> UserInput:
+    if len(lines) == 0:
+        return UserInput([], [])
+
+    days = split_list(lines)
+
+    activities = []
+    journal_entries = []
+    for day in days:
+        parsed_day = parse_day(day)
+        habits_date = parse_habits_date(parsed_day.raw_date)
+        parsed_activities = [parse_activity(raw_activity) for raw_activity in parsed_day.raw_activities]
+        parsed_journal_entry = parse_journal_entry(parsed_day.raw_journal_entry)
+
+        activities += [build_activity(parsed_activity, habits_date) for parsed_activity in parsed_activities]
+        journal_entry = build_journal_entry(parsed_journal_entry, habits_date)
+        if journal_entry:
+            journal_entries.append(journal_entry)
+
+    return UserInput(activities, journal_entries)
+
+
+if __name__ == "__main__":
+    filename = "user_input_example.txt"
+
+    user_input_lines = read_user_input(filename)
+    user_input = parse_user_input(user_input_lines)
+```
+
+This code block has a bunch of imports, but that's exactly what we wanted, delegate responsibility to different functions so that the code responds better to change.
+
+### Conclusion
+
+Yes, it is crazy how much you can achieve with just these nested `while` loops and the code stays relatively short. However, there are significant problems with that approach when we are building code that could be used in real life and has to be reliable. Lets take a look how did we solve the problems outlined in the first section of this article.
+
+Now that we separated components out and defined each part of the algorithm in functions we created a lot of code, but this is a **much more maintainable** code base then before. As a maintainer you don't have to understand every building block in order to make change, but if your task requires you to expand your knowledge on the system, you can because the blocks are small, concise and easy to reason about.
+
+The code becomes **scalable** because if there are new sections in a day that you wanna track, you just need to build new parser, builder functions and handle them in the `parse_user_input` function.
+
+All functions deal with a **single responsibility** and they have only one reason to change.
+
+Reading the `user_input` file has been taken out from the parser so there is no dependecy on the mechanism that acquires user input. And all the defined functions in this refactoring are pure functions so they always return the same output for a specific input making the code **easy to test**.
+
+Finally, but not lastly the code became **DRY**.
