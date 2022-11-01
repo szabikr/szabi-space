@@ -2,7 +2,7 @@
 
 ### User Input file Parser
 
-The application has to contain a **parser** that takes a user input file such as the one below and transforms it into Lists of DataClasses. Currently we care about two of these DataClasses: `Activity` and `JournalEntry`.
+The application has to contain a **parser** that takes a user input file such as the one below and transforms it into Lists of DataClasses. Currently, we care about two of these DataClasses: `Activity` and `JournalEntry`.
 
 User Input File Example
 
@@ -13,7 +13,7 @@ walk; Health & Fitness | the weather was exceptionally good today
 talk to a friend; Friendship
 journal:
 Had a great day today.
-Really glad that I'm recording my habits.
+Glad that I'm recording my habits.
 
 11 Aug
 cooking; Household
@@ -57,11 +57,11 @@ JournalEntry
 - id: UUID = uuid4()
 ```
 
-We feed the parser the contents of a `user_input` file and waiting for a `List[Activity]` and a `List[JournalEntry]` in return.
+We feed the parser the contents of a `user_input` file and wait for a `List[Activity]` and a `List[JournalEntry]` in return.
 
 ### Current Solution
 
-At the moment there are two main parser functions, `read_activities_from_user_input` and `read_journal_entries_from_user_input`, they both take in a `file_name` as a string, open the file, read the lines one by one and process the content in primitive way. Both functions are constructing lists imperatively and if no exceptions occur, the lists will be returned as a result. In case of crucial errors an empty list will be generated with a log message saying what went wrong.
+At the moment there are two main parser functions, `read_activities_from_user_input` and `read_journal_entries_from_user_input`, they both take in a `file_name` as a string, open the file, read the lines one by one and process the content in a primitive way. Both functions are constructing lists imperatively and if no exceptions occur, the lists will be returned as a result. In case of crucial errors, an empty list will be generated with a log message saying what went wrong.
 
 Let's see the functions:
 
@@ -95,7 +95,7 @@ def read_activities_from_user_input(file_name: str) -> List[Activity]:
             break
 
         try:
-            activity_date = utils.extend_date(line) # extends date with current year
+            activity_date = utils.extend_date(line) # extends date with the current year
         except ValueError:
             logger.exception(f"'{line}' is not a correct date format, no activities will be read from '{file_name}'")
             f.close()
@@ -160,7 +160,7 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
             break
 
         try:
-            record_date = utils.extend_date(line) # extends date with current year
+            record_date = utils.extend_date(line) # extends date with the current year
         except ValueError:
             logger.exception(f"'{line}' is not a correct date format, no journal entries will be read from '{file_name}'")
             f.close()
@@ -193,25 +193,25 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
 
 ### Problems with the Current Solution
 
-Firstly, I think the current solution is **not self explanatory**, it could use some comments and additional documentation in order for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- Who knows what's gonna happen??!"_, we all know this situation.
+Firstly, I think the current solution is **not self-explanatory**, it could use some comments and additional documentation for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for the two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- Who knows what's gonna happen??!"_, we all know this situation.
 
-The 3 nested `while` loops are pretty much unavoidable with this approach, however as the format of the user input files are getting more complex, the more `while` loops we will need to introduce, making the code **not scalable**.
+The 3 nested `while` loops are pretty much unavoidable with this approach, however as the format of the user input files is getting more complex, the more `while` loops we will need to introduce, making the code **not scalable**.
 
 Both functions have to change all the time because they **take on more than one responsibility**. They read the file, they must be aware of the user input file format. Even though there are 2 distinct functions for each of the DataClasses there's still a high chance that both of these functions need to change if the format of Activity or the format of JournalEntry changes.
 
 The dependency on the file opening function and their imperative nature makes these code blocks **difficult to test**.
 
-And finally, there's quite a lot of repetition going on, both functions have bunch of common elements so the code **is not DRY**.
+And finally, there's quite a lot of repetition going on, both functions have a bunch of common elements so the code **is not DRY**.
 
 ### Repository Tag
 
-You can check out the entire code for the _Current Solution_ on [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), it's Tag v1.0.0.
+You can check out the entire code for the _Current Solution_ [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), it's Tag v1.0.0.
 
 ### Solution
 
 Perhaps the main issue is that we are processing the file line by line. A better approach would be to load the entire contents of the file into memory. A `List[str]` representing the lines of the file would be ideal. Would like to mention that the largest file so far is `6.5KB`, if and when the file size grows so that it's not efficient to load all of it into memory then I'll consider using a generator function instead.
 
-A function that solves this issue might look something like:
+A function that solves this issue might look something like this:
 
 ```python
 import logging
@@ -233,14 +233,14 @@ def read_user_input(filename: str) -> List[str]:
     return lines
 ```
 
-Next step is to identify well definined units in the codebase that could be abstracted out into functions. At a first glance I can see 3 of these units:
+The next step is to identify well-defined units in the codebase that could be abstracted away into functions. At a first glance I can see 3 of these units:
 
 1. Extract a `journal_entry`/`activity` date
 
 ```python
 ...
     try:
-        habtis_date = utils.extend_date(line) # extends date with current year
+        habtis_date = utils.extend_date(line) # extends date with the current year
     except ValueError:
         logger.exception(f"'{line}' is not a correct date format, no data will be read from '{file_name}'")
         f.close()
@@ -286,7 +286,7 @@ Next step is to identify well definined units in the codebase that could be abst
 
 ### Writing new code
 
-I took the liberty to refactor these individual codeblocks, make them simpler, reduce unnecessary abstractions and define them in the context of functions. Functions that have arguments with types and return type.
+I took the liberty to refactor these individual code blocks, make them simpler, reduce unnecessary abstractions and define them in the context of functions. Functions that have arguments with types and a return type.
 
 In regards to parsing the journal entry and activity lines, my initial approach was to construct the `Activity` and `JournalEntry` dataclasses within the parser functions and return them. But that would violate the single responsibility principle because now the function would have two reasons to change. One when the `user_input` file format changes and the other when the dataclass changes. So I think the best way is to return the parsed values as `Tuple` or `NamedTuple`.
 
@@ -307,7 +307,7 @@ def parse_habits_date(partial_date: str) -> date:
 
 2. Parse an `activity` line
 
-In case of the second codeblock there is the `parse_activity_line` function call that is totally an unnecessary abstraction considering that the entire codeblock is about parsing the activity line, so its implementation can just be places within the function. And `guess_life_aspect` is a different concern, so it shouldn't be part of the parser at all. In case the `life_aspect` is not defined in the activity line, a `None` result should be returned. A solution which declares a so called `ParsedActivity` NamedTuple would look like this:
+In the case of the second code block, there is the `parse_activity_line` function call that is an unnecessary abstraction considering that the entire code block is about parsing the activity line, so its implementation can just be placed within the function. And `guess_life_aspect` is a different concern, so it shouldn't be part of the parser at all. In case the `life_aspect` is not defined in the activity line, a `None` result should be returned. A solution that declares a so-called `ParsedActivity` NamedTuple would look like this:
 
 ```python
 from collections import namedtuple
@@ -335,7 +335,7 @@ def parse_activity(line: str) -> ParsedActivity:
 
 3. Parse multiple lines of `journal_entry`
 
-Parsing the journal entry lines is a super simple opperation, essentially we want to chain all the lines together separated by a new line (`\n`) character.
+Parsing the journal entry lines is a super simple operation, essentially we want to chain all the lines together separated by a new line (`\n`) character.
 
 ```python
 from typing import List
@@ -344,14 +344,14 @@ def parse_journal_entry(lines: List[str]) -> str:
     return r"\n".join(lines)
 ```
 
-You might think, _"Why do we even need a separate function for a one liner?"_. The question is valid, but considering that this one liner solves a problem specific for our domain, it deserves its own function. Also if the format of journal entry in the `user_input` file changes we know exactly which part of the codebase has to be altered.
+You might think, _"Why do we even need a separate function for a one-liner?"_. The question is valid but considering that this one-liner solves a problem specific to our domain, it deserves its own function. Also if the format of the journal entry in the `user_input` file changes we know exactly which part of the codebase has to be altered.
 
 ### From a different angle
 
-So far we've looked at how individual lines that rerpresent activities and journal entry records are processed. Now lets take a look at how the contents of a `user_input` file will be broken down and fed into these parser functions.
+So far we've looked at how individual lines that represent activities and journal entry records are processed. Now let's take a look at how the contents of a `user_input` file will be broken down and fed into these parser functions.
 
-After receiving the lines of a user input file from `read_user_input` function we need to split those lines into different lists that represent individual days. The `user_input` format defines that each day must be separated by a new line, so between two days there always going to be an empty string (`""`) and that's how we know what is the delimiter.
-I tried to find an already exisiting function in the python standard library that splits a list using an element as a delimiter, but I couldn't find one so I decided to build my own. An implementation might look something like:
+After receiving the lines of a user input file from the `read_user_input` function we need to split those lines into different lists that represent individual days. The `user_input` format defines that each day must be separated by a new line, so between two days there always going to be an empty string (`""`) and that's how we know what is the delimiter.
+I tried to find an already existing function in the python standard library that splits a list using an element as a delimiter, but I couldn't find one so I decided to build my own. An implementation might look something like this:
 
 ```python
 from typing import List
@@ -371,9 +371,9 @@ def split_list(l: List[str], delimiter="", keep_delimiter=False) -> List[List[st
     return result
 ```
 
-Tried to introduce the problem in a generic way so that it can be used for other things as well, because this is a well defined algorithm I'm thinking to put this into a `utils` library that can be used across packages or even projects.
+Tried to introduce the problem in generically so that it can be used for other things as well, because this is a well-defined algorithm I'm thinking to put this into a `utils` library that can be used across packages or even projects.
 
-Now that we have a list of things that happened in each individual day, we can loop through it and parse the days. The name of this function is describing this approach very well:
+Now that we have a list of things that happened on each individual day, we can loop through it and parse the days. The name of this function is describing this approach very well:
 
 ```python
 from typing import List
@@ -404,7 +404,7 @@ def parse_day(lines: List[str]) -> ParsedDay:
 
 The argument of `parse_day` is going to be the list of lines that represent that particular day and we want to return a `NamedTuple` that will contain each of the sections of a day in separate properties (date, activities, journal entry). Even though these values will hold the raw data just as it was defined in the user input file, this is a useful data transformation because now we hold the sections of the day in different variables. And calling the parsing methods will be a piece of cake.
 
-But before we come full circle we need to define the method that builds an `Activity` and `JournalEntry` instance from the parsed data. Lets call them builder functions, although they could be dataclass constructor overloads which I'm going to consider implementing in another iteration of this development.
+But before we come full circle we need to define the method that builds an `Activity` and `JournalEntry` instance from the parsed data. Let's call them builder functions, although they could be dataclass constructor overloads which I'm going to consider implementing in another iteration of this development.
 
 1. Building up the `Activity` instance
 
@@ -430,7 +430,7 @@ def build_activity(parsed_activity: ParsedActivity, activity_date: date) -> Acti
     return Activity(parsed_activity.activity_name, activity_date, life_aspect, parsed_activity.more_info)
 ```
 
-The code is pretty self explanatory, however I would like to mention that in this function we deal with getting data from different places such as guessing the `life_aspect` property from previous records, given that the `activity_name` has already been used before. Also, in this part of the code we are going to raise crucial exceptions, that will indicate the rest of the program that the `user_input` might be written incorrectly and needs intervention.
+The code is pretty self-explanatory however, I would like to mention that in this function we deal with getting data from different places such as guessing the `life_aspect` property from previous records, given that the `activity_name` has already been used before. Also, in this part of the code, we are going to raise crucial exceptions, that will indicate to the rest of the program that the `user_input` might be written incorrectly and needs intervention.
 If everything is good, a fresh new `Activity` instance will be returned.
 
 2. Building up the `JournalEntry` instance
@@ -449,11 +449,11 @@ def build_journal_entry(parsed_record: str, record_date: date) -> JournalEntry:
     return JournalEntry(parsed_record, record_date)
 ```
 
-Building the `JournalEntry` object is much simpler, however if the `record_date` is not defined and there's a valid `parsed_record` we do want to raise an exception and stop the parsing process.
+Building the `JournalEntry` object is much simpler however, if the `record_date` is not defined and there's a valid `parsed_record` we do want to raise an exception and stop the parsing process.
 
 ### Piece it together
 
-Now that we have all the building blocks necessary, let's put the pieces together and see how would the refactored solution look like.
+Now that we have all the building blocks necessary, let's put the pieces together and see what would the refactored solution look like.
 
 We use the `read_user_input` function to get the contents of the `user_input` file as a list of strings (`List[str]`) and we call the following `parse_user_input` function with that list of strings and wait for a `NamedTuple` called `UserInput` which contains a list of activities (`List[Activity]`) and a list of journal entries (`List[JournalEntry]`) in return.
 
@@ -518,14 +518,14 @@ This code block has a bunch of imports, but that's exactly what we wanted, deleg
 
 ### Conclusion
 
-Yes, it is crazy how much you can achieve with just these nested `while` loops and the code stays relatively short. However, there are significant problems with that approach when we are building code that could be used in real life and has to be reliable. Lets take a look how did we solve the problems outlined in the first section of this article.
+Yes, it is crazy how much you can achieve with just these nested `while` loops, and the code stays relatively short. However, there are significant problems with that approach when we are building code that could be used in real life and has to be reliable. Let's take a look at how did we solve the problems outlined in the first section of this article.
 
-Now that we separated components out and defined each part of the algorithm in functions we created a lot of code, but this is a **much more maintainable** code base then before. As a maintainer you don't have to understand every building block in order to make change, but if your task requires you to expand your knowledge on the system, you can because the blocks are small, concise and easy to reason about.
+Now that we separated the components and defined each part of the algorithm in functions we created a lot of code, but this is a **much more maintainable** code base than before. As a maintainer, you don't have to understand every building block to make a change, but if your task requires you to expand your knowledge of the system, you can because the blocks are small, concise, and easy to reason about.
 
-The code becomes **scalable** because if there are new sections in a day that you wanna track, you just need to build new parser, builder functions and handle them in the `parse_user_input` function.
+The code becomes **scalable** because if there are new sections in a day that you wanna track, you just need to build the new parser, and builder functions and handle them in the `parse_user_input` function.
 
 All functions deal with a **single responsibility** and they have only one reason to change.
 
-Reading the `user_input` file has been taken out from the parser so there is no dependecy on the mechanism that acquires user input. And all the defined functions in this refactoring are pure functions so they always return the same output for a specific input making the code **easy to test**.
+Reading the `user_input` file has been taken out from the parser so there is no dependency on the mechanism that acquires user input. And all the defined functions in this refactoring are pure so they always return the same output for a specific input making the code **easy to test**.
 
 Finally, but not lastly the code became **DRY**.
