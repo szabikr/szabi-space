@@ -451,18 +451,21 @@ def build_journal_entry(parsed_record: str, record_date: date) -> JournalEntry:
 
 Building the `JournalEntry` object is much simpler, however if the `record_date` is not defined and there's a valid `parsed_record` we do want to raise an exception and stop the parsing process.
 
-### Piece it together (needs revision)
+### Piece it together
 
 Now that we have all the building blocks necessary, let's put the pieces together and see how would the refactored solution look like.
 
 We use the `read_user_input` function to get the contents of the `user_input` file as a list of strings (`List[str]`) and we call the following `parse_user_input` function with that list of strings and wait for a `NamedTuple` called `UserInput` which contains a list of activities (`List[Activity]`) and a list of journal entries (`List[JournalEntry]`) in return.
 
 ```python
+import sys
+import logging
 from typing import List
 from collections import namedtuple
 
 from read_user_input import read_user_input
 from split_list import split_list
+from exceptions import ActivityValueError, JournalEntryValueError
 
 from parse_day import parse_day
 from parse_habits_date import parse_habits_date
@@ -501,7 +504,14 @@ if __name__ == "__main__":
     filename = "user_input_example.txt"
 
     user_input_lines = read_user_input(filename)
-    user_input = parse_user_input(user_input_lines)
+    try:
+        user_input = parse_user_input(user_input_lines)
+    except ActivityValueError:
+        logging.error(f"There has been an issue parsing activities in '{filename}'")
+        sys.exit()
+    except JournalEntryValueError:
+        logging.error(f"There has been an issue parsing journal entries is '{filename}'")
+        sys.exit()
 ```
 
 This code block has a bunch of imports, but that's exactly what we wanted, delegate responsibility to different functions so that the code responds better to change.
