@@ -63,7 +63,9 @@ We feed the parser the contents of a `user_input` file and wait for a `List[Acti
 
 At the moment there are two main parser functions, `read_activities_from_user_input` and `read_journal_entries_from_user_input`, they both take in a `file_name` as a string, open the file, read the lines one by one and process the content in a primitive way. Both functions are constructing lists imperatively and if no exceptions occur, the lists will be returned as a result. In case of crucial errors, an empty list will be generated with a log message saying what went wrong.
 
-Let's see the functions:
+You can check out the GitHub repository for the _Current Solution_ [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), it's under Tag `v1.0.0`.
+
+Let's see the functions that are waiting to get refactored:
 
 Retrieves the List of Activities from a user input file:
 
@@ -193,7 +195,7 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
 
 ### Problems with the Current Solution
 
-Firstly, I think the current solution is **not self-explanatory**, it could use some comments and additional documentation for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for the two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- Who knows what's gonna happen??!"_, we all know this situation.
+Firstly, I think the current solution is **not self-explanatory**, it could use some comments and additional documentation for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for the two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- I'm not touching that! Who knows what's gonna happen??!"_, we all know this situation.
 
 The 3 nested `while` loops are pretty much unavoidable with this approach, however as the format of the user input files is getting more complex, the more `while` loops we will need to introduce, making the code **not scalable**.
 
@@ -203,11 +205,7 @@ The dependency on the file opening function and their imperative nature makes th
 
 And finally, there's quite a lot of repetition going on, both functions have a bunch of common elements so the code **is not DRY**.
 
-### Repository Tag
-
-You can check out the entire code for the _Current Solution_ [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), it's Tag v1.0.0.
-
-### Solution
+### At a first glance
 
 Perhaps the main issue is that we are processing the file line by line. A better approach would be to load the entire contents of the file into memory. A `List[str]` representing the lines of the file would be ideal. Would like to mention that the largest file so far is `6.5KB`, if and when the file size grows so that it's not efficient to load all of it into memory then I'll consider using a generator function instead.
 
