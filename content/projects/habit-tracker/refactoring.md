@@ -1,10 +1,25 @@
-## Refactoring
+## Refactoring User Input Importer
 
-### User Input file Parser
+### Requirements
 
-The application has to contain a **parser** that takes a user input file such as the one below and transforms it into Lists of DataClasses. Currently, we care about two of these DataClasses: `Activity` and `JournalEntry`.
+The Habit Tracker App User defines their **activities** and **journal entries** in a user input file which then needs to be parsed and imported.
 
-User Input File Example
+Such a `user_input` file has the following format:
+
+```txt
+day of month month name (short version)
+activity name 1; life aspect [ | more information]
+activity name 2; life aspect [ | more information]
+...
+activity name n; life aspect [ | more information]
+journal: (optional)
+Journal Entry for that day
+
+day of month month name (short version)
+...
+```
+
+An example of a `user_input` file is:
 
 ```txt
 10 Aug
@@ -24,24 +39,11 @@ journal:
 Today I don't feel like doing any of my activities, but I wrote something in the journal. And that's OK.
 ```
 
-User Input File Format
+The format of this file makes the input user-friendly and human-readable. It is somewhat similar to a journal that you might write in your notebook. However, the computer has to have some kind of clever representation of this input so that it can process it, insert it into databases, make queries on it, and much more.
 
-```txt
-day of month month name (short version)
-activity name 1; life aspect [ | more information]
-activity name 2; life aspect [ | more information]
-...
-activity name n; life aspect [ | more information]
-journal: (optional)
-Journal Entry for that day
+There are two data classes that we can define by looking at the `user_input` file, `Activity` and `JournalEntry`. `Activity` contains the details of an activity that happened throughout the day, note that more than one activity can be done in a day. `JournalEntry` contains just the record of that entry and each day can have only one of them, but it is not mandatory.
 
-day of month month name (short version)
-...
-```
-
-DataClasses
-
-`Activity` contains an activity that happened throughout the day. More than one activity can be done in a day. `JournalEntry` contains just the record of that entry and each day can have only one journal entry, but it is not mandatory.
+The properties of these data classes are as follows:
 
 ```txt
 Activity
@@ -57,17 +59,13 @@ JournalEntry
 - id: UUID = uuid4()
 ```
 
-We feed the parser the contents of a `user_input` file and wait for a `List[Activity]` and a `List[JournalEntry]` in return.
+We need an algorithm that takes the contents of a `user_input` file and returns a `List[Activity]` and a `List[JournalEntry]`.
 
 ### Current Solution
 
-At the moment there are two main parser functions, `read_activities_from_user_input` and `read_journal_entries_from_user_input`, they both take in a `file_name` as a string, open the file, read the lines one by one and process the content in a primitive way. Both functions are constructing lists imperatively and if no exceptions occur, the lists will be returned as a result. In case of crucial errors, an empty list will be generated with a log message saying what went wrong.
+The current solution, which you can check out [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), constitutes of two main parser functions, `read_activities_from_user_input` and `read_journal_entries_from_user_input`. They both take a `user_input` filename as a string, read the lines from the file one by one, and process the content in a primitive way. Lists of each data class (`Activity` and `JournalEntry`) are constructed imperatively and then returned. In case of crucial errors, an empty list will be generated with a log message saying what went wrong.
 
-You can check out the GitHub repository for the _Current Solution_ [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), it's under Tag `v1.0.0`.
-
-Let's see the functions that are waiting to get refactored:
-
-Retrieves the List of Activities from a user input file:
+Let's see `read_activities_from_user_input` that retrieves the List of Activities from a `user_input` file:
 
 ```python
 # read_activities.py
@@ -132,7 +130,7 @@ def read_activities_from_user_input(file_name: str) -> List[Activity]:
     return activities
 ```
 
-Retrieves the List of Journal Entries from a user input file
+And `read_journal_entries_from_user_input` retrieves the List of Journal Entries from a `user_input` file:
 
 ```python
 # read_journal_entries.py
@@ -195,11 +193,11 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
 
 ### Problems with the Current Solution
 
-Firstly, I think the current solution is **not self-explanatory**, it could use some comments and additional documentation for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for the two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. _"- I'm not touching that! Who knows what's gonna happen??!"_, we all know this situation.
+Firstly, I think the current solution is **not self-explanatory**, it could use some comments and additional documentation for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for the two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. We've all been in a situation where we said, or heard somebody say: _"- I'm not changing that! Who knows what's gonna happen??!"_.
 
-The 3 nested `while` loops are pretty much unavoidable with this approach, however as the format of the user input files is getting more complex, the more `while` loops we will need to introduce, making the code **not scalable**.
+The 3 nested `while` loops are pretty much unavoidable with this approach, however as the format of the `user_input` files is getting more complex, the more `while` loops we will need to introduce, making the code **not scalable**.
 
-Both functions have to change all the time because they **take on more than one responsibility**. They read the file, they must be aware of the user input file format. Even though there are 2 distinct functions for each of the DataClasses there's still a high chance that both of these functions need to change if the format of Activity or the format of JournalEntry changes.
+Both functions have to change all the time because they **take on more than one responsibility**. They read the file, they must be aware of the user input file format. Even though there are 2 distinct functions for each of the DataClasses there's still a high chance that both of these functions need to change if the format of `Activity` or the format of `JournalEntry` changes.
 
 The dependency on the file opening function and their imperative nature makes these code blocks **difficult to test**.
 
@@ -207,7 +205,7 @@ And finally, there's quite a lot of repetition going on, both functions have a b
 
 ### At a first glance
 
-Perhaps the main issue is that we are processing the file line by line. A better approach would be to load the entire contents of the file into memory. A `List[str]` representing the lines of the file would be ideal. Would like to mention that the largest file so far is `6.5KB`, if and when the file size grows so that it's not efficient to load all of it into memory then I'll consider using a generator function instead.
+Perhaps the main issue is that we are processing the file line by line. A better approach would be to load the entire contents of the file into memory. A `List[str]` representing the lines of the file would be ideal because then we can apply any data transformation function that we want. Would like to mention that the largest file so far is `6.5KB`, if and when the file size grows so that it's not efficient to load all of it into memory then I'll consider using a generator function instead.
 
 A function that solves this issue might look something like this:
 
@@ -231,7 +229,7 @@ def read_user_input(filename: str) -> List[str]:
     return lines
 ```
 
-The next step is to identify well-defined units in the codebase that could be abstracted away into functions. At a first glance I can see 3 of these units:
+The next step is to identify well-defined units in the existing codebase that could be abstracted away into functions. At a first glance I can see 3 of these units:
 
 1. Extract a `journal_entry`/`activity` date
 
@@ -282,38 +280,182 @@ The next step is to identify well-defined units in the codebase that could be ab
 ...
 ```
 
-### Writing new code
+At this point, I went on and started to fiddle with the code, built these code blocks into functions, and reduced unnecessary abstractions. Had to decide what these functions will return are they going to return the domain models that we defined earlier as data classes or should they return `NamedTuples`. Also, what are going to be the core building blocks and how will those building blocks be put together so that it constructs the User Input Importer. How should I organise the code in modules, packages, and so on.
 
-I took the liberty to refactor these individual code blocks, make them simpler, reduce unnecessary abstractions and define them in the context of functions. Functions that have arguments with types and a return type.
+In my opinion, the best way to find a great solution for something is to try out a bunch of things and see what works best, document it, refine it, create diagrams, etc. I'll let you read about the intermediate steps [here (link not yet set)](https://szabi.space/projects/habit-tracker/refactoring-user-input-importer-v1), but this article will continue with the final, refined solution.
 
-In regards to parsing the journal entry and activity lines, my initial approach was to construct the `Activity` and `JournalEntry` dataclasses within the parser functions and return them. But that would violate the single responsibility principle because now the function would have two reasons to change. One when the `user_input` file format changes and the other when the dataclass changes. So I think the best way is to return the parsed values as `Tuple` or `NamedTuple`.
+### Proposed Solution
 
-1. Extract a `journal_entry`/`activity` date
+After the refactoring process I came to a solution that is represented by the following code architecture diagram:
 
-Unpack the `extend_date` abstraction and catch date formatting errors.
+[<img src="https://szabi.space/assets/user_input_importer_diagram.png" alt="user input importer code architecture diagram" width="100%" />](https://szabi.space/assets/user_input_importer_diagram.png)
+
+As you can see the code is structured in four packages. One of the packages, `ht_importer` represents the entry point to the solution, and deals with reading the `user_input` file, delegating the parsing and build process, and writing the data to the database. There is a package that contains the models that the application uses `ht_models`. Another package, `ht_parser` contains the algorithm that parses the user input and constructs `raw_models`. And another one `ht_builder` takes `raw_models` and with the help of some side effects (i.e. `quess_life_aspect`) creates the `domain_models`.
+
+Let's look at each package and see their implementation:
+
+#### `ht_models` package
+
+It is sensible to start with `ht_models` as this package contains the data structures that other packages pass around to turn the contents of `user_input` files into data that the computer understands. All other packages are dependent on this one and it exists because we wanted to reduce the level of dependency between the packages.
+
+`ht_models` have two modules currently, `raw_models` which represent the parsed user input as it is, and the `domain_models` which are the actual high-level models that we build from the `raw_models` and are supposed to be used in the rest of the application.
+
+`raw_models` are just simple data classes that are designed to contain the raw information given by the user.
 
 ```python
-def parse_habits_date(partial_date: str) -> date:
-    full_date = f"{partial_date} {date.today().year}"
-    try:
-        habits_date = datetime.strptime(full_date, '%d %b %Y').date()
-    except ValueError:
-        logger.exception(f"Partial date '{partial_date}' has incorrect format, use '%d %b', i.e. 10 Aug")
-        return None
-    return habits_date
+from dataclasses import dataclass
+from datetime import date
+from typing import List
+
+@dataclass
+class RawActivity:
+    activity_name: str
+    life_aspect: str
+    more_info: str
+
+RawJournalEntry = str
+
+@dataclass
+class RawDay:
+    habits_date: date
+    activities: List[RawActivity]
+    journal_entry: RawJournalEntry
 ```
 
-2. Parse an `activity` line
-
-In the case of the second code block, there is the `parse_activity_line` function call that is an unnecessary abstraction considering that the entire code block is about parsing the activity line, so its implementation can just be placed within the function. And `guess_life_aspect` is a different concern, so it shouldn't be part of the parser at all. In case the `life_aspect` is not defined in the activity line, a `None` result should be returned. A solution that declares a so-called `ParsedActivity` NamedTuple would look like this:
+`domain_models` are also data classes, but they are more complex and deal with data generated by the system such as `id` and include `to_string` behaviours.
 
 ```python
+from dataclasses import dataclass, field
+from datetime import date
+from typing import List
+import uuid
+
+@dataclass
+class Activity:
+    activity_name: str
+    activity_date: date
+    life_aspect: str
+    more_info: str = None
+    id: uuid.UUID = field(default_factory=uuid.uuid4)
+
+    def __str__(self):
+        more_info_str = "" if self.more_info == None else f" | {self.more_info}"
+        return f"{self.activity_date.strftime('%a %d %b')}: {self.activity_name}; {self.life_aspect}{more_info_str}"
+
+    def print(self):
+        more_info_str = "null" if self.more_info == None else f"{self.more_info}"
+        return f"{self.id};{self.activity_date.strftime('%Y-%m-%d')};{self.activity_name};{self.life_aspect};{more_info_str}"
+
+
+@dataclass
+class JournalEntry:
+    record: str
+    record_date: date
+    id: uuid.UUID = field(default_factory=uuid.uuid4)
+
+    def __str__(self):
+        return f"{self.record_date}\n{self.record}"
+
+    def print(self):
+        return f"{self.id};{self.record_date};{self.record}"
+
+
+@dataclass
+class UserInput:
+    activities: List[Activity]
+    journal_entries: List[JournalEntry]
+```
+
+#### `ht_importer` package
+
+This package is like an orchestrator, has a dependency on every other package and it uses them together with some internal modules to get the job done. It is responsible for reading the data from `user_input`, converting the data (parsing then building), and writing the data to the database.
+
+```python
+import sys
+import logging
 from collections import namedtuple
 
-ParsedActivityFields = ["activity_name", "life_aspect", "more_info"]
-ParsedActivity = namedtuple("ParsedActivity", ParsedActivityFields)
+from ht_builder.exceptions import ActivityValueError, JournalEntryValueError
+from ht_parser.parse_user_input import parse_user_input
+from ht_builder.build_user_input import build_user_input
 
-def parse_activity(line: str) -> ParsedActivity:
+from ht_importer.read_user_input import read_user_input
+from ht_importer.write_db import append_activities, append_journal_entries
+
+logger = logging.getLogger(__name__)
+
+ImportedEntityCounts = namedtuple("ImportedEntityCounts", ["activity_count", "journal_entry_count"])
+
+def import_user_input(filename: str):
+    user_input_lines = read_user_input(filename)
+
+    raw_days = parse_user_input(user_input_lines)
+
+    try:
+        user_input = build_user_input(raw_days)
+    except ActivityValueError:
+        logging.error(f"There has been an issue parsing activities in '{filename}'")
+        sys.exit()
+    except JournalEntryValueError:
+        logging.error(f"There has been an issue parsing journal entries is '{filename}'")
+        sys.exit()
+
+    append_activities(user_input.activities)
+    append_journal_entries(user_input.journal_entries)
+
+    return ImportedEntityCounts(len(user_input.activities), len(user_input.journal_entries))
+```
+
+We've seen the `read_user_input` function earlier in the article which is going to prepare the contents of the `user_input` file as a list of strings. That list of strings is exactly what the `parse_user_input` function needs to generate the `raw_days` (remember the `raw_models`), the `build_raw_input` takes that and returns a list of activities and a list of journal entries wrapped in a `UserInput` data class.
+Finally, if the build process didn't raise any exceptions, the activities, and journal entries will be appended to the database using the `append_activities` and `append_journal_entries` functions.
+
+For auditing purposes, we want to return how many of each entity we inserted into the database hence the return of the `NamedTuple` `ImportedEntityCounts`.
+
+The following diagram helps visualise what's happening during the execution of `import_user_input` function:
+
+[<img src="https://szabi.space/assets/import_user_input_activity_diagram.png" alt="import user input activity diagram" width="100%" />](https://szabi.space/assets/import_user_input_activity_diagram.png)
+
+#### `ht_parser` package
+
+This package is responsible for taking the list of strings and parsing them into `raw_models`. And it does it by splitting the lines into days, then parsing each day into different sections like date (`str`), list of activities (`List[str]`), and journal entries (`List[str]`). Once we have these sections we pass them on to their respective parser functions to turn them into raw activities (`List[RawActivity]`) and journal entries (`RawJournalEntry`).
+
+```python
+import sys
+import logging
+from typing import List
+
+from ht_models.raw_models import RawDay
+
+from ht_parser.split_list import split_list
+from ht_parser.parse_day import parse_day
+from ht_parser.parse_activity import parse_activity
+from ht_parser.parse_journal_entry import parse_journal_entry
+
+def parse_user_input(lines: List[str]) -> List[RawDay]:
+    if len(lines) == 0:
+        return []
+
+    days = split_list(lines)
+
+    raw_days = []
+    for day in days:
+        parsed_day = parse_day(day)
+
+        habits_date = parsed_day.date
+        activities = [parse_activity(activity) for activity in parsed_day.activities]
+        journal_entry = parse_journal_entry(parsed_day.journal_entry)
+
+        raw_days.append(RawDay(habits_date, activities, journal_entry))
+
+    return raw_days
+```
+
+I think it's important to mention here how we parse a string that contains an activity with the `parse_activity` function. Following the format of the `user_input` file, we split the string by the `|` character that separates the `more_info` property from the rest. If there's no `more_info` defined we just leave it as `None`. The other activity properties are separates by the `;` character and the first item will be the `activity_name` while the second is the `life_aspect`. At this point, the `life_aspect` can be `None` because we might guess it later in the `ht_builder` package.
+
+```python
+from ht_models.raw_models import RawActivity
+
+def parse_activity(line: str) -> RawActivity:
     activity_parts = line.split("|")
     raw_activity_props = activity_parts[0]
     try:
@@ -328,191 +470,112 @@ def parse_activity(line: str) -> ParsedActivity:
     except IndexError:
         life_aspect = None
 
-    return ParsedActivity(activity_name, life_aspect, more_info)
+    return RawActivity(activity_name, life_aspect, more_info)
 ```
 
-3. Parse multiple lines of `journal_entry`
-
-Parsing the journal entry lines is a super simple operation, essentially we want to chain all the lines together separated by a new line (`\n`) character.
+Also worth talking about the `parse_journal_entry` function as it is core business logic. It is much simpler than the previous method. Here we just need to join all lines with a new line character. It is important to create the new line special character as a raw string so that when we save it, it stays as a new line special character and doesn't get printed as simply a new line.
 
 ```python
 from typing import List
 
-def parse_journal_entry(lines: List[str]) -> str:
+from ht_models.raw_models import RawJournalEntry
+
+def parse_journal_entry(lines: List[str]) -> RawJournalEntry:
+    if not lines:
+        return None
     return r"\n".join(lines)
 ```
 
-You might think, _"Why do we even need a separate function for a one-liner?"_. The question is valid but considering that this one-liner solves a problem specific to our domain, it deserves its own function. Also if the format of the journal entry in the `user_input` file changes we know exactly which part of the codebase has to be altered.
+#### `ht_builder` package
 
-### From a different angle
-
-So far we've looked at how individual lines that represent activities and journal entry records are processed. Now let's take a look at how the contents of a `user_input` file will be broken down and fed into these parser functions.
-
-After receiving the lines of a user input file from the `read_user_input` function we need to split those lines into different lists that represent individual days. The `user_input` format defines that each day must be separated by a new line, so between two days there always going to be an empty string (`""`) and that's how we know what is the delimiter.
-I tried to find an already existing function in the python standard library that splits a list using an element as a delimiter, but I couldn't find one so I decided to build my own. An implementation might look something like this:
+This package is the final step in our conversion and that's where the `raw_models` turn into `domain_models`. We loop through each `raw_day` and build the date (`build_habits_date`), list of activities (`build_activities`) and if there is any, the journal entry (`build_journal_entry`).
 
 ```python
 from typing import List
 
-def split_list(l: List[str], delimiter="", keep_delimiter=False) -> List[List[str]]:
-    result = []
-    chunk = []
-    for element in l:
-        if element == delimiter:
-            result.append(chunk)
-            chunk = []
-            if keep_delimiter:
-                chunk.append(element)
-        else:
-            chunk.append(element)
-    result.append(chunk)
-    return result
+from ht_models.raw_models import RawDay
+from ht_models.domain_models import UserInput
+
+from ht_builder.build_habits_date import build_habits_date
+from ht_builder.build_activity import build_activity
+from ht_builder.build_journal_entry import build_journal_entry
+
+def build_user_input(raw_days: List[RawDay]) -> UserInput:
+    activities = []
+    journal_entries = []
+
+    for raw_day in raw_days:
+        habits_date = build_habits_date(raw_day.habits_date)
+        for raw_activity in raw_day.activities:
+            activities.append(build_activity(raw_activity, habits_date))
+        if raw_day.journal_entry:
+            journal_entries.append(build_journal_entry(raw_day.journal_entry, habits_date))
+
+    return UserInput(activities, journal_entries)
 ```
 
-Tried to introduce the problem in generically so that it can be used for other things as well, because this is a well-defined algorithm I'm thinking to put this into a `utils` library that can be used across packages or even projects.
-
-Now that we have a list of things that happened on each individual day, we can loop through it and parse the days. The name of this function is describing this approach very well:
-
-```python
-from typing import List
-from collections import namedtuple
-
-ParsedDayFields = ["raw_date", "raw_activities", "raw_journal_entry"]
-ParsedDay = namedtuple("ParsedDay", ParsedDayFields)
-
-def parse_day(lines: List[str]) -> ParsedDay:
-    raw_date = lines[0]
-
-    try:
-        journal_entry_index = lines.index("journal:")
-    except ValueError:
-        journal_entry_index = None
-
-    if journal_entry_index:
-        raw_activities = lines[1:journal_entry_index]
-
-        # we do not want to include the 'journal:' tag
-        raw_journal_entry = lines[journal_entry_index + 1:len(lines)]
-    else:
-        raw_activities = lines[1:len(lines)]
-        raw_journal_entry = None
-
-    return ParsedDay(raw_date, raw_activities, raw_journal_entry)
-```
-
-The argument of `parse_day` is going to be the list of lines that represent that particular day and we want to return a `NamedTuple` that will contain each of the sections of a day in separate properties (date, activities, journal entry). Even though these values will hold the raw data just as it was defined in the user input file, this is a useful data transformation because now we hold the sections of the day in different variables. And calling the parsing methods will be a piece of cake.
-
-But before we come full circle we need to define the method that builds an `Activity` and `JournalEntry` instance from the parsed data. Let's call them builder functions, although they could be dataclass constructor overloads which I'm going to consider implementing in another iteration of this development.
-
-1. Building up the `Activity` instance
+Let's unpack what those individual builder functions do and how are they implemented. We can start with the `build_habits_date` which is a function that assumes the current year appends it to the parsed `user_input` date and makes a conversion to the default date format. Returns the date if the conversion was successful, otherwise `None`.
 
 ```python
 import logging
-from datetime import date
-
-from activities.activity import Activity
-from activities.guess_life_aspect import guess_life_aspect
-from parse_activity import ParsedActivity
-from exceptions import ActivityValueError
+from datetime import date, datetime
 
 logger = logging.getLogger(__name__)
 
-def build_activity(parsed_activity: ParsedActivity, activity_date: date) -> Activity:
+def build_habits_date(partial_date: str) -> date:
+    full_date = f"{partial_date} {date.today().year}"
+    try:
+        habits_date = datetime.strptime(full_date, '%d %b %Y').date()
+    except ValueError:
+        logger.exception(f"Partial date '{partial_date}' has incorrect format, use '%d %b', i.e. 10 Aug")
+        return None
+    return habits_date
+```
+
+`build_activity` maps the fields of a `RawActivity` to an `Activity` model while trying to fill in the blanks. The `activity_date` comes from the function argument given that the `build_habits_date` successfully converted the date. And `life_aspect` have to be guessed in case it was not provided in the `user_input`. If any of the required arguments of the `Activity` data class are missing an exception will be raised.
+
+```python
+import logging
+from datetime import date
+
+from ht_models.raw_models import RawActivity
+from ht_models.domain_models import Activity
+
+from ht_builder.exceptions import ActivityValueError
+from ht_builder.guess_life_aspect import guess_life_aspect
+
+logger = logging.getLogger(__name__)
+
+def build_activity(raw_activity: RawActivity, activity_date: date) -> Activity:
     if not activity_date:
         logger.error(f"activity_date is not defined")
         raise ActivityValueError("Activity date is missing")
-    life_aspect = parsed_activity.life_aspect or guess_life_aspect(parsed_activity.activity_name)
+
+    life_aspect = raw_activity.life_aspect or guess_life_aspect(raw_activity.activity_name)
     if not life_aspect:
-        logger.error(f"Parsed activity '{parsed_activity}' is missing life aspect and can't be guessed")
+        logger.error(f"Raw activity '{raw_activity}' is missing life aspect and can't be guessed")
         raise ActivityValueError("Life aspect is missing")
-    return Activity(parsed_activity.activity_name, activity_date, life_aspect, parsed_activity.more_info)
+
+    return Activity(raw_activity.activity_name, activity_date, life_aspect, raw_activity.more_info)
 ```
 
-The code is pretty self-explanatory however, I would like to mention that in this function we deal with getting data from different places such as guessing the `life_aspect` property from previous records, given that the `activity_name` has already been used before. Also, in this part of the code, we are going to raise crucial exceptions, that will indicate to the rest of the program that the `user_input` might be written incorrectly and needs intervention.
-If everything is good, a fresh new `Activity` instance will be returned.
-
-2. Building up the `JournalEntry` instance
+`build_journal_entry` is essentially just a constructor that brings the `raw_journal_entry` and the `habits_date` and creates the `JournalEntry` domain model.
 
 ```python
 from datetime import date
 
-from exceptions import JournalEntryValueError
-from journal.journal_entry import JournalEntry
+from ht_models.raw_models import RawJournalEntry
+from ht_models.domain_models import JournalEntry
 
-def build_journal_entry(parsed_record: str, record_date: date) -> JournalEntry:
-    if not parsed_record:
+from ht_builder.exceptions import JournalEntryValueError
+
+def build_journal_entry(raw_journal_entry: RawJournalEntry, record_date: date) -> JournalEntry:
+    if not raw_journal_entry:
         return None
     if not record_date:
         raise JournalEntryValueError
-    return JournalEntry(parsed_record, record_date)
+    return JournalEntry(raw_journal_entry, record_date)
 ```
-
-Building the `JournalEntry` object is much simpler however, if the `record_date` is not defined and there's a valid `parsed_record` we do want to raise an exception and stop the parsing process.
-
-### Piece it together
-
-Now that we have all the building blocks necessary, let's put the pieces together and see what would the refactored solution look like.
-
-We use the `read_user_input` function to get the contents of the `user_input` file as a list of strings (`List[str]`) and we call the following `parse_user_input` function with that list of strings and wait for a `NamedTuple` called `UserInput` which contains a list of activities (`List[Activity]`) and a list of journal entries (`List[JournalEntry]`) in return.
-
-```python
-import sys
-import logging
-from typing import List
-from collections import namedtuple
-
-from read_user_input import read_user_input
-from split_list import split_list
-from exceptions import ActivityValueError, JournalEntryValueError
-
-from parse_day import parse_day
-from parse_habits_date import parse_habits_date
-from parse_activity import parse_activity
-from parse_journal_entry import parse_journal_entry
-
-from build_activity import build_activity
-from build_journal_entry import build_journal_entry
-
-UserInputFields = ["activities", "journal_entries"]
-UserInput = namedtuple("UserInput", UserInputFields)
-
-def parse_user_input(lines: List[str]) -> UserInput:
-    if len(lines) == 0:
-        return UserInput([], [])
-
-    days = split_list(lines)
-
-    activities = []
-    journal_entries = []
-    for day in days:
-        parsed_day = parse_day(day)
-        habits_date = parse_habits_date(parsed_day.raw_date)
-        parsed_activities = [parse_activity(raw_activity) for raw_activity in parsed_day.raw_activities]
-        parsed_journal_entry = parse_journal_entry(parsed_day.raw_journal_entry)
-
-        activities += [build_activity(parsed_activity, habits_date) for parsed_activity in parsed_activities]
-        journal_entry = build_journal_entry(parsed_journal_entry, habits_date)
-        if journal_entry:
-            journal_entries.append(journal_entry)
-
-    return UserInput(activities, journal_entries)
-
-
-if __name__ == "__main__":
-    filename = "user_input_example.txt"
-
-    user_input_lines = read_user_input(filename)
-    try:
-        user_input = parse_user_input(user_input_lines)
-    except ActivityValueError:
-        logging.error(f"There has been an issue parsing activities in '{filename}'")
-        sys.exit()
-    except JournalEntryValueError:
-        logging.error(f"There has been an issue parsing journal entries is '{filename}'")
-        sys.exit()
-```
-
-This code block has a bunch of imports, but that's exactly what we wanted, delegate responsibility to different functions so that the code responds better to change.
 
 ### Conclusion
 
