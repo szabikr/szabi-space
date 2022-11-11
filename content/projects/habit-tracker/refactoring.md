@@ -411,6 +411,10 @@ Finally, if the build process didn't raise any exceptions, the activities, and j
 
 For auditing purposes, we want to return how many of each entity we inserted into the database hence the return of the `NamedTuple` `ImportedEntityCounts`.
 
+The following diagram helps visualise what's happening during the execution of `import_user_input` function:
+
+[<img src="https://szabi.space/assets/import_user_input_activity_diagram.png" alt="import user input activity diagram" width="100%" />](https://szabi.space/assets/import_user_input_activity_diagram.png)
+
 #### `ht_parser` package
 
 This package is responsible for taking the list of strings and parsing them into `raw_models`. And it does it by splitting the lines into days, then parsing each day into different sections like date (`str`), list of activities (`List[str]`), and journal entries (`List[str]`). Once we have these sections we pass them on to their respective parser functions to turn them into raw activities (`List[RawActivity]`) and journal entries (`RawJournalEntry`).
