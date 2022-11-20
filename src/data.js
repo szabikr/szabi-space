@@ -21,14 +21,8 @@ export const proofOfConcepts = [
   {
     name: 'Authentication',
     description: 'OAuth 2.0',
-    repoLink: 'https://github.com/szabikr/move-to-done',
+    repoLink: 'https://github.com/szabikr/poc-authentication',
     pageUrl: '/proof-of-concepts/authentication',
-  },
-  {
-    name: 'React Boilerplate',
-    description: 'Build tools setup',
-    repoLink:
-      'https://github.com/szabikr/sandbox-react/tree/main/build-tools-setup',
   },
 ]
 
@@ -36,59 +30,45 @@ export const tutorials = [
   {
     name: 'Todo API',
     description: 'NodeJS',
-    repoLink: 'https://github.com/szabikr/todo-api-tutorial',
-  },
-  {
-    name: 'Quote Analyser',
-    description: 'React',
-    repoLink: 'https://github.com/szabikr/quote-analyser',
+    repoLink:
+      'https://github.com/szabikr/sandbox-node/tree/main/todo-api-tutorial',
   },
 ]
 
 export const sandboxes = [
+  {
+    name: 'React',
+    description: 'Javascript',
+    repoLink: 'https://github.com/szabikr/sandbox-react',
+    examples: [
+      {
+        name: 'React Boilerplate',
+        description: 'Build tools setup',
+        repoLink:
+          'https://github.com/szabikr/sandbox-react/tree/main/boilerplate',
+      },
+      {
+        name: 'Quote Analyser',
+        description: 'API calls',
+        repoLink:
+          'https://github.com/szabikr/sandbox-react/tree/main/quote-analyser',
+      },
+      {
+        name: 'Todo List',
+        description: 'useState & localStorage',
+        repoLink:
+          'https://github.com/szabikr/sandbox-react/tree/main/todo-list',
+      },
+    ],
+  },
   {
     name: 'Python',
     description: 'Python',
     repoLink: 'https://github.com/szabikr/sandbox-python',
   },
   {
-    name: 'Bash',
-    description: 'Unix Shell',
-    repoLink: 'https://github.com/szabikr/sandbox-bash',
-  },
-  {
-    name: 'Postgres',
-    description: 'SQL',
-    repoLink: 'https://github.com/szabikr/sandbox-postgresql',
-  },
-  {
-    name: 'GH Actions',
-    description: 'YAML',
-    repoLink: 'https://github.com/szabikr/sandbox-github-actions',
-  },
-  {
-    name: 'WebdriverIO',
-    description: 'JavaScript',
-    repoLink: 'https://github.com/szabikr/sandbox-webdriverio',
-  },
-  {
-    name: 'React',
-    description: 'Javascript',
-    repoLink: 'https://github.com/szabikr/sandbox-react',
-  },
-  {
-    name: 'Node',
+    name: 'NodeJS',
     description: 'Javascript',
     repoLink: 'https://github.com/szabikr/sandbox-node',
-  },
-  {
-    name: 'Docker',
-    description: 'YAML',
-    repoLink: 'https://github.com/szabikr/sandbox-docker',
-  },
-  {
-    name: 'Web Design',
-    description: 'HTML, CSS',
-    repoLink: 'https://github.com/szabikr/sandbox-css',
   },
 ]

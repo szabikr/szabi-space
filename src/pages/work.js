@@ -3,27 +3,22 @@ import Link from 'next/link'
 import { projects, proofOfConcepts, tutorials, sandboxes } from '../data'
 
 import Spaces from '../components/spaces'
-import Profiles from '../components/profiles'
 import { getHtmlContent } from '../lib/content-parser'
 
-export default function App(props) {
+export default function Work(props) {
   return (
     <>
       <header>
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/work">Work</Link>
-        </nav>
+        <Link href="/">Home</Link>
+        <Link href="/work">Work</Link>
       </header>
       <main>
-        <h1>Hi. I'm Szabi. A Software Engineer.</h1>
-        <Profiles />
+        <h1>My work</h1>
         <Spaces {...props.projects} />
         <Spaces {...props.proofOfConcepts} />
         <Spaces {...props.tutorials} />
         <Spaces {...props.sandboxes} />
       </main>
-      <footer></footer>
     </>
   )
 }
