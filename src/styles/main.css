@@ -73,7 +73,7 @@ ul {
   grid-row-gap: 40px;
 }
 
-li {
+ul li {
   display: inline-block;
   text-align: center;
   padding: 32px 0;
@@ -81,17 +81,17 @@ li {
   border-radius: 16px;
 }
 
-li:hover {
+ul li:hover {
   border: 1px solid #000;
 }
 
-li p {
+ul li p {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 }
 
-li img {
+ul li img {
   display: inline-block;
   height: 48px;
   max-width: 140px;
