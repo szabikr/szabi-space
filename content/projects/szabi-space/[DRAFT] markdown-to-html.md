@@ -1,6 +1,4 @@
-This website is the home for all information related to my work.
-
-Communicate ideas, document the progress, write down challenging problems and their solutions
+# Markdown to HTML
 
 Using PrismJS to do syntax highlighting on my code.
 First we need to install [prismJS](https://www.npmjs.com/package/prismjs)
