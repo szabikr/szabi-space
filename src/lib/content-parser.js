@@ -16,6 +16,7 @@ export async function getHtmlContent(contentPath, withSyntaxHl = false) {
 }
 
 async function markdownToHtml(markdown, withSyntaxHl) {
+  // TODO: change sanitize to true or see what options are outthere for making this html builder safe and secure
   const htmlBuilder = remark().use(html, { sanitize: false })
 
   if (withSyntaxHl) {
