@@ -1,6 +1,7 @@
 import { proofOfConcepts } from '../../data'
 import GithubAnchor from '../../components/github-anchor'
 import { getHtmlContent } from '../../lib/content-parser'
+import BackToHomeButton from '../../components/back-to-home-button'
 
 export default function Authentication({
   repoLink,
@@ -19,6 +20,7 @@ export default function Authentication({
       </main>
       <footer>
         <GithubAnchor repoLink={repoLink} />
+        <BackToHomeButton />
       </footer>
     </>
   )

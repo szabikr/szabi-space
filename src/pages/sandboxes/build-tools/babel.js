@@ -1,3 +1,4 @@
+import BackToHomeButton from '../../../components/back-to-home-button'
 import GithubAnchor from '../../../components/github-anchor'
 import { getHtmlContent } from '../../../lib/content-parser'
 
@@ -9,6 +10,7 @@ export default function Babel({ repoLink, babelContentHtml }) {
       </main>
       <footer>
         <GithubAnchor repoLink={repoLink} />
+        <BackToHomeButton />
       </footer>
     </>
   )

@@ -1,3 +1,5 @@
+import BackToHomeButton from '../components/back-to-home-button'
+
 export default function ComponentLibrary() {
   return (
     <>
@@ -33,6 +35,8 @@ export default function ComponentLibrary() {
         <div>
           <a href="https://szabi.space">link text</a>
         </div>
+
+        <BackToHomeButton />
       </main>
     </>
   )
