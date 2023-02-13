@@ -1,6 +1,7 @@
 import { getHtmlContent } from '../../lib/content-parser'
 import { projects } from '../../data'
 import GithubAnchor from '../../components/github-anchor'
+import BackToHomeButton from '../../components/back-to-home-button'
 
 export default function HabitTracker({
   repoLink,
@@ -20,6 +21,7 @@ export default function HabitTracker({
       </main>
       <footer>
         <GithubAnchor repoLink={repoLink} />
+        <BackToHomeButton />
       </footer>
     </>
   )

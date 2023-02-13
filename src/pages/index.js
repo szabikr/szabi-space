@@ -8,7 +8,10 @@ export default function App(props) {
   return (
     <>
       <header>
-        <h1>Hi. I'm Szabi. A Software Engineer.</h1>
+        <h1>
+          Hi. I'm Szabi.
+          <br />A Software Engineer.
+        </h1>
       </header>
       <main>
         <Profiles />
