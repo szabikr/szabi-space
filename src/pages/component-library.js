@@ -1,6 +1,8 @@
+import { mockBlogThumbnails } from '../data'
 import BackToHomeButton from '../components/back-to-home-button'
+import BlogPostThumbnails from '../components/blog-post-thumbnails'
 
-export default function ComponentLibrary() {
+export default function ComponentLibrary({ blogThumbnails }) {
   return (
     <>
       <main>
@@ -36,8 +38,18 @@ export default function ComponentLibrary() {
           <a href="https://szabi.space">link text</a>
         </div>
 
+        <BlogPostThumbnails thumbnails={blogThumbnails} />
+
         <BackToHomeButton />
       </main>
     </>
   )
+}
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      blogThumbnails: mockBlogThumbnails,
+    },
+  }
 }
