@@ -92,3 +92,20 @@ export const sandboxes = [
     repoLink: 'https://github.com/szabikr/sandbox-css',
   },
 ]
+
+export const blogThumbnails = [
+  {
+    title: 'Babel, a JavaScript Compiler',
+    date: '2022-11-20',
+    summary:
+      'Babel is one of those tools that made JavaScript development in the 2010s approachable and contributed so much to the state of the language today.',
+    url: '/sandboxes/build-tools/babel',
+  },
+  {
+    title: 'Refactoring User Input Importer',
+    date: '2022-11-11',
+    summary:
+      'Writing self-explanatory, maintainable, testable, scalable and DRY code is difficult, specially when the requirements are still a bit cloudy and the product is still evolving. Follow me on this journey where I refactor my Habit Tracker CLI code.',
+    url: '/projects/habit-tracker',
+  },
+]
