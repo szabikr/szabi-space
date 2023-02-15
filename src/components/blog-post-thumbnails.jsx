@@ -5,7 +5,7 @@ export default function BlogPostThumbnails({ thumbnails }) {
   return (
     <>
       {thumbnails.map((thumbnail) => (
-        <section>
+        <section key={thumbnail.title}>
           <h3>{thumbnail.title}</h3>
           <div>
             <em>{formatDate(thumbnail.date)}</em>
