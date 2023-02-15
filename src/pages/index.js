@@ -1,8 +1,5 @@
-import { projects, proofOfConcepts, tutorials, sandboxes } from '../data'
-
-import Spaces from '../components/spaces'
-import Profiles from '../components/profiles'
-import { getHtmlContent } from '../lib/content-parser'
+import BlogPostThumbnails from '../components/blog-post-thumbnails'
+import { blogThumbnails } from '../data'
 
 export default function App(props) {
   return (
@@ -13,49 +10,21 @@ export default function App(props) {
           <br />A Software Engineer.
         </h1>
       </header>
+      <hr />
       <main>
-        <Profiles />
-        <Spaces {...props.projects} />
-        <Spaces {...props.proofOfConcepts} />
-        <Spaces {...props.tutorials} />
-        <Spaces {...props.sandboxes} />
+        <h4>Blog:</h4>
+        <BlogPostThumbnails thumbnails={props.thumbnails} />
       </main>
+      <hr />
       <footer></footer>
     </>
   )
 }
 
 export async function getStaticProps(context) {
-  const [
-    projectsContentHtml,
-    proofOfConceptsContentHtml,
-    tutorialsContentHtml,
-    sandboxesContentHtml,
-  ] = await Promise.all([
-    getHtmlContent('projects.md'),
-    getHtmlContent('proof-of-concepts.md'),
-    getHtmlContent('tutorials.md'),
-    getHtmlContent('sandboxes.md'),
-  ])
-
   return {
     props: {
-      projects: {
-        spaces: projects,
-        content: projectsContentHtml,
-      },
-      proofOfConcepts: {
-        spaces: proofOfConcepts,
-        content: proofOfConceptsContentHtml,
-      },
-      tutorials: {
-        spaces: tutorials,
-        content: tutorialsContentHtml,
-      },
-      sandboxes: {
-        spaces: sandboxes,
-        content: sandboxesContentHtml,
-      },
+      thumbnails: blogThumbnails,
     },
   }
 }

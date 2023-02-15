@@ -93,12 +93,19 @@ export const sandboxes = [
   },
 ]
 
-export const mockBlogThumbnails = [
+export const blogThumbnails = [
   {
-    title: 'Blog Post Thumbnail Title',
-    date: '2023-01-01',
+    title: 'Babel, a JavaScript Compiler',
+    date: '2022-11-20',
     summary:
-      'This is a sample blog post thumbnail summary. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a purus malesuada, accumsan velit sit amet, feugiat leo. Integer id accumsan erat. Ut feugiat suscipit lectus ac rutrum. Sed vitae venenatis augue. Sed gravida dolor nunc, non varius turpis rhoncus in. Sed felis nisl, ultricies vitae faucibus facilisis, euismod nec dolor.',
-    url: '/',
+      'Babel is one of those tools that made JavaScript development in the 2010s approachable and contributed so much to the state of the language today.',
+    url: '/sandboxes/build-tools/babel',
+  },
+  {
+    title: 'Refactoring User Input Importer',
+    date: '2022-11-11',
+    summary:
+      'Writing self-explanatory, maintainable, testable, scalable and DRY code is difficult, specially when the requirements are still a bit cloudy and the product is still evolving. Follow me on this journey where I refactor my Habit Tracker CLI code.',
+    url: '/projects/habit-tracker',
   },
 ]
