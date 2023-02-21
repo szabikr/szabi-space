@@ -1,4 +1,4 @@
-import { getHtmlContent } from '../../../lib/content-parser'
+import { getHtmlContent } from '../../lib/content-parser'
 
 export default function RefactoringUserInputImporterV1({
   refactoringV1ContentHtml,
