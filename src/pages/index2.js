@@ -1,5 +1,6 @@
+import Projects from '../components/projects'
 import BlogPostThumbnails from '../components/blog-post-thumbnails'
-import { blogThumbnails } from '../data'
+import { blogThumbnails, projects } from '../data'
 
 export default function Home(props) {
   return (
@@ -12,7 +13,9 @@ export default function Home(props) {
       </header>
       <hr />
       <main>
-        <h4>Blog:</h4>
+        <h4>Projects</h4>
+        <Projects projects={props.projects} />
+        <h4>Blog</h4>
         <BlogPostThumbnails thumbnails={props.thumbnails} />
       </main>
       <hr />
@@ -25,6 +28,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       thumbnails: blogThumbnails,
+      projects: projects,
     },
   }
 }
