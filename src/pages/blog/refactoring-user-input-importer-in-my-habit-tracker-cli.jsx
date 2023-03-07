@@ -10,14 +10,8 @@ export default function HabitTracker({
 }) {
   return (
     <>
-      <header>
-        <h1>Habit Tracker</h1>
-        <GithubAnchor repoLink={repoLink} />
-      </header>
       <main>
         <section dangerouslySetInnerHTML={{ __html: refactoringContentHtml }} />
-        <hr />
-        <section dangerouslySetInnerHTML={{ __html: changeLogContentHtml }} />
       </main>
       <footer>
         <GithubAnchor repoLink={repoLink} />

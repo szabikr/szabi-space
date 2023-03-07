@@ -1,8 +1,8 @@
-## Refactoring User Input Importer (Intermediate Steps)
+# Refactoring User Input Importer in My Habit Tracker CLI (Intermediate Steps)
 
-This article is part of the main Refactoring User Input Importer article that you can find [here](https://szabi.space/projects/habit-tracker). If you haven't read that, you should start reading it from there because this page contains only the intermediate steps between identifying the problem and the refined solution.
+This article is part of the main Refactoring User Input Importer article that you can find [here](https://szabi.space/blog/refactoring-user-input-importer-in-my-habit-tracker-cli). If you haven't read that, you should start reading it from there because this page contains only the intermediate steps between identifying the problem and the refined solution.
 
-### Writing new code
+## Writing new code
 
 I took the liberty to refactor these individual code blocks, make them simpler, reduce unnecessary abstractions and define them in the context of functions. Functions that have arguments with types and a return type.
 
@@ -64,7 +64,7 @@ def parse_journal_entry(lines: List[str]) -> str:
 
 You might think, _"Why do we even need a separate function for a one-liner?"_. The question is valid but considering that this one-liner solves a problem specific to our domain, it deserves its own function. Also if the format of the journal entry in the `user_input` file changes we know exactly which part of the codebase has to be altered.
 
-### From a different angle
+## From a different angle
 
 So far we've looked at how individual lines that represent activities and journal entry records are processed. Now let's take a look at how the contents of a `user_input` file will be broken down and fed into these parser functions.
 
@@ -169,7 +169,7 @@ def build_journal_entry(parsed_record: str, record_date: date) -> JournalEntry:
 
 Building the `JournalEntry` object is much simpler however, if the `record_date` is not defined and there's a valid `parsed_record` we do want to raise an exception and stop the parsing process.
 
-### Piece it together
+## Piece it together
 
 Now that we have all the building blocks necessary, let's put the pieces together and see what would the refactored solution look like.
 
@@ -234,6 +234,6 @@ if __name__ == "__main__":
 
 This code block has a bunch of imports, but that's exactly what we wanted, delegate responsibility to different functions so that the code responds better to change.
 
-### Conclusion
+## Conclusion
 
-Check out the main Refactoring User Input Importer article [here](https://szabi.space/projects/habit-tracker) for reading the conclusion of the work.
+Check out the main Refactoring User Input Importer article [here](https://szabi.space/blog/refactoring-user-input-importer-in-my-habit-tracker-cli) for reading the conclusion of the work.

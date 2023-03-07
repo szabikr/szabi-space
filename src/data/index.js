@@ -1,29 +1,50 @@
 export const projects = [
   {
     name: 'Habit Tracker',
-    description: 'Application',
+    summary:
+      'A CLI tool that I use to track my habits. It is based on a well defined file parser.',
+    url: 'blog/refactoring-user-input-importer-in-my-habit-tracker-cli',
     repoLink: 'https://github.com/szabikr/habit-tracker',
-    pageUrl: '/projects/habit-tracker',
   },
   {
     name: 'Szabi.space',
-    description: 'This website',
+    summary:
+      'My personal website that showcases my work, hosts my blog and describes my past software engineering experience.',
+    url: 'https://szabi.space/',
     repoLink: 'https://github.com/szabikr/szabi-space',
   },
   {
-    name: 'use-fetch-on-interval',
-    description: 'Custom react hook',
-    repoLink: 'https://github.com/szabikr/use-fetch-on-interval',
+    name: 'Authentication in Single Page Application',
+    summary:
+      'A proof of concept for implementing authentication using the MERN tech stack.',
+    url: '/proof-of-concepts/authentication',
+    repoLink: 'https://github.com/szabikr/poc-authentication',
+  },
+  {
+    name: 'React Boilerplate Using Webpack',
+    summary:
+      'A project from scratch that builds React applications with lates JS features and CSS support.',
+    url: 'https://react-boilerplate-szabikr.vercel.app/',
+    repoLink: 'https://github.com/szabikr/sandbox-react/tree/main/boilerplate',
+  },
+  {
+    name: 'Quote Analyser',
+    summary:
+      'A funny little app that uses public APIs to take a quote apart and defined the words that are present.',
+    url: 'https://quote-analyser-szabikr.vercel.app/',
+    repoLink:
+      'https://github.com/szabikr/sandbox-react/tree/main/quote-analyser',
+  },
+  {
+    name: 'Todo List',
+    summary:
+      'Basic todo list application that persists your list so that you can make sure to complete every todo item.',
+    url: 'https://todo-list-szabikr.vercel.app/',
+    repoLink: 'https://github.com/szabikr/sandbox-react/tree/main/todo-list',
   },
 ]
 
 export const proofOfConcepts = [
-  {
-    name: 'Authentication',
-    description: 'OAuth 2.0',
-    repoLink: 'https://github.com/szabikr/move-to-done',
-    pageUrl: '/proof-of-concepts/authentication',
-  },
   {
     name: 'React Boilerplate',
     description: 'Build tools setup',
@@ -99,13 +120,17 @@ export const blogThumbnails = [
     date: '2022-11-20',
     summary:
       'Babel is one of those tools that made JavaScript development in the 2010s approachable and contributed so much to the state of the language today.',
-    url: '/sandboxes/build-tools/babel',
+    url: '/blog/babel-a-javascript-compiler',
   },
+  // TODO: Separate this out later
+  // This Refactoring User Input Importer work is hardly a blog post.
+  // It is a project specific finding and a case study.
+  // It is about how to refactor code and why don't we just write the right code at first.
   {
-    title: 'Refactoring User Input Importer',
+    title: 'Refactoring User Input Importer in My Habit Tracker CLI',
     date: '2022-11-11',
     summary:
       'Writing self-explanatory, maintainable, testable, scalable and DRY code is difficult, specially when the requirements are still a bit cloudy and the product is still evolving. Follow me on this journey where I refactor my Habit Tracker CLI code.',
-    url: '/projects/habit-tracker',
+    url: '/blog/refactoring-user-input-importer-in-my-habit-tracker-cli',
   },
 ]

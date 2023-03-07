@@ -1,6 +1,6 @@
-## Refactoring User Input Importer
+# Refactoring User Input Importer in My Habit Tracker CLI
 
-### Requirements
+## Requirements
 
 The Habit Tracker App User defines their **activities** and **journal entries** in a user input file which then needs to be parsed and imported.
 
@@ -61,7 +61,7 @@ JournalEntry
 
 We need an algorithm that takes the contents of a `user_input` file and returns a `List[Activity]` and a `List[JournalEntry]`.
 
-### Current Solution
+## Current Solution
 
 The current solution, which you can check out [here](https://github.com/szabikr/habit-tracker/tree/v1.0.0), constitutes of two main parser functions, `read_activities_from_user_input` and `read_journal_entries_from_user_input`. They both take a `user_input` filename as a string, read the lines from the file one by one, and process the content in a primitive way. Lists of each data class (`Activity` and `JournalEntry`) are constructed imperatively and then returned. In case of crucial errors, an empty list will be generated with a log message saying what went wrong.
 
@@ -191,7 +191,7 @@ def read_journal_entries_from_user_input(file_name: str) -> List[JournalEntry]:
     return journal_entries
 ```
 
-### Problems with the Current Solution
+## Problems with the Current Solution
 
 Firstly, I think the current solution is **not self-explanatory**, it could use some comments and additional documentation for a new developer to understand what's going on. Therefore the **maintenance is difficult**, hence the reason for the two functions, I simply didn't wanna touch the `read_activities_from_user_input` function when building the journal entry parser functionality. We've all been in a situation where we said, or heard somebody say: _"- I'm not changing that! Who knows what's gonna happen??!"_.
 
@@ -203,7 +203,7 @@ The dependency on the file opening function and their imperative nature makes th
 
 And finally, there's quite a lot of repetition going on, both functions have a bunch of common elements so the code **is not DRY**.
 
-### At a first glance
+## At a first glance
 
 Perhaps the main issue is that we are processing the file line by line. A better approach would be to load the entire contents of the file into memory. A `List[str]` representing the lines of the file would be ideal because then we can apply any data transformation function that we want. Would like to mention that the largest file so far is `6.5KB`, if and when the file size grows so that it's not efficient to load all of it into memory then I'll consider using a generator function instead.
 
@@ -282,9 +282,9 @@ The next step is to identify well-defined units in the existing codebase that co
 
 At this point, I went on and started to fiddle with the code, built these code blocks into functions, and reduced unnecessary abstractions. Had to decide what these functions will return are they going to return the domain models that we defined earlier as data classes or should they return `NamedTuples`. Also, what are going to be the core building blocks and how will those building blocks be put together so that it constructs the User Input Importer. How should I organise the code in modules, packages, and so on.
 
-In my opinion, the best way to find a great solution for something is to try out a bunch of things and see what works best, document it, refine it, create diagrams, etc. I'll let you read about the intermediate steps [here (link not yet set)](https://szabi.space/projects/habit-tracker/refactoring-user-input-importer-v1), but this article will continue with the final, refined solution.
+In my opinion, the best way to find a great solution for something is to try out a bunch of things and see what works best, document it, refine it, create diagrams, etc. I'll let you read about the intermediate steps [here (link not yet set)](https://szabi.space/blog/refactoring-user-input-importer-in-my-habit-tracker-cli-v1), but this article will continue with the final, refined solution.
 
-### Proposed Solution
+## Proposed Solution
 
 After the refactoring process I came to a solution that is represented by the following code architecture diagram:
 
@@ -294,7 +294,7 @@ As you can see the code is structured in four packages. One of the packages, `ht
 
 Let's look at each package and see their implementation:
 
-#### `ht_models` package
+### `ht_models` package
 
 It is sensible to start with `ht_models` as this package contains the data structures that other packages pass around to turn the contents of `user_input` files into data that the computer understands. All other packages are dependent on this one and it exists because we wanted to reduce the level of dependency between the packages.
 
@@ -366,7 +366,7 @@ class UserInput:
     journal_entries: List[JournalEntry]
 ```
 
-#### `ht_importer` package
+### `ht_importer` package
 
 This package is like an orchestrator, has a dependency on every other package and it uses them together with some internal modules to get the job done. It is responsible for reading the data from `user_input`, converting the data (parsing then building), and writing the data to the database.
 
@@ -415,7 +415,7 @@ The following diagram helps visualise what's happening during the execution of `
 
 [<img src="https://szabi.space/assets/import_user_input_activity_diagram.png" alt="import user input activity diagram" width="100%" />](https://szabi.space/assets/import_user_input_activity_diagram.png)
 
-#### `ht_parser` package
+### `ht_parser` package
 
 This package is responsible for taking the list of strings and parsing them into `raw_models`. And it does it by splitting the lines into days, then parsing each day into different sections like date (`str`), list of activities (`List[str]`), and journal entries (`List[str]`). Once we have these sections we pass them on to their respective parser functions to turn them into raw activities (`List[RawActivity]`) and journal entries (`RawJournalEntry`).
 
@@ -486,7 +486,7 @@ def parse_journal_entry(lines: List[str]) -> RawJournalEntry:
     return r"\n".join(lines)
 ```
 
-#### `ht_builder` package
+### `ht_builder` package
 
 This package is the final step in our conversion and that's where the `raw_models` turn into `domain_models`. We loop through each `raw_day` and build the date (`build_habits_date`), list of activities (`build_activities`) and if there is any, the journal entry (`build_journal_entry`).
 
@@ -577,7 +577,7 @@ def build_journal_entry(raw_journal_entry: RawJournalEntry, record_date: date) -
     return JournalEntry(raw_journal_entry, record_date)
 ```
 
-### Conclusion
+## Conclusion
 
 Yes, it is crazy how much you can achieve with just these nested `while` loops, and the code stays relatively short. However, there are significant problems with that approach when we are building code that could be used in real life and has to be reliable. Let's take a look at how did we solve the problems outlined in the first section of this article.
 
