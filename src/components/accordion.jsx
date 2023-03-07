@@ -1,9 +1,23 @@
+import { useState } from 'react'
+
 export default function Accordion() {
+  const [isCollapsed, setIsCollapsed] = useState(true)
+
   return (
-    <div>
-      <div>
-        <h4>Title One</h4>
-        <div>
+    <div className="accordion">
+      <div className="accordion-item">
+        <div className="accordion-header">
+          <h5>Software Engineer @ BJSS</h5>
+          <div>
+            <button
+              className="primary"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+            >
+              {isCollapsed ? 'Expand' : 'Collapse'}
+            </button>
+          </div>
+        </div>
+        <div className={isCollapsed ? 'collapsed' : ''}>
           <p>
             <strong>Content one:</strong> Lorem ipsum dolor sit amet,
             consectetur adipiscing elit. Nulla suscipit lacinia faucibus.

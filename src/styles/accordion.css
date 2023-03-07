@@ -1,0 +1,12 @@
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-header div {
+  padding-top: 26px;
+}
+
+.accordion .collapsed {
+  display: none;
+}
