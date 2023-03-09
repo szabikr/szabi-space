@@ -1,26 +1,11 @@
 import { useState } from 'react'
 
-export default function Accordion({ items }) {
-  const [show, setShow] = useState(
-    expandItem(
-      items.reduce(
-        (result, item) => ({
-          ...result,
-          [item.id]: COLLAPSED,
-        }),
-        {},
-      ),
-      MOST_IMPORTANT,
-    ),
-  )
+const MOST_IMPORTANT = '77eb3531-4b82-427a-8947-cb26791ff4f9'
 
-  const toggleItem = (id) =>
-    show[id] === EXPANDED
-      ? setShow({
-          ...show,
-          [id]: COLLAPSED,
-        })
-      : setShow(expandItem(show, id))
+export default function Accordion({ items }) {
+  const [show, setShow] = useState(MOST_IMPORTANT)
+
+  const toggleItem = (id) => (show === id ? setShow(null) : setShow(id))
 
   return (
     <div className="accordion">
@@ -30,7 +15,7 @@ export default function Accordion({ items }) {
             {item.header()}
             <div>
               <button className="primary" onClick={() => toggleItem(item.id)}>
-                {show[item.id] ? (
+                {item.id === show ? (
                   <i className="arrow up" />
                 ) : (
                   <i className="arrow down" />
@@ -38,22 +23,11 @@ export default function Accordion({ items }) {
               </button>
             </div>
           </div>
-          <div className={show[item.id] ? '' : 'collapsed'}>{item.body()}</div>
+          <div className={item.id == show ? '' : 'collapsed'}>
+            {item.body()}
+          </div>
         </div>
       ))}
     </div>
   )
 }
-
-const MOST_IMPORTANT = '77eb3531-4b82-427a-8947-cb26791ff4f9'
-const EXPANDED = true
-const COLLAPSED = false
-
-const expandItem = (items, id) =>
-  Object.keys(items).reduce(
-    (result, itemId) => ({
-      ...result,
-      [itemId]: itemId === id ? EXPANDED : COLLAPSED,
-    }),
-    {},
-  )
