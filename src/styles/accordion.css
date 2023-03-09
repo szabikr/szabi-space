@@ -14,3 +14,21 @@
 .accordion .collapsed {
   display: none;
 }
+
+.accordion .arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.accordion .up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.accordion .down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

@@ -123,7 +123,11 @@ export default function Accordion() {
             {item.header()}
             <div>
               <button className="primary" onClick={() => toggleItem(item.id)}>
-                {show[item.id] ? 'Collapse' : 'Expand'}
+                {show[item.id] ? (
+                  <i className="arrow up" />
+                ) : (
+                  <i className="arrow down" />
+                )}
               </button>
             </div>
           </div>
