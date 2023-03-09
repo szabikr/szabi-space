@@ -50,15 +50,10 @@ const EXPANDED = true
 const COLLAPSED = false
 
 const expandItem = (items, id) =>
-  Object.keys(items).reduce((result, itemId) => {
-    if (itemId === id) {
-      return {
-        ...result,
-        [itemId]: EXPANDED,
-      }
-    }
-    return {
+  Object.keys(items).reduce(
+    (result, itemId) => ({
       ...result,
-      [itemId]: COLLAPSED,
-    }
-  }, {})
+      [itemId]: itemId === id ? EXPANDED : COLLAPSED,
+    }),
+    {},
+  )
