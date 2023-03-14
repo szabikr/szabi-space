@@ -1,5 +1,5 @@
 import { getHtmlContent } from '../../lib/content-parser'
-import { projects } from '../../data'
+import { projects } from '../../data/projects'
 import GithubAnchor from '../../components/github-anchor'
 import BackToHomeButton from '../../components/back-to-home-button'
 

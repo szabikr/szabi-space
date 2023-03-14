@@ -1,6 +1,7 @@
 import Projects from '../components/projects'
 import BlogPostThumbnails from '../components/blog-post-thumbnails'
-import { blogThumbnails, projects } from '../data'
+import { blogThumbnails } from '../data/blog'
+import { projects } from '../data/projects'
 
 export default function Home(props) {
   return (
