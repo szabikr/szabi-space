@@ -5,6 +5,7 @@ import '../styles/button.css'
 import '../styles/accordion.css'
 import '../styles/main.css'
 import '../styles/projects.css'
+import '../styles/tech-tag.css'
 import '../styles/inline-code.css'
 
 export default function App({ Component, pageProps }) {

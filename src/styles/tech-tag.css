@@ -1,0 +1,8 @@
+span.tech-tag {
+  display: inline-block;
+  margin: 4px 4px;
+  padding: 4px 16px 2px;
+  background-color: yellow;
+  border-radius: 16px;
+  border: 2px solid;
+}
