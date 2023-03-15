@@ -3,11 +3,7 @@ import { projects } from '../../data/projects'
 import GithubAnchor from '../../components/github-anchor'
 import BackToHomeButton from '../../components/back-to-home-button'
 
-export default function HabitTracker({
-  repoLink,
-  refactoringContentHtml,
-  changeLogContentHtml,
-}) {
+export default function HabitTracker({ repoLink, refactoringContentHtml }) {
   return (
     <>
       <main>
@@ -24,16 +20,15 @@ export default function HabitTracker({
 export async function getStaticProps(context) {
   const repoLink = projects.find((poc) => poc.name == 'Habit Tracker').repoLink
   const withSyntaxHl = true
-  const [refactoringContentHtml, changeLogContentHtml] = await Promise.all([
-    getHtmlContent('projects/habit-tracker/refactoring.md', withSyntaxHl),
-    getHtmlContent('projects/habit-tracker/change-log.md'),
-  ])
+  const refactoringContentHtml = await getHtmlContent(
+    'projects/habit-tracker/refactoring.md',
+    withSyntaxHl,
+  )
 
   return {
     props: {
       repoLink,
       refactoringContentHtml,
-      changeLogContentHtml,
     },
   }
 }
