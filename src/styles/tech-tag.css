@@ -5,4 +5,5 @@ span.tech-tag {
   background-color: yellow;
   border-radius: 16px;
   border: 2px solid;
+  cursor: default;
 }

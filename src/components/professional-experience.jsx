@@ -13,7 +13,7 @@ export default function ProfessionalExperience({ experience }) {
     body: () => (
       <>
         {ExperienceComponentFactory(exp.description)()}
-        <TechTags technologies={exp.techTags} />
+        <TechTags technologies={exp.technologies} />
       </>
     ),
   }))
