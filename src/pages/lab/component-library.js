@@ -1,6 +1,6 @@
-import { mockBlogThumbnails } from '../data/mocks'
-import BackToHomeButton from '../components/back-to-home-button'
-import BlogPostThumbnails from '../components/blog-post-thumbnails'
+import { mockBlogThumbnails } from '../../data/mocks'
+import BackToHomeButton from '../../components/back-to-home-button'
+import BlogPostThumbnails from '../../components/blog-post-thumbnails'
 
 export default function ComponentLibrary({ blogThumbnails }) {
   return (

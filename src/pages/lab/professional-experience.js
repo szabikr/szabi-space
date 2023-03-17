@@ -1,5 +1,5 @@
-import ProfessionalExperience from '../components/professional-experience'
-import { professionalExperience } from '../data/professional-experience'
+import ProfessionalExperience from '../../components/professional-experience'
+import { professionalExperience } from '../../data/professional-experience'
 
 export default function ProfessionalExperiencePage(props) {
   return (
