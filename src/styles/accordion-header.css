@@ -1,0 +1,47 @@
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-header div {
+  border: 1px solid black;
+}
+
+.accordion-header-title {
+  width: 100%;
+}
+
+.accordion-header-subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+Accordion header button
+Arrow down when it is collapsed
+Arrow up when it is expanded
+*/
+
+.accordion-header .arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.accordion-header .up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.accordion-header .down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+@media only screen and (min-width: 768px) {
+  .accordion-header-title {
+    background-color: red;
+  }
+}

@@ -8,15 +8,12 @@ export default function ProfessionalExperience({ experience }) {
   const items = experience.map((exp) => ({
     id: exp.id,
     header: (showYear = true) => (
-      <>
-        <h5>{exp.jobTitle}</h5>
-        <h5>@ {exp.organization}</h5>
+      <h5>
+        {exp.jobTitle} @ {exp.organization}{' '}
         {showYear && (
-          <h5>
-            <ExperiencePeriodShort start={exp.startDate} end={exp.endDate} />
-          </h5>
+          <ExperiencePeriodShort start={exp.startDate} end={exp.endDate} />
         )}
-      </>
+      </h5>
     ),
     body: () => (
       <>
