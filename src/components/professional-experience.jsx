@@ -9,8 +9,10 @@ export default function ProfessionalExperience({ experience }) {
     id: exp.id,
     header: () => (
       <h5>
-        {exp.jobTitle} @ {exp.organization} {formatYearDate(exp.startDate)} -{' '}
-        {formatYearDate(exp.endDate)}
+        {exp.jobTitle} @ {exp.organization} {formatYearDate(exp.startDate)}
+        {new Date(exp.startDate).getFullYear() !==
+          new Date(exp.endDate).getFullYear() &&
+          ` - ${formatYearDate(exp.endDate)}`}
       </h5>
     ),
     body: () => (
