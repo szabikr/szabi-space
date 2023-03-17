@@ -151,7 +151,7 @@ export const professionalExperience = [
     jobTitle: 'iOS Apprentice',
     organization: 'Reea',
     startDate: '2014-03-01',
-    endDate: '2014-03-01',
+    endDate: '2014-04-01',
     description: IOS_APPRENTICE_REEA_DESCRIPTION,
     technologies: [ProgrammingLanguage.ObjectiveC, OtherTools.Xcode],
   },
