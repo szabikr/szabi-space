@@ -12,7 +12,7 @@ export default function Accordion({ items }) {
       {items.map((item) => (
         <div key={item.id} className="accordion-item">
           <div className="accordion-header">
-            {item.header()}
+            {item.header(item.id != show)}
             <div>
               <button className="primary" onClick={() => toggleItem(item.id)}>
                 {item.id === show ? (

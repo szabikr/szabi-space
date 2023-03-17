@@ -1,6 +1,6 @@
 import { formatMonthDate, formatMonthYearDate } from '../utils'
 
-export default function ExperiencePeriod({ start, end }) {
+export default function ExperiencePeriodFull({ start, end }) {
   const startDate = new Date(start)
   const endDate = new Date(end)
 
