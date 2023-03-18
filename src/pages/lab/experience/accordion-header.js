@@ -1,7 +1,6 @@
 export default function AccordionHeaderPage() {
   return (
     <main>
-      <h1>Accordion Header Page</h1>
       <div className="accordion-header">
         <div className="accordion-header-title">
           <div>

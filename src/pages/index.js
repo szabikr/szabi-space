@@ -1,22 +1,17 @@
+import Tagline from '../components/tagline'
 import Projects from '../components/projects'
-import BlogPostThumbnails from '../components/blog-post-thumbnails'
+import Blog from '../components/blog'
 import { blogThumbnails } from '../data/blog'
 import { projects } from '../data/projects'
 
 export default function Home(props) {
   return (
     <>
-      <header>
-        <h1>
-          Hi. I'm Szabi.
-          <br />A Software Engineer.
-        </h1>
-      </header>
+      <header></header>
       <main>
-        <h4>Projects</h4>
+        <Tagline />
         <Projects projects={props.projects} />
-        <h4>Blog</h4>
-        <BlogPostThumbnails thumbnails={props.thumbnails} />
+        <Blog thumbnails={props.thumbnails} />
       </main>
       <footer></footer>
     </>
