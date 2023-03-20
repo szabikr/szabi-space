@@ -10,6 +10,7 @@ import '../styles/common/button.css'
 import '../styles/experience/accordion.css'
 import '../styles/experience/tech-tag.css'
 
+import '../styles/tagline.css'
 import '../styles/projects.css'
 import '../styles/expertise.css'
 
