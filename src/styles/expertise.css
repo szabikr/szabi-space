@@ -1,0 +1,9 @@
+ul.expertise li h5 {
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+ul.expertise li p {
+  line-height: 24px;
+  margin: 0;
+}

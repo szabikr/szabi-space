@@ -4,7 +4,7 @@ export default function Projects({ projects }) {
   return (
     <section>
       <h3>Projects</h3>
-      <ul className="projects">
+      <ul className="grid projects">
         {projects.map((project) => (
           <li key={project.name}>
             <div>
