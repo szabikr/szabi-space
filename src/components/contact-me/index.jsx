@@ -1,7 +1,7 @@
 export default function ContactMe() {
   return (
     <section>
-      <h4>Contact Me</h4>
+      <h3>Contact Me</h3>
       <p>
         I am curious to hear about your current, or next Web Project and
         hopefully help out with the engineering side of things.
