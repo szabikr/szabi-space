@@ -1,4 +1,4 @@
-import { formatMonthDate, formatMonthYearDate } from '../utils'
+import { formatMonthDate, formatMonthYearDate } from '../../utils'
 
 export default function ExperiencePeriodFull({ start, end }) {
   const startDate = new Date(start)

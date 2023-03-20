@@ -6,7 +6,7 @@ import {
   NET_DEVELOPER_BRANDED3_DESCRIPTION,
   NET_DEVELOPER_COMKNOW_DESCRIPTION,
   IOS_APPRENTICE_REEA_DESCRIPTION,
-} from '../../data/professional-experience'
+} from '../../../data/professional-experience'
 
 import MentorSchoolOfCode from './mentor-school-of-code'
 import SoftwareEngineerBjss from './software-engineer-bjss'

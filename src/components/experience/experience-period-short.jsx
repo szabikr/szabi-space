@@ -1,4 +1,4 @@
-import { formatYearDate } from '../utils'
+import { formatYearDate } from '../../utils'
 
 export default function ExperiencePeriodShort({ start, end }) {
   const startDate = new Date(start)

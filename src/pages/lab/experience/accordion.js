@@ -1,4 +1,4 @@
-import Accordion from '../../components/accordion'
+import Accordion from '../../../components/experience/accordion'
 
 export default function AccordionPage() {
   const items = [
@@ -57,7 +57,6 @@ export default function AccordionPage() {
 
   return (
     <main>
-      <h1>Accordion Component</h1>
       <Accordion items={items} />
     </main>
   )

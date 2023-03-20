@@ -1,7 +1,7 @@
 import { getHtmlContent } from '../../lib/content-parser'
 import { projects } from '../../data/projects'
-import GithubAnchor from '../../components/github-anchor'
-import BackToHomeButton from '../../components/back-to-home-button'
+import GithubAnchor from '../../components/common/github-anchor'
+import BackToHomeButton from '../../components/common/back-to-home-button'
 
 export default function HabitTracker({ repoLink, refactoringContentHtml }) {
   return (
