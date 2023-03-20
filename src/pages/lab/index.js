@@ -9,7 +9,7 @@ export default function LabPage() {
           <Link href="/lab/tagline">Tagline</Link>
         </li>
         <li>
-          <Link href="/lab/experties">Experties</Link>
+          <Link href="/lab/expertise">Expertise</Link>
         </li>
         <li>
           <Link href="/lab/experience">Experience</Link>

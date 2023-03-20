@@ -1,5 +1,5 @@
 import Tagline from '../components/tagline'
-import Experties from '../components/experties'
+import Expertise from '../components/expertise'
 import Experience from '../components/experience'
 import Projects from '../components/projects'
 import Blog from '../components/blog'
@@ -14,7 +14,7 @@ export default function Home(props) {
       <header></header>
       <main>
         <Tagline />
-        <Experties />
+        <Expertise />
         <Experience experience={props.experience} />
         <Projects projects={props.projects} />
         <Blog thumbnails={props.thumbnails} />

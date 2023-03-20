@@ -1,7 +1,7 @@
-export default function Experties() {
+export default function Expertise() {
   return (
     <section>
-      <h3>My Experties</h3>
+      <h3>My Expertise</h3>
       <ul className="projects">
         <li>
           <h5>Software Engineering</h5>
