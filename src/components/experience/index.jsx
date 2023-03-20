@@ -26,7 +26,7 @@ export default function Experience({ experience }) {
 
   return (
     <section>
-      <h4>Professional Experience</h4>
+      <h3>Professional Experience</h3>
       <Accordion items={items} />
     </section>
   )

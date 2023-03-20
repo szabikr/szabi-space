@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Projects({ projects }) {
   return (
     <section>
-      <h4>Projects</h4>
+      <h3>Projects</h3>
       <ul className="projects">
         {projects.map((project) => (
           <li key={project.name}>

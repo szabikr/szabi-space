@@ -4,10 +4,10 @@ import { formatDate } from '../../utils'
 export default function Blog({ thumbnails }) {
   return (
     <section>
-      <h4>Blog</h4>
+      <h3>Blog</h3>
       {thumbnails.map((thumbnail) => (
         <section key={thumbnail.title}>
-          <h3>{thumbnail.title}</h3>
+          <h4>{thumbnail.title}</h4>
           <div>
             <em>{formatDate(thumbnail.date)}</em>
           </div>
