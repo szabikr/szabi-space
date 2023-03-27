@@ -4,7 +4,7 @@ import Experience from '../components/experience'
 import Projects from '../components/projects'
 import Blog from '../components/blog'
 import ContactMe from '../components/contact-me'
-import { professionalExperience } from '../data/professional-experience'
+import { experience } from '../data/experience'
 import { blogThumbnails } from '../data/blog'
 import { projects } from '../data/projects'
 
@@ -30,7 +30,7 @@ export async function getStaticProps(context) {
     props: {
       thumbnails: blogThumbnails,
       projects: projects,
-      experience: professionalExperience,
+      experience: experience,
     },
   }
 }

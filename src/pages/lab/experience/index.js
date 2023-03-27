@@ -1,5 +1,5 @@
 import Experience from '../../../components/experience'
-import { professionalExperience } from '../../../data/professional-experience'
+import { experience } from '../../../data/experience'
 
 export default function ExperiencePage(props) {
   return (
@@ -12,7 +12,7 @@ export default function ExperiencePage(props) {
 export async function getStaticProps(context) {
   return {
     props: {
-      experience: professionalExperience,
+      experience: experience,
     },
   }
 }
