@@ -7,16 +7,14 @@ export default function Expertise() {
           <h5>Software Engineering</h5>
           <p>
             Experienced in Procedural, Functional and Object Oriented
-            Programming: TypeScript, JavaScript, Python. Excited about code
-            architecture and refactoring.
+            Programming: TypeScript, JavaScript, Python.
           </p>
+          <p>Excited about code architecture and refactoring.</p>
         </li>
         <li>
           <h5>Front-End Development</h5>
-          <p>
-            Passionate about UI/UX and Application State Management. Skilled in
-            Semantic HTML, CSS, JS, React, Next.js.
-          </p>
+          <p>Passionate about UI/UX and Application State Management.</p>
+          <p>Skilled in Semantic HTML, CSS, JS, React, Next.js.</p>
         </li>
         <li>
           <h5>Agile Ways of Working</h5>

@@ -29,6 +29,17 @@ export default function NetDeveloperComknow() {
         <strong>jQuery</strong> to make the UI more interactive and handle{' '}
         <strong>AJAX</strong> requests.
       </p>
+      <p>A few funny things at this job:</p>
+      <ul>
+        <li>
+          We used TortoiseSVN for version control and spent so much time merging
+          our changes.
+        </li>
+        <li>
+          We manually copied files to this FTP Server and called it a release.
+        </li>
+        <li>We used Spread Sheets for managing our Development tasks.</li>
+      </ul>
     </>
   )
 }
