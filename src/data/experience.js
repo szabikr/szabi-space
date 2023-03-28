@@ -1,13 +1,12 @@
-export const MENTOR_SCHOOL_OF_CODE = 'MENTOR_SCHOOL_OF_CODE'
-export const SOFTWARE_ENGINEER_BJSS = 'SOFTWARE_ENGINEER_BJSS'
-export const FULL_STACK_DEVELOPER_RIGHTINDEM = 'FULL_STACK_DEVELOPER_RIGHTINDEM'
-export const CO_FOUNDER_WRAPTIME_DESCRIPTION = 'CO_FOUNDER_WRAPTIME_DESCRIPTION'
-export const NET_DEVELOPER_BRANDED3_DESCRIPTION =
-  'NET_DEVELOPER_BRANDED3_DESCRIPTION'
-export const NET_DEVELOPER_COMKNOW_DESCRIPTION =
-  'NET_DEVELOPER_COMKNOW_DESCRIPTION'
-export const IOS_APPRENTICE_REEA_DESCRIPTION = 'IOS_APPRENTICE_REEA_DESCRIPTION'
-
+import {
+  MENTOR_SCHOOL_OF_CODE,
+  SOFTWARE_ENGINEER_BJSS,
+  FULL_STACK_DEVELOPER_RIGHTINDEM,
+  CO_FOUNDER_WRAPTIME,
+  NET_DEVELOPER_BRANDED3,
+  NET_DEVELOPER_COMKNOW,
+  IOS_APPRENTICE_REEA,
+} from '../constants/experience'
 import {
   ProgrammingLanguage,
   FrontEndTech,
@@ -18,14 +17,14 @@ import {
   OtherTools,
 } from './technologies'
 
-export const professionalExperience = [
+export const experience = [
   {
-    id: '94f8a13c-23d0-4193-9eec-e6dd2177955a',
+    id: MENTOR_SCHOOL_OF_CODE.id,
     jobTitle: 'Mentor',
     organization: 'School of Code',
     startDate: '2021-11-01',
     endDate: '2023-01-01',
-    description: MENTOR_SCHOOL_OF_CODE,
+    description: MENTOR_SCHOOL_OF_CODE.contentComponent,
     technologies: [
       ProgrammingLanguage.JavascriptEs6,
       FrontEndTech.React,
@@ -38,12 +37,12 @@ export const professionalExperience = [
     ],
   },
   {
-    id: 'f6e739ba-82ea-4bfd-8fc8-9f0cb069c311',
+    id: SOFTWARE_ENGINEER_BJSS.id,
     jobTitle: 'Software Engineer',
     organization: 'BJSS',
     startDate: '2018-11-01',
     endDate: '2021-12-01',
-    description: SOFTWARE_ENGINEER_BJSS,
+    description: SOFTWARE_ENGINEER_BJSS.contentComponent,
     technologies: [
       ProgrammingLanguage.Typescript,
       FrontEndTech.NextJs,
@@ -68,12 +67,12 @@ export const professionalExperience = [
     ],
   },
   {
-    id: '4a7717e2-9876-42d7-ac22-53fe7198cd6e',
+    id: FULL_STACK_DEVELOPER_RIGHTINDEM.id,
     jobTitle: 'Full-Stack Developer',
     organization: 'RightIndem',
     startDate: '2017-02-01',
     endDate: '2018-09-01',
-    description: FULL_STACK_DEVELOPER_RIGHTINDEM,
+    description: FULL_STACK_DEVELOPER_RIGHTINDEM.contentComponent,
     technologies: [
       ProgrammingLanguage.JavascriptEs6,
       FrontEndTech.React,
@@ -89,12 +88,12 @@ export const professionalExperience = [
     ],
   },
   {
-    id: 'd472caeb-dd47-4f11-9ca3-023e48fa80cd',
+    id: CO_FOUNDER_WRAPTIME.id,
     jobTitle: 'Co-Founder',
     organization: 'Wraptime',
     startDate: '2016-09-01',
     endDate: '2017-02-01',
-    description: CO_FOUNDER_WRAPTIME_DESCRIPTION,
+    description: CO_FOUNDER_WRAPTIME.contentComponent,
     technologies: [
       ProgrammingLanguage.JavascriptEs6,
       FrontEndTech.React,
@@ -107,12 +106,12 @@ export const professionalExperience = [
     ],
   },
   {
-    id: '1bfb08db-a345-4bb4-9b11-33897d27d4a4',
+    id: NET_DEVELOPER_BRANDED3.id,
     jobTitle: '.Net Developer',
     organization: 'Branded3',
     startDate: '2016-04-01',
     endDate: '2016-08-01',
-    description: NET_DEVELOPER_BRANDED3_DESCRIPTION,
+    description: NET_DEVELOPER_BRANDED3.contentComponent,
     technologies: [
       ProgrammingLanguage.Csharp,
       BackEndTech.AspNetMvc,
@@ -127,12 +126,12 @@ export const professionalExperience = [
     ],
   },
   {
-    id: '36e6cfe6-f5e0-456a-b343-4dd176e29342',
+    id: NET_DEVELOPER_COMKNOW.id,
     jobTitle: '.Net Developer',
     organization: 'ComKnow',
     startDate: '2015-08-01',
     endDate: '2016-02-01',
-    description: NET_DEVELOPER_COMKNOW_DESCRIPTION,
+    description: NET_DEVELOPER_COMKNOW.contentComponent,
     technologies: [
       ProgrammingLanguage.Csharp,
       BackEndTech.AspNetMvc,
@@ -147,12 +146,12 @@ export const professionalExperience = [
     ],
   },
   {
-    id: '0f4bfdc6-4a1b-4113-b3b1-e47ea99269de',
+    id: IOS_APPRENTICE_REEA.id,
     jobTitle: 'iOS Apprentice',
     organization: 'Reea',
     startDate: '2014-03-01',
     endDate: '2014-04-01',
-    description: IOS_APPRENTICE_REEA_DESCRIPTION,
+    description: IOS_APPRENTICE_REEA.contentComponent,
     technologies: [ProgrammingLanguage.ObjectiveC, OtherTools.Xcode],
   },
 ]

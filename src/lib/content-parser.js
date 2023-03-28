@@ -6,7 +6,7 @@ import html from 'remark-html'
 import prism from 'remark-prism'
 
 // Running remark-prism plugin for every single content parsing causes a slight performance issue
-// So we have to specify it wether the conent needs syntax highlighing or not, by default is set to false
+// So we have to specify it wether the conent needs syntax highlighing or not
 
 export async function getHtmlContent(contentPath, withSyntaxHl = false) {
   const markdownFilePath = path.join(process.cwd(), 'content', contentPath)
