@@ -10,7 +10,7 @@ import {
 
 /*
 This configuration data is used to display the experience section on the front-end.
-In a way that similar experiences such as .Net Developer at Branded3 and ComKnow are merged.
+Similar experiences such as .Net Developer at Branded3 and ComKnow are merged.
 */
 const experience_ui_config = [
   [MENTOR_SCHOOL_OF_CODE.id],
