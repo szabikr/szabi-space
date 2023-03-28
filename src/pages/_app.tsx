@@ -1,3 +1,5 @@
+import type { AppProps } from 'next/app'
+
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import '../styles/syntax-highlight/prism-one-light.css'
 import '../styles/syntax-highlight/inline-code.css'
@@ -14,6 +16,6 @@ import '../styles/tagline.css'
 import '../styles/projects.css'
 import '../styles/expertise.css'
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }

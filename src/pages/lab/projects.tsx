@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Projects from '../../components/projects'
 import { projects } from '../../data/projects'
 
@@ -9,7 +10,7 @@ export default function ProjectsPage({ projects }) {
   )
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = (context) => {
   return {
     props: {
       projects: projects,

@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Tagline from '../components/tagline'
 import Expertise from '../components/expertise'
 import Experience from '../components/experience'
@@ -25,7 +26,7 @@ export default function Home(props) {
   )
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       thumbnails: blogThumbnails,

@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import { getHtmlContent } from '../../lib/content-parser'
 import { projects } from '../../data/projects'
 import GithubAnchor from '../../components/common/github-anchor'
@@ -17,7 +18,7 @@ export default function HabitTracker({ repoLink, refactoringContentHtml }) {
   )
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   const repoLink = projects.find((poc) => poc.name == 'Habit Tracker').repoLink
   const withSyntaxHl = true
   const refactoringContentHtml = await getHtmlContent(

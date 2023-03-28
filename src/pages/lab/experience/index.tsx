@@ -1,15 +1,16 @@
+import { GetStaticProps } from 'next'
 import Experience from '../../../components/experience'
 import { experience } from '../../../data/experience'
 
-export default function ExperiencePage(props) {
+export default function ExperiencePage({ experience }) {
   return (
     <main>
-      <Experience experience={props.experience} />
+      <Experience experience={experience} />
     </main>
   )
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       experience: experience,
