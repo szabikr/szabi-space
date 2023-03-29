@@ -1,4 +1,11 @@
-export const blogThumbnails = [
+interface BlogThumbnail {
+  title: string
+  date: string
+  summary: string
+  url: string
+}
+
+export const blogThumbnails: BlogThumbnail[] = [
   {
     title: 'Babel, a JavaScript Compiler',
     date: '2022-11-20',
@@ -6,6 +13,7 @@ export const blogThumbnails = [
       'Babel is one of those tools that made JavaScript development in the 2010s approachable and contributed so much to the state of the language today.',
     url: '/blog/babel-a-javascript-compiler',
   },
+
   // TODO: Separate this out later
   // This Refactoring User Input Importer work is hardly a blog post.
   // It is a project specific finding and a case study.
