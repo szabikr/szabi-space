@@ -1,11 +1,11 @@
 import { GetStaticProps } from 'next'
 import Experience from '../../../components/experience'
-import { experience } from '../../../data/experience'
+import { jobs } from '../../../data/experience'
 
-export default function ExperiencePage({ experience }) {
+export default function ExperiencePage({ jobs }) {
   return (
     <main>
-      <Experience experience={experience} />
+      <Experience experience={jobs} />
     </main>
   )
 }
@@ -13,7 +13,7 @@ export default function ExperiencePage({ experience }) {
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
-      experience: experience,
+      jobs: jobs,
     },
   }
 }

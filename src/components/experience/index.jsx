@@ -9,7 +9,7 @@ export default function Experience({ experience }) {
     id: exp.id,
     header: (showYear = true) => (
       <h5>
-        {exp.jobTitle} @ {exp.organization}{' '}
+        {exp.role} @ {exp.organization}{' '}
         {showYear && (
           <ExperiencePeriodShort start={exp.startDate} end={exp.endDate} />
         )}

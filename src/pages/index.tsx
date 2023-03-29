@@ -5,7 +5,7 @@ import Experience from '../components/experience'
 import Projects from '../components/projects'
 import Blog from '../components/blog'
 import ContactMe from '../components/contact-me'
-import { experience } from '../data/experience'
+import { jobs } from '../data/experience'
 import { blogThumbnails } from '../data/blog'
 import { projects } from '../data/projects'
 
@@ -16,7 +16,7 @@ export default function Home(props) {
       <main>
         <Tagline />
         <Expertise />
-        <Experience experience={props.experience} />
+        <Experience experience={props.jobs} />
         <Projects projects={props.projects} />
         <Blog thumbnails={props.thumbnails} />
         <ContactMe />
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       thumbnails: blogThumbnails,
       projects: projects,
-      experience: experience,
+      jobs: jobs,
     },
   }
 }

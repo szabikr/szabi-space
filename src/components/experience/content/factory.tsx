@@ -1,4 +1,4 @@
-import { EXPERIENCE_COMPONENT } from '../../../constants/experience'
+import { JOB_CONTENT } from '../../../constants/experience'
 
 import MentorSchoolOfCode from './mentor-school-of-code'
 import SoftwareEngineerBjss from './software-engineer-bjss'
@@ -8,23 +8,23 @@ import NetDeveloperBranded3 from './net-developer-branded3'
 import NetDeveloperComknow from './net-developer-comknow'
 import IosApprenticeReea from './ios-apprentice-reea'
 
-type exp_comp = typeof EXPERIENCE_COMPONENT
+type exp_comp = typeof JOB_CONTENT
 
 export default function Factory(which: exp_comp[keyof exp_comp]) {
   switch (which) {
-    case EXPERIENCE_COMPONENT.mentorSchoolOfCode:
+    case JOB_CONTENT.mentorSchoolOfCode:
       return MentorSchoolOfCode
-    case EXPERIENCE_COMPONENT.softwareEngineerBjss:
+    case JOB_CONTENT.softwareEngineerBjss:
       return SoftwareEngineerBjss
-    case EXPERIENCE_COMPONENT.fullStackDeveloperRightindem:
+    case JOB_CONTENT.fullStackDeveloperRightindem:
       return FullStackDeveloperRightindem
-    case EXPERIENCE_COMPONENT.coFounderWraptime:
+    case JOB_CONTENT.coFounderWraptime:
       return CoFounderWraptime
-    case EXPERIENCE_COMPONENT.netDeveloperBranded3:
+    case JOB_CONTENT.netDeveloperBranded3:
       return NetDeveloperBranded3
-    case EXPERIENCE_COMPONENT.netDeveloperComknow:
+    case JOB_CONTENT.netDeveloperComknow:
       return NetDeveloperComknow
-    case EXPERIENCE_COMPONENT.iosApprenticeReea:
+    case JOB_CONTENT.iosApprenticeReea:
       return IosApprenticeReea
     default:
       return () => <p>ERROR! Check experience component factory.</p>

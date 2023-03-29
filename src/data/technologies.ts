@@ -1,4 +1,4 @@
-interface Technology {
+export interface Technology {
   id: string
   name: string
 }
