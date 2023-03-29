@@ -1,4 +1,4 @@
-interface Project {
+export interface Project {
   name: string
   summary: string
   url: string

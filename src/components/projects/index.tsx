@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import { Project } from '../../data/projects'
 
-export default function Projects({ projects }) {
+export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <section>
       <h3>Projects</h3>

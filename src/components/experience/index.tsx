@@ -1,10 +1,11 @@
+import { Job } from '../../data/experience'
 import Accordion from './accordion'
 import ExperienceComponentFactory from './content/factory'
 import ExperiencePeriodFull from './experience-period-full'
 import ExperiencePeriodShort from './experience-period-short'
 import TechTags from './tech-tags'
 
-export default function Experience({ experience }) {
+export default function Experience({ experience }: { experience: Job[] }) {
   const items = experience.map((exp) => ({
     id: exp.id,
     header: (showYear = true) => (

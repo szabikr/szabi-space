@@ -1,4 +1,4 @@
-export default function GithubAnchor({ repoLink }) {
+export default function GithubAnchor({ repoLink }: { repoLink: string }) {
   return (
     <section>
       <p>

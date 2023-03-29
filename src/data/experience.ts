@@ -13,7 +13,7 @@ import {
 // == Future improvement ==
 // Potentially, I could extend this type to contain a client property
 // Client property would describe a client that I was serving as part of that job
-interface Job {
+export interface Job {
   id: string
   role: string
   organization: string

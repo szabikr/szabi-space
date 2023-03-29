@@ -1,4 +1,10 @@
-export default function TechTags({ technologies }) {
+import { Technology } from '../../data/technologies'
+
+export default function TechTags({
+  technologies,
+}: {
+  technologies: Technology[]
+}) {
   return (
     <p>
       {technologies.map((technology) => (

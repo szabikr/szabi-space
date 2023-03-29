@@ -1,6 +1,12 @@
 import { formatYearDate } from '../../utils'
 
-export default function ExperiencePeriodShort({ start, end }) {
+export default function ExperiencePeriodShort({
+  start,
+  end,
+}: {
+  start: string
+  end: string
+}) {
   const startDate = new Date(start)
   const endDate = new Date(end)
 
