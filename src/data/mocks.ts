@@ -1,4 +1,6 @@
-export const mockBlogThumbnails = [
+import { BlogThumbnail } from '../types'
+
+export const mockBlogThumbnails: BlogThumbnail[] = [
   {
     title: 'Blog Post Thumbnail Title',
     date: '2023-01-01',

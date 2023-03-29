@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import BackToHomeButton from '../../components/common/back-to-home-button'
 import GithubAnchor from '../../components/common/github-anchor'
 import { getHtmlContent } from '../../lib/content-parser'
@@ -16,7 +17,7 @@ export default function Babel({ repoLink, babelContentHtml }) {
   )
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   const repoLink =
     'https://github.com/szabikr/sandbox-build-tools/tree/main/babel'
   const withSyntaxHl = true

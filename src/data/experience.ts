@@ -1,12 +1,5 @@
-import {
-  MENTOR_SCHOOL_OF_CODE,
-  SOFTWARE_ENGINEER_BJSS,
-  FULL_STACK_DEVELOPER_RIGHTINDEM,
-  CO_FOUNDER_WRAPTIME,
-  NET_DEVELOPER_BRANDED3,
-  NET_DEVELOPER_COMKNOW,
-  IOS_APPRENTICE_REEA,
-} from '../constants/experience'
+import { Job } from '../types'
+import { JOB_ID, JOB_CONTENT } from '../constants/experience'
 import {
   ProgrammingLanguage,
   FrontEndTech,
@@ -17,14 +10,14 @@ import {
   OtherTools,
 } from './technologies'
 
-export const experience = [
+export const jobs: Job[] = [
   {
-    id: MENTOR_SCHOOL_OF_CODE.id,
-    jobTitle: 'Mentor',
+    id: JOB_ID.mentorSchoolOfCode,
+    role: 'Mentor',
     organization: 'School of Code',
     startDate: '2021-11-01',
     endDate: '2023-01-01',
-    description: MENTOR_SCHOOL_OF_CODE.contentComponent,
+    description: JOB_CONTENT.mentorSchoolOfCode,
     technologies: [
       ProgrammingLanguage.JavascriptEs6,
       FrontEndTech.React,
@@ -37,12 +30,12 @@ export const experience = [
     ],
   },
   {
-    id: SOFTWARE_ENGINEER_BJSS.id,
-    jobTitle: 'Software Engineer',
+    id: JOB_ID.softwareEngineerBjss,
+    role: 'Software Engineer',
     organization: 'BJSS',
     startDate: '2018-11-01',
     endDate: '2021-12-01',
-    description: SOFTWARE_ENGINEER_BJSS.contentComponent,
+    description: JOB_CONTENT.softwareEngineerBjss,
     technologies: [
       ProgrammingLanguage.Typescript,
       FrontEndTech.NextJs,
@@ -67,12 +60,12 @@ export const experience = [
     ],
   },
   {
-    id: FULL_STACK_DEVELOPER_RIGHTINDEM.id,
-    jobTitle: 'Full-Stack Developer',
+    id: JOB_ID.fullStackDeveloperRightindem,
+    role: 'Full-Stack Developer',
     organization: 'RightIndem',
     startDate: '2017-02-01',
     endDate: '2018-09-01',
-    description: FULL_STACK_DEVELOPER_RIGHTINDEM.contentComponent,
+    description: JOB_CONTENT.fullStackDeveloperRightindem,
     technologies: [
       ProgrammingLanguage.JavascriptEs6,
       FrontEndTech.React,
@@ -88,12 +81,12 @@ export const experience = [
     ],
   },
   {
-    id: CO_FOUNDER_WRAPTIME.id,
-    jobTitle: 'Co-Founder',
+    id: JOB_ID.coFounderWraptime,
+    role: 'Co-Founder',
     organization: 'Wraptime',
     startDate: '2016-09-01',
     endDate: '2017-02-01',
-    description: CO_FOUNDER_WRAPTIME.contentComponent,
+    description: JOB_CONTENT.coFounderWraptime,
     technologies: [
       ProgrammingLanguage.JavascriptEs6,
       FrontEndTech.React,
@@ -106,12 +99,12 @@ export const experience = [
     ],
   },
   {
-    id: NET_DEVELOPER_BRANDED3.id,
-    jobTitle: '.Net Developer',
+    id: JOB_ID.netDeveloperBranded3,
+    role: '.Net Developer',
     organization: 'Branded3',
     startDate: '2016-04-01',
     endDate: '2016-08-01',
-    description: NET_DEVELOPER_BRANDED3.contentComponent,
+    description: JOB_CONTENT.netDeveloperBranded3,
     technologies: [
       ProgrammingLanguage.Csharp,
       BackEndTech.AspNetMvc,
@@ -126,12 +119,12 @@ export const experience = [
     ],
   },
   {
-    id: NET_DEVELOPER_COMKNOW.id,
-    jobTitle: '.Net Developer',
+    id: JOB_ID.netDeveloperComknow,
+    role: '.Net Developer',
     organization: 'ComKnow',
     startDate: '2015-08-01',
     endDate: '2016-02-01',
-    description: NET_DEVELOPER_COMKNOW.contentComponent,
+    description: JOB_CONTENT.netDeveloperComknow,
     technologies: [
       ProgrammingLanguage.Csharp,
       BackEndTech.AspNetMvc,
@@ -146,12 +139,12 @@ export const experience = [
     ],
   },
   {
-    id: IOS_APPRENTICE_REEA.id,
-    jobTitle: 'iOS Apprentice',
+    id: JOB_ID.iosApprenticeReea,
+    role: 'iOS Apprentice',
     organization: 'Reea',
     startDate: '2014-03-01',
     endDate: '2014-04-01',
-    description: IOS_APPRENTICE_REEA.contentComponent,
+    description: JOB_CONTENT.iosApprenticeReea,
     technologies: [ProgrammingLanguage.ObjectiveC, OtherTools.Xcode],
   },
 ]

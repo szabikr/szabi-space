@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Blog from '../../components/blog'
 import { blogThumbnails } from '../../data/blog'
 
@@ -9,7 +10,7 @@ export default function BlogPage({ thumbnails }) {
   )
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       thumbnails: blogThumbnails,
