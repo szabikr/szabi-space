@@ -1,5 +1,5 @@
-import { Technology } from './technologies'
-import { JOB_ID, JOB_CONTENT, JobContentType } from '../constants/experience'
+import { Job } from '../types'
+import { JOB_ID, JOB_CONTENT } from '../constants/experience'
 import {
   ProgrammingLanguage,
   FrontEndTech,
@@ -9,21 +9,6 @@ import {
   Cloud,
   OtherTools,
 } from './technologies'
-
-// == Future improvement ==
-// Potentially, I could extend this type to contain a client property
-// Client property would describe a client that I was serving as part of that job
-export interface Job {
-  id: string
-  role: string
-  organization: string
-  startDate: string
-  endDate: string
-
-  // TODO: change description to content if it feels like a better name
-  description: JobContentType
-  technologies: Technology[]
-}
 
 export const jobs: Job[] = [
   {

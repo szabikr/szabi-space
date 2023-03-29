@@ -1,7 +1,4 @@
-export interface Technology {
-  id: string
-  name: string
-}
+import { Technology } from '../types'
 
 export const ProgrammingLanguage: { [key: string]: Technology } = {
   JavascriptEs6: {

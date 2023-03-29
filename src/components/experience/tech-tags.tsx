@@ -1,4 +1,4 @@
-import { Technology } from '../../data/technologies'
+import { Technology } from '../../types'
 
 export default function TechTags({
   technologies,

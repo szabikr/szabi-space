@@ -1,4 +1,4 @@
-import { BlogThumbnail } from './blog'
+import { BlogThumbnail } from '../types'
 
 export const mockBlogThumbnails: BlogThumbnail[] = [
   {

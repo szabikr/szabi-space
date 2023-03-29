@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BlogThumbnail } from '../../data/blog'
+import { BlogThumbnail } from '../../types'
 import { formatDate } from '../../utils'
 
 export default function Blog({ thumbnails }: { thumbnails: BlogThumbnail[] }) {

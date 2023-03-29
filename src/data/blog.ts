@@ -1,9 +1,4 @@
-export interface BlogThumbnail {
-  title: string
-  date: string
-  summary: string
-  url: string
-}
+import { BlogThumbnail } from '../types'
 
 export const blogThumbnails: BlogThumbnail[] = [
   {

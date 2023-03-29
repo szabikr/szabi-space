@@ -1,4 +1,4 @@
-import { Job } from '../../data/experience'
+import { Job } from '../../types'
 import Accordion from './accordion'
 import ExperienceComponentFactory from './content/factory'
 import ExperiencePeriodFull from './experience-period-full'

@@ -1,4 +1,5 @@
-import { JOB_CONTENT, JobContentType } from '../../../constants/experience'
+import { JOB_CONTENT } from '../../../constants/experience'
+import { JobContentType } from '../../../types'
 
 import MentorSchoolOfCode from './mentor-school-of-code'
 import SoftwareEngineerBjss from './software-engineer-bjss'
