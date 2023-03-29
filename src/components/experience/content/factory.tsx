@@ -1,4 +1,4 @@
-import { JOB_CONTENT } from '../../../constants/experience'
+import { JOB_CONTENT, JobContentType } from '../../../constants/experience'
 
 import MentorSchoolOfCode from './mentor-school-of-code'
 import SoftwareEngineerBjss from './software-engineer-bjss'
@@ -8,9 +8,7 @@ import NetDeveloperBranded3 from './net-developer-branded3'
 import NetDeveloperComknow from './net-developer-comknow'
 import IosApprenticeReea from './ios-apprentice-reea'
 
-type exp_comp = typeof JOB_CONTENT
-
-export default function Factory(which: exp_comp[keyof exp_comp]) {
+export default function Factory(which: JobContentType) {
   switch (which) {
     case JOB_CONTENT.mentorSchoolOfCode:
       return MentorSchoolOfCode

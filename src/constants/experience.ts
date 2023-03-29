@@ -17,3 +17,5 @@ export const JOB_CONTENT = {
   netDeveloperComknow: 'NetDeveloperComknow',
   iosApprenticeReea: 'IosApprenticeReea',
 } as const
+
+export type JobContentType = typeof JOB_CONTENT[keyof typeof JOB_CONTENT]
