@@ -1,4 +1,9 @@
-export const ProgrammingLanguage = {
+interface Technology {
+  id: string
+  name: string
+}
+
+export const ProgrammingLanguage: { [key: string]: Technology } = {
   JavascriptEs6: {
     id: '0fa37f13-7f24-45c7-a027-2a264f6e8d9a',
     name: 'JavaScript ES6',
@@ -29,7 +34,7 @@ export const ProgrammingLanguage = {
   },
 }
 
-export const FrontEndTech = {
+export const FrontEndTech: { [key: string]: Technology } = {
   React: {
     id: '6bb9970c-35c6-4ec8-8452-f6f9a709ec94',
     name: 'React',
@@ -76,7 +81,7 @@ export const FrontEndTech = {
   },
 }
 
-export const BackEndTech = {
+export const BackEndTech: { [key: string]: Technology } = {
   NodeJs: {
     id: '6347e6c1-b924-482a-ba6c-5b55e754bc8d',
     name: 'Node.js',
@@ -107,7 +112,7 @@ export const BackEndTech = {
   },
 }
 
-export const TestingTools = {
+export const TestingTools: { [key: string]: Technology } = {
   Jest: {
     id: '1534577f-5ab8-48d3-b18e-9d9e282712a5',
     name: 'Jest',
@@ -142,7 +147,7 @@ export const TestingTools = {
   },
 }
 
-export const Database = {
+export const Database: { [key: string]: Technology } = {
   Postgresql: {
     id: 'abf20a53-9ac4-4a03-8cf1-d0aa9c29233c',
     name: 'PostgreSQL',
@@ -157,14 +162,14 @@ export const Database = {
   },
 }
 
-export const Cloud = {
+export const Cloud: { [key: string]: Technology } = {
   Aws: {
     id: '3a395d68-ccbe-401c-9ef4-143ff16aea39',
     name: 'AWS',
   },
 }
 
-export const OtherTools = {
+export const OtherTools: { [key: string]: Technology } = {
   Git: {
     id: '145f92e9-63af-43d8-ab8c-b7dc697de96c',
     name: 'Git',
