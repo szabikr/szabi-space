@@ -1,4 +1,11 @@
-export const projects = [
+interface Project {
+  name: string
+  summary: string
+  url: string
+  repoLink: string
+}
+
+export const projects: Project[] = [
   {
     name: 'Habit Tracker',
     summary:

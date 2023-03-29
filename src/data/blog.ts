@@ -1,4 +1,4 @@
-interface BlogThumbnail {
+export interface BlogThumbnail {
   title: string
   date: string
   summary: string
