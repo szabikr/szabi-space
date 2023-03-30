@@ -1,5 +1,5 @@
-import { Job } from '../types'
-import { JOB_ID, JOB_CONTENT } from '../constants/experience'
+import { Experience, Job } from '../types'
+import { JOB_ID, JOB_CONTENT, EXPERIENCE_ID } from '../constants/experience'
 import {
   ProgrammingLanguage,
   FrontEndTech,
@@ -146,5 +146,36 @@ export const jobs: Job[] = [
     endDate: '2014-04-01',
     description: JOB_CONTENT.iosApprenticeReea,
     technologies: [ProgrammingLanguage.ObjectiveC, OtherTools.Xcode],
+  },
+]
+
+export const experiences: Experience[] = [
+  {
+    id: EXPERIENCE_ID.mentor,
+    jobs: jobs.filter((job) => job.id === JOB_ID.mentorSchoolOfCode),
+  },
+  {
+    id: EXPERIENCE_ID.softwareEngineer,
+    jobs: jobs.filter((job) => job.id === JOB_ID.softwareEngineerBjss),
+  },
+  {
+    id: EXPERIENCE_ID.fullStackDeveloper,
+    jobs: jobs.filter((job) => job.id === JOB_ID.fullStackDeveloperRightindem),
+  },
+  {
+    id: EXPERIENCE_ID.coFounder,
+    jobs: jobs.filter((job) => job.id === JOB_ID.coFounderWraptime),
+  },
+  {
+    id: EXPERIENCE_ID.netDeveloper,
+    jobs: jobs.filter(
+      (job) =>
+        job.id === JOB_ID.netDeveloperBranded3 ||
+        job.id === JOB_ID.netDeveloperComknow,
+    ),
+  },
+  {
+    id: EXPERIENCE_ID.apprentice,
+    jobs: jobs.filter((job) => job.id === JOB_ID.iosApprenticeReea),
   },
 ]

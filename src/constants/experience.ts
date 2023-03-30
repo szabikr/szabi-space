@@ -17,3 +17,12 @@ export const JOB_CONTENT = {
   netDeveloperComknow: 'NetDeveloperComknow',
   iosApprenticeReea: 'IosApprenticeReea',
 } as const
+
+export const EXPERIENCE_ID = {
+  mentor: '038147ca-9a6c-4a49-a449-ee35484458dc',
+  softwareEngineer: 'd53e45a5-5af4-47eb-acf0-6c41684c8ad0',
+  fullStackDeveloper: 'f0e3c908-4110-4f08-8301-435601420775',
+  coFounder: '1df45037-f053-4d7a-845f-72613f47a5e9',
+  netDeveloper: '1b0aafeb-4a05-4833-872d-0d1615eb374e',
+  apprentice: '6aac6012-5d7f-45b0-b3f0-a71911a8c9ae',
+}

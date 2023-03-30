@@ -22,6 +22,11 @@ export interface Job {
   technologies: Technology[]
 }
 
+export interface Experience {
+  id: string
+  jobs: Job[]
+}
+
 export interface BlogThumbnail {
   title: string
   date: string
