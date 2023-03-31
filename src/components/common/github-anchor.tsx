@@ -1,4 +1,6 @@
-export default function GithubAnchor({ repoLink }: { repoLink: string }) {
+import { GithubAnchorProps } from '../../types/props'
+
+export default function GithubAnchor({ repoLink }: GithubAnchorProps) {
   return (
     <section>
       <p>

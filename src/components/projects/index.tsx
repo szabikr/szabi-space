@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Project } from '../../types'
+import { ProjectsProps } from '../../types/props'
 
-export default function Projects({ projects }: { projects: Project[] }) {
+export default function Projects({ projects }: ProjectsProps) {
   return (
     <section>
       <h3>Projects</h3>

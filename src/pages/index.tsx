@@ -9,7 +9,7 @@ import { jobs } from '../data/experience'
 import { blogThumbnails } from '../data/blog'
 import { projects } from '../data/projects'
 
-export default function Home(props) {
+export default function HomePage(props) {
   return (
     <>
       <header></header>

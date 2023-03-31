@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { BlogThumbnail } from '../../types'
+import { BlogProps } from '../../types/props'
 import { formatDate } from '../../utils'
 
-export default function Blog({ thumbnails }: { thumbnails: BlogThumbnail[] }) {
+export default function Blog({ thumbnails }: BlogProps) {
   return (
     <section>
       <h3>Blog</h3>

@@ -1,5 +1,6 @@
 import { formatYearDate } from '../../utils'
 
+// DEPRICATED: Soon this will become depricated when the V2 of Experience is out
 export default function ExperiencePeriodShort({
   start,
   end,

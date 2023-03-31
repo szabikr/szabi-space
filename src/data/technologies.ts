@@ -1,4 +1,4 @@
-import { Technology } from '../types'
+import { Technology } from '../types/models'
 
 export const ProgrammingLanguage: { [key: string]: Technology } = {
   JavascriptEs6: {

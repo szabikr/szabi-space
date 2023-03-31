@@ -1,4 +1,4 @@
-import { Experience, Job } from '../types'
+import { Experience, Job } from '../types/models'
 import { JOB_ID, JOB_CONTENT, EXPERIENCE_ID } from '../constants/experience'
 import {
   ProgrammingLanguage,

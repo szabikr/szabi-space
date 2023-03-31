@@ -1,8 +1,8 @@
 import {
-  Experience as ExperienceModel,
-  JobContentType,
-  Technology,
-} from '../../types'
+  ExperienceBodyProps,
+  ExperienceHeaderProps,
+  ExperienceProps,
+} from '../../types/props'
 
 import ExperienceComponentFactory from './content/factory'
 import ExperiencePeriodFull from './experience-period-full'
@@ -14,13 +14,7 @@ function ExperienceHeader({
   showYear,
   startYear,
   endYear,
-}: {
-  role: string
-  organizations: string[]
-  showYear: boolean
-  startYear: number
-  endYear: number
-}) {
+}: ExperienceHeaderProps) {
   return (
     <h5>
       {role} @ {organizations[0]}{' '}
@@ -34,12 +28,7 @@ function ExperienceBody({
   endDate,
   descriptions,
   technologies,
-}: {
-  startDate: string
-  endDate: string
-  descriptions: JobContentType[]
-  technologies: Technology[]
-}) {
+}: ExperienceBodyProps) {
   return (
     <>
       <ExperiencePeriodFull start={startDate} end={endDate} />
@@ -54,11 +43,7 @@ function ExperienceBody({
 export default function ExperienceV2({
   experiences,
   openByDefault,
-}: {
-  experiences: ExperienceModel[]
-  // this property is for the accordion item to be open when the website loads
-  openByDefault: string
-}) {
+}: ExperienceProps) {
   const exp = experiences.find((e) => e.id === openByDefault)
   return (
     <section>
