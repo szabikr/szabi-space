@@ -14,6 +14,12 @@ function ExperienceHeader({
   showYear,
   startYear,
   endYear,
+}: {
+  role: string
+  organizations: string[]
+  showYear: boolean
+  startYear: number
+  endYear: number
 }) {
   return (
     <h5>
