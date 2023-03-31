@@ -1,4 +1,8 @@
 import {
+  buildExperienceBodyProps,
+  buildExperienceHeaderProps,
+} from '../../lib/build-props'
+import {
   ExperienceBodyProps,
   ExperienceHeaderProps,
   ExperienceProps,
@@ -9,7 +13,7 @@ import ExperiencePeriodFull from './experience-period-full'
 import TechTags from './tech-tags'
 
 function ExperienceHeader({
-  role,
+  roles,
   organizations,
   showYear,
   startYear,
@@ -17,7 +21,7 @@ function ExperienceHeader({
 }: ExperienceHeaderProps) {
   return (
     <h5>
-      {role} @ {organizations[0]}{' '}
+      {roles.join(', ')} @ {organizations.join(', ')}{' '}
       {showYear && startYear + (startYear !== endYear ? ' - ' + endYear : '')}
     </h5>
   )
@@ -32,9 +36,9 @@ function ExperienceBody({
   return (
     <>
       <ExperiencePeriodFull start={startDate} end={endDate} />
-      {descriptions.map((description) =>
-        ExperienceComponentFactory(description)(),
-      )}
+      {descriptions.map((description) => (
+        <div key={description}>{ExperienceComponentFactory(description)()}</div>
+      ))}
       <TechTags technologies={technologies} />
     </>
   )
@@ -50,21 +54,10 @@ export default function ExperienceV2({
       <h3>Professional Experience</h3>
 
       <h4>Accordion Header</h4>
-      <ExperienceHeader
-        role={exp.jobs[0].role}
-        organizations={[exp.jobs[0].organization]}
-        showYear={true}
-        startYear={new Date(exp.jobs[0].startDate).getFullYear()}
-        endYear={new Date(exp.jobs[0].endDate).getFullYear()}
-      />
+      <ExperienceHeader {...buildExperienceHeaderProps(exp)} showYear={true} />
 
       <h4>Accordion Body</h4>
-      <ExperienceBody
-        startDate={exp.jobs[0].startDate}
-        endDate={exp.jobs[0].endDate}
-        descriptions={[exp.jobs[0].description]}
-        technologies={exp.jobs[0].technologies}
-      />
+      <ExperienceBody {...buildExperienceBodyProps(exp)} />
     </section>
   )
 }

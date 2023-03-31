@@ -21,11 +21,13 @@ export interface AccordionProps {
 }
 
 export interface ExperienceHeaderProps {
-  role: string
+  roles: string[]
   organizations: string[]
-  showYear: boolean
-  startYear: number
-  endYear: number
+  startYear: string
+  endYear: string
+
+  // Conditional rendering props
+  showYear?: boolean
 }
 
 export interface ExperienceBodyProps {
