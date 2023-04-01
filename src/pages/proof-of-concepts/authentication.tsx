@@ -4,7 +4,7 @@ import { getHtmlContent } from '../../lib/content-parser'
 import BackToHomeButton from '../../components/common/back-to-home-button'
 import { GetStaticProps } from 'next'
 
-export default function Authentication({
+export default function AuthenticationPage({
   repoLink,
   authenticationContentHtml,
 }) {

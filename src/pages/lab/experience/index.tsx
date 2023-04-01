@@ -1,11 +1,12 @@
 import { GetStaticProps } from 'next'
-import Experience from '../../../components/experience'
-import { jobs } from '../../../data/experience'
+import ExperienceV2 from '../../../components/experience/experience-v2'
+import { experiences } from '../../../data/experience'
+import { experienceOpenByDefault } from '../../../data/ui'
 
-export default function ExperiencePage({ jobs }) {
+export default function ExperiencePage({ experiences, openByDefault }) {
   return (
     <main>
-      <Experience experience={jobs} />
+      <ExperienceV2 experiences={experiences} openByDefault={openByDefault} />
     </main>
   )
 }
@@ -13,7 +14,8 @@ export default function ExperiencePage({ jobs }) {
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
-      jobs: jobs,
+      experiences: experiences,
+      openByDefault: experienceOpenByDefault,
     },
   }
 }

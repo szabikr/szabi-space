@@ -1,12 +1,10 @@
+import { ExperiencePeriodFullProps } from '../../types/props'
 import { formatMonthDate, formatMonthYearDate } from '../../utils'
 
 export default function ExperiencePeriodFull({
   start,
   end,
-}: {
-  start: string
-  end: string
-}) {
+}: ExperiencePeriodFullProps) {
   const startDate = new Date(start)
   const endDate = new Date(end)
 

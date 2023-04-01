@@ -1,16 +1,18 @@
-import { Job } from '../../types'
+import { EXPERIENCE_ID } from '../../constants/experience'
+import { Job } from '../../types/models'
 import Accordion from './accordion'
 import ExperienceComponentFactory from './content/factory'
 import ExperiencePeriodFull from './experience-period-full'
 import ExperiencePeriodShort from './experience-period-short'
 import TechTags from './tech-tags'
 
+// DEPRICATED: Soon this will become depricated when the V2 of Experience is out
 export default function Experience({ experience }: { experience: Job[] }) {
   const items = experience.map((exp) => ({
     id: exp.id,
     header: (showYear = true) => (
       <h5>
-        {exp.role} @ {exp.organization}{' '}
+        {exp.role} @ {exp.organization.name}{' '}
         {showYear && (
           <ExperiencePeriodShort start={exp.startDate} end={exp.endDate} />
         )}
@@ -28,7 +30,7 @@ export default function Experience({ experience }: { experience: Job[] }) {
   return (
     <section>
       <h3>Professional Experience</h3>
-      <Accordion items={items} />
+      <Accordion items={items} openByDefault={EXPERIENCE_ID.softwareEngineer} />
     </section>
   )
 }

@@ -1,9 +1,11 @@
 import Accordion from '../../../components/experience/accordion'
 
+const FIRST_ITEM = '77eb3531-4b82-427a-8947-cb26791ff4f9'
+
 export default function AccordionPage() {
   const items = [
     {
-      id: '77eb3531-4b82-427a-8947-cb26791ff4f9',
+      id: FIRST_ITEM,
       header: () => <h5>Title One</h5>,
       body: () => (
         <p>
@@ -57,7 +59,7 @@ export default function AccordionPage() {
 
   return (
     <main>
-      <Accordion items={items} />
+      <Accordion items={items} openByDefault={FIRST_ITEM} />
     </main>
   )
 }

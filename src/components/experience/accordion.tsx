@@ -1,18 +1,8 @@
 import { useState } from 'react'
+import { AccordionProps } from '../../types/props'
 
-const MOST_IMPORTANT = '77eb3531-4b82-427a-8947-cb26791ff4f9'
-
-export default function Accordion({
-  items,
-}: {
-  // TODO: Would be a good idea to define this type outside of this component
-  items: {
-    id: string
-    header: (show?: boolean) => JSX.Element
-    body: () => JSX.Element
-  }[]
-}) {
-  const [show, setShow] = useState(MOST_IMPORTANT)
+export default function Accordion({ items, openByDefault }: AccordionProps) {
+  const [show, setShow] = useState(openByDefault)
 
   const toggleItem = (id: string) => (show === id ? setShow(null) : setShow(id))
 
