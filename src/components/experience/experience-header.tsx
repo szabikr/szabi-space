@@ -26,8 +26,9 @@ export default function ExperienceHeader({
   const roles = jobs
     .map((job) => job.role)
     .filter((role, index, roles) => roles.indexOf(role) === index)
+
   const organizations = jobs
-    .map((job) => job.organization)
+    .map((job) => job.organization.name)
     .filter(
       (organization, index, organizations) =>
         organizations.indexOf(organization) === index,

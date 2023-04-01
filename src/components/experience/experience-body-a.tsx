@@ -15,8 +15,8 @@ export default function ExperienceBodyA({ jobs }: ExperienceBodyProps) {
         <Fragment key={job.id}>
           <h5>
             @{' '}
-            <a href="http://szabi.space" target="_blank">
-              {job.organization}
+            <a href={job.organization.url} target="_blank">
+              {job.organization.name}
             </a>
           </h5>
           <ExperiencePeriodFull start={job.startDate} end={job.endDate} />

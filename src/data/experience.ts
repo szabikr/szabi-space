@@ -14,7 +14,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.mentorSchoolOfCode,
     role: 'Mentor',
-    organization: 'School of Code',
+    organization: {
+      name: 'School of Code',
+      url: 'https://www.schoolofcode.co.uk/',
+    },
     startDate: '2021-11-01',
     endDate: '2023-01-01',
     description: JOB_CONTENT.mentorSchoolOfCode,
@@ -32,7 +35,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.softwareEngineerBjss,
     role: 'Software Engineer',
-    organization: 'BJSS',
+    organization: {
+      name: 'BJSS',
+      url: 'https://www.bjss.com/',
+    },
     startDate: '2018-11-01',
     endDate: '2021-12-01',
     description: JOB_CONTENT.softwareEngineerBjss,
@@ -62,7 +68,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.fullStackDeveloperRightindem,
     role: 'Full-Stack Developer',
-    organization: 'RightIndem',
+    organization: {
+      name: 'RightIndem',
+      url: 'https://rightindem.com/',
+    },
     startDate: '2017-02-01',
     endDate: '2018-09-01',
     description: JOB_CONTENT.fullStackDeveloperRightindem,
@@ -83,7 +92,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.coFounderWraptime,
     role: 'Co-Founder',
-    organization: 'Wraptime',
+    organization: {
+      name: 'Wraptime',
+      url: 'https://www.linkedin.com/company/wraptime/about/',
+    },
     startDate: '2016-09-01',
     endDate: '2017-02-01',
     description: JOB_CONTENT.coFounderWraptime,
@@ -101,7 +113,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.netDeveloperBranded3,
     role: '.Net Developer',
-    organization: 'Branded3',
+    organization: {
+      name: 'Branded3',
+      url: 'https://www.linkedin.com/company/branded3/about/',
+    },
     startDate: '2016-04-01',
     endDate: '2016-08-01',
     description: JOB_CONTENT.netDeveloperBranded3,
@@ -121,7 +136,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.netDeveloperComknow,
     role: '.Net Developer',
-    organization: 'ComKnow',
+    organization: {
+      name: 'ComKnow',
+      url: 'http://www.comknow.com/',
+    },
     startDate: '2015-08-01',
     endDate: '2016-02-01',
     description: JOB_CONTENT.netDeveloperComknow,
@@ -141,7 +159,10 @@ export const jobs: Job[] = [
   {
     id: JOB_ID.iosApprenticeReea,
     role: 'iOS Apprentice',
-    organization: 'Reea',
+    organization: {
+      name: 'Reea',
+      url: 'https://www.reea.net/',
+    },
     startDate: '2014-03-01',
     endDate: '2014-04-01',
     description: JOB_CONTENT.iosApprenticeReea,

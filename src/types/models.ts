@@ -13,7 +13,10 @@ export type JobContentType = typeof JOB_CONTENT[keyof typeof JOB_CONTENT]
 export interface Job {
   id: string
   role: string
-  organization: string
+  organization: {
+    name: string
+    url: string
+  }
   startDate: string
   endDate: string
 
