@@ -10,11 +10,11 @@ export default function ExperienceV2({
 }: ExperienceProps) {
   const items = experiences.map((exp) => ({
     id: exp.id,
-    header: (showYear = true, showOrganization = true) => (
+    header: (isOpen = true) => (
       <ExperienceHeader
         jobs={exp.jobs}
-        showYear={showYear}
-        showOrganization={showOrganization}
+        showYear={isOpen}
+        showOrganization={isOpen}
       />
     ),
     body: () => <ExperienceBodyA jobs={exp.jobs} />,

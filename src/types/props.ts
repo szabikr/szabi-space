@@ -7,7 +7,7 @@ export interface GithubAnchorProps {
 export interface AccordionProps {
   items: {
     id: string
-    header: (showYear?: boolean, showOrganization?: boolean) => JSX.Element
+    header: (isOpen?: boolean) => JSX.Element
 
     // TODO: Could probably be just a JSX.Element and not a function that returns one
     body: () => JSX.Element

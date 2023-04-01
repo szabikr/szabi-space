@@ -11,7 +11,7 @@ export default function Accordion({ items, openByDefault }: AccordionProps) {
       {items.map((item) => (
         <div key={item.id} className="accordion-item">
           <div className="accordion-header">
-            {item.header(item.id != show, item.id != show)}
+            {item.header(item.id != show)}
             <div>
               <button className="primary" onClick={() => toggleItem(item.id)}>
                 {item.id === show ? (
