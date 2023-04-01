@@ -22,7 +22,9 @@ export default function Accordion({ items, openByDefault }: AccordionProps) {
               </button>
             </div>
           </div>
-          <div className={item.id == show ? '' : 'collapsed'}>
+          <div
+            className={`accordion-body ${item.id == show ? '' : 'collapsed'}`}
+          >
             {item.body()}
           </div>
         </div>

@@ -9,6 +9,10 @@
   margin-top: 10px;
 }
 
+.accordion-body h5 {
+  margin-bottom: 12px;
+}
+
 .accordion .collapsed {
   display: none;
 }

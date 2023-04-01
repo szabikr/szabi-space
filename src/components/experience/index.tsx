@@ -1,36 +1,29 @@
-import { EXPERIENCE_ID } from '../../constants/experience'
-import { Job } from '../../types/models'
+import { ExperienceProps } from '../../types/props'
+import ExperienceHeader from './experience-header'
+import ExperienceBodyA from './experience-body-a'
+import ExperienceBodyB from './experience-body-b'
 import Accordion from './accordion'
-import ExperienceComponentFactory from './content/factory'
-import ExperiencePeriodFull from './experience-period-full'
-import ExperiencePeriodShort from './experience-period-short'
-import TechTags from './tech-tags'
 
-// DEPRICATED: Soon this will become depricated when the V2 of Experience is out
-export default function Experience({ experience }: { experience: Job[] }) {
-  const items = experience.map((exp) => ({
+export default function Experience({
+  experiences,
+  openByDefault,
+}: ExperienceProps) {
+  const items = experiences.map((exp) => ({
     id: exp.id,
-    header: (showYear = true) => (
-      <h5>
-        {exp.role} @ {exp.organization.name}{' '}
-        {showYear && (
-          <ExperiencePeriodShort start={exp.startDate} end={exp.endDate} />
-        )}
-      </h5>
+    header: (isOpen = true) => (
+      <ExperienceHeader
+        jobs={exp.jobs}
+        showYear={isOpen}
+        showOrganization={isOpen}
+      />
     ),
-    body: () => (
-      <>
-        <ExperiencePeriodFull start={exp.startDate} end={exp.endDate} />
-        {ExperienceComponentFactory(exp.description)()}
-        <TechTags technologies={exp.technologies} />
-      </>
-    ),
+    body: () => <ExperienceBodyA jobs={exp.jobs} />,
   }))
 
   return (
     <section>
       <h3>Professional Experience</h3>
-      <Accordion items={items} openByDefault={EXPERIENCE_ID.softwareEngineer} />
+      <Accordion items={items} openByDefault={openByDefault} />
     </section>
   )
 }
