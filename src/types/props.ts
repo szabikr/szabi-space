@@ -1,10 +1,4 @@
-import {
-  JobContentType,
-  Technology,
-  Experience,
-  Project,
-  BlogThumbnail,
-} from './models'
+import { Job, Technology, Experience, Project, BlogThumbnail } from './models'
 
 export interface GithubAnchorProps {
   repoLink: string
@@ -21,20 +15,14 @@ export interface AccordionProps {
 }
 
 export interface ExperienceHeaderProps {
-  roles: string[]
-  organizations: string[]
-  startYear: string
-  endYear: string
+  jobs: Job[]
 
   // Conditional rendering props
   showYear?: boolean
 }
 
 export interface ExperienceBodyProps {
-  startDate: string
-  endDate: string
-  descriptions: JobContentType[]
-  technologies: Technology[]
+  jobs: Job[]
 }
 
 export interface ExperienceProps {
