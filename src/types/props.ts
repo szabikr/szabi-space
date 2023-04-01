@@ -7,7 +7,7 @@ export interface GithubAnchorProps {
 export interface AccordionProps {
   items: {
     id: string
-    header: (show?: boolean) => JSX.Element
+    header: (showYear?: boolean, showOrganization?: boolean) => JSX.Element
 
     // TODO: Could probably be just a JSX.Element and not a function that returns one
     body: () => JSX.Element
@@ -19,6 +19,7 @@ export interface ExperienceHeaderProps {
 
   // Conditional rendering props
   showYear?: boolean
+  showOrganization?: boolean
 }
 
 export interface ExperienceBodyProps {

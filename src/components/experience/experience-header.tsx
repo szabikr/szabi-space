@@ -3,6 +3,7 @@ import { ExperienceHeaderProps } from '../../types/props'
 export default function ExperienceHeader({
   jobs,
   showYear,
+  showOrganization,
 }: ExperienceHeaderProps) {
   const earliestStartYear = new Date(
     jobs.reduce(
@@ -34,7 +35,8 @@ export default function ExperienceHeader({
 
   return (
     <h5>
-      {roles.join(', ')} @ {organizations.join(', ')}{' '}
+      {roles.join(', ')}
+      {showOrganization && ` @ ${organizations.join(', ')}`}{' '}
       {showYear &&
         earliestStartYear +
           (earliestStartYear !== latestEndYear ? ' - ' + latestEndYear : '')}

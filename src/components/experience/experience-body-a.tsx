@@ -13,6 +13,12 @@ export default function ExperienceBodyA({ jobs }: ExperienceBodyProps) {
     <>
       {jobs.map((job) => (
         <Fragment key={job.id}>
+          <h5>
+            @{' '}
+            <a href="http://szabi.space" target="_blank">
+              {job.organization}
+            </a>
+          </h5>
           <ExperiencePeriodFull start={job.startDate} end={job.endDate} />
           {JobDescriptionComponentFactory(job.description)()}
           <TechTags technologies={job.technologies} />

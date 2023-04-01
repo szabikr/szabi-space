@@ -1,18 +1,28 @@
+import { ExperienceProps } from '../../types/props'
 import ExperienceHeader from './experience-header'
 import ExperienceBodyA from './experience-body-a'
 import ExperienceBodyB from './experience-body-b'
-import { ExperienceProps } from '../../types/props'
+import Accordion from './accordion'
 
 export default function ExperienceV2({
   experiences,
   openByDefault,
 }: ExperienceProps) {
-  const exp = experiences.find((e) => e.id === openByDefault)
+  const items = experiences.map((exp) => ({
+    id: exp.id,
+    header: (showYear = true, showOrganization = true) => (
+      <ExperienceHeader
+        jobs={exp.jobs}
+        showYear={showYear}
+        showOrganization={showOrganization}
+      />
+    ),
+    body: () => <ExperienceBodyA jobs={exp.jobs} />,
+  }))
   return (
     <section>
       <h3>Professional Experience</h3>
-      <ExperienceHeader jobs={exp.jobs} showYear={true} />
-      <ExperienceBodyA jobs={exp.jobs} />
+      <Accordion items={items} />
     </section>
   )
 }
