@@ -12,6 +12,7 @@ export interface AccordionProps {
     // TODO: Could probably be just a JSX.Element and not a function that returns one
     body: () => JSX.Element
   }[]
+  openByDefault: string
 }
 
 export interface ExperienceHeaderProps {

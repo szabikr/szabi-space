@@ -19,10 +19,11 @@ export default function ExperienceV2({
     ),
     body: () => <ExperienceBodyA jobs={exp.jobs} />,
   }))
+
   return (
     <section>
       <h3>Professional Experience</h3>
-      <Accordion items={items} />
+      <Accordion items={items} openByDefault={openByDefault} />
     </section>
   )
 }
