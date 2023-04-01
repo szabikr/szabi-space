@@ -1,14 +1,18 @@
 import { GetStaticProps } from 'next'
+
 import Tagline from '../components/tagline'
 import Expertise from '../components/expertise'
 import Experience from '../components/experience'
 import Projects from '../components/projects'
 import Blog from '../components/blog'
 import ContactMe from '../components/contact-me'
-import { jobs } from '../data/experience'
+
+import { experiences } from '../data/experience'
+import { experienceOpenByDefault } from '../data/ui'
 import { blogThumbnails } from '../data/blog'
 import { projects } from '../data/projects'
 
+// TODO: Define type for HomePageProps
 export default function HomePage(props) {
   return (
     <>
@@ -16,7 +20,10 @@ export default function HomePage(props) {
       <main>
         <Tagline />
         <Expertise />
-        <Experience experience={props.jobs} />
+        <Experience
+          experiences={props.experiences}
+          openByDefault={props.experienceOpenByDefault}
+        />
         <Projects projects={props.projects} />
         <Blog thumbnails={props.thumbnails} />
         <ContactMe />
@@ -31,7 +38,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       thumbnails: blogThumbnails,
       projects: projects,
-      jobs: jobs,
+      experiences: experiences,
+      experienceOpenByDefault: experienceOpenByDefault,
     },
   }
 }
