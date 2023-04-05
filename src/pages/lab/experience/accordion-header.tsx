@@ -13,7 +13,7 @@ export default function AccordionHeaderPage() {
         </div>
         <div>
           <button
-            className="primary"
+            className="button"
             onClick={() => console.log('Accordion item clicked')}
           >
             <i className="arrow down" />

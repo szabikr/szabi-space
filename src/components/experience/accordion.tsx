@@ -13,7 +13,7 @@ export default function Accordion({ items, openByDefault }: AccordionProps) {
           <div className="accordion-header">
             {item.header(item.id != show)}
             <div>
-              <button className="primary" onClick={() => toggleItem(item.id)}>
+              <button className="button" onClick={() => toggleItem(item.id)}>
                 {item.id === show ? (
                   <i className="arrow up" />
                 ) : (

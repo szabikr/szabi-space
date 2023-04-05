@@ -1,4 +1,29 @@
-button.primary {
+/* Hyperlink */
+/* --------- */
+
+.link {
+  color: black;
+  text-decoration: underline;
+}
+
+.link.visited {
+  color: purple;
+}
+
+.link.hover {
+  background-color: skyblue;
+  cursor: pointer;
+}
+
+.link.active {
+  color: white;
+  background-color: steelblue;
+}
+
+/* Buttons */
+/* ------- */
+
+.button {
   background-color: white;
   border: #333 solid 2px;
   border-radius: 6px;
@@ -9,6 +34,11 @@ button.primary {
   cursor: pointer;
 }
 
-button.primary:hover {
+.button:hover {
   background-color: #eee;
+}
+
+a.button {
+  text-decoration: none;
+  color: black;
 }

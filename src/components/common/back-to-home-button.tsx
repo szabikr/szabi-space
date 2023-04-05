@@ -4,9 +4,7 @@ export default function BackToHomeButton() {
   return (
     <p>
       <Link href="/">
-        <button className="primary">
-          <strong>{'< '}</strong>Back to Home
-        </button>
+        <a className="button">Return to Home</a>
       </Link>
     </p>
   )

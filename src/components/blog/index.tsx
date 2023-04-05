@@ -14,11 +14,9 @@ export default function Blog({ thumbnails }: BlogProps) {
           </div>
           <p>{thumbnail.summary}</p>
           <p>
-            Read the article{' '}
             <Link href={thumbnail.url}>
-              <a>here</a>
+              <a aria-label={thumbnail.title}>Read the article</a>
             </Link>
-            .
           </p>
         </section>
       ))}
