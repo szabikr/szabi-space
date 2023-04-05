@@ -9,12 +9,19 @@ import TechTags from './tech-tags'
 // This version displays technical tags after each job description
 
 export default function ExperienceBodyA({ jobs }: ExperienceBodyProps) {
+  const hasDifferentRoles =
+    jobs.length > 1 &&
+    jobs
+      .map((job) => job.role)
+      .filter((role, index, roles) => roles.indexOf(role) === index).length ===
+      jobs.length
+
   return (
     <>
       {jobs.map((job) => (
         <Fragment key={job.id}>
           <h5>
-            @{' '}
+            {hasDifferentRoles && `${job.role} `}@{' '}
             <a href={job.organization.url} target="_blank">
               {job.organization.name}
             </a>

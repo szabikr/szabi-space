@@ -6,6 +6,7 @@ export const JOB_ID = {
   netDeveloperBranded3: '1bfb08db-a345-4bb4-9b11-33897d27d4a4',
   netDeveloperComknow: '36e6cfe6-f5e0-456a-b343-4dd176e29342',
   iosApprenticeReea: '0f4bfdc6-4a1b-4113-b3b1-e47ea99269de',
+  studentSapientia: 'f907a2a7-24ed-4572-a608-ece2f11e1976',
 } as const
 
 export const JOB_CONTENT = {
@@ -16,6 +17,7 @@ export const JOB_CONTENT = {
   netDeveloperBranded3: 'NetDeveloperBranded3',
   netDeveloperComknow: 'NetDeveloperComknow',
   iosApprenticeReea: 'IosApprenticeReea',
+  studentSapientia: 'StudentSapientia',
 } as const
 
 export const EXPERIENCE_ID = {

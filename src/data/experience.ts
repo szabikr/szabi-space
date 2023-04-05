@@ -8,6 +8,7 @@ import {
   Database,
   Cloud,
   OtherTools,
+  ProgrammingConcepts,
 } from './technologies'
 
 export const jobs: Job[] = [
@@ -168,6 +169,28 @@ export const jobs: Job[] = [
     description: JOB_CONTENT.iosApprenticeReea,
     technologies: [ProgrammingLanguage.ObjectiveC, OtherTools.Xcode],
   },
+  {
+    id: JOB_ID.studentSapientia,
+    role: 'Student',
+    organization: {
+      name: 'Sapientia University',
+      url: 'https://ms.sapientia.ro/en',
+    },
+    startDate: '2012-10-01',
+    endDate: '2015-06-01',
+    description: JOB_CONTENT.studentSapientia,
+    technologies: [
+      ProgrammingConcepts.Algorithms,
+      ProgrammingConcepts.DataStructures,
+      ProgrammingConcepts.ObjectOrientedProgramming,
+      ProgrammingLanguage.C,
+      ProgrammingLanguage.Csharp,
+      ProgrammingLanguage.Java,
+      ProgrammingLanguage.Sql,
+      ProgrammingLanguage.Html,
+      ProgrammingLanguage.Css,
+    ],
+  },
 ]
 
 export const experiences: Experience[] = [
@@ -197,6 +220,10 @@ export const experiences: Experience[] = [
   },
   {
     id: EXPERIENCE_ID.apprentice,
-    jobs: jobs.filter((job) => job.id === JOB_ID.iosApprenticeReea),
+    jobs: jobs.filter(
+      (job) =>
+        job.id === JOB_ID.iosApprenticeReea ||
+        job.id === JOB_ID.studentSapientia,
+    ),
   },
 ]
