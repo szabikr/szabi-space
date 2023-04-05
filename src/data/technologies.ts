@@ -25,6 +25,18 @@ export const ProgrammingLanguage: { [key: string]: Technology } = {
     id: '39a93407-117c-4943-b1e0-4bbb045bf55a',
     name: 'C#',
   },
+  Sql: {
+    id: 'a8bab0b4-80df-4073-87ab-66b47cc3a32d',
+    name: 'SQL',
+  },
+  C: {
+    id: 'b23cf897-9904-4009-b2e1-3a523a7fbcde',
+    name: 'C/C++',
+  },
+  Java: {
+    id: '9f5ca92d-0cb0-4886-8f1e-6697d9a3d4d1',
+    name: 'Java',
+  },
   ObjectiveC: {
     id: '1566d506-7a54-4e9f-801b-396ec46644e4',
     name: 'Objective-C',
@@ -202,5 +214,20 @@ export const OtherTools: { [key: string]: Technology } = {
   Xcode: {
     id: '1dc4cb15-05ad-43b8-b2a0-53125cd115fc',
     name: 'XCode',
+  },
+}
+
+export const ProgrammingConcepts: { [key: string]: Technology } = {
+  Algorithms: {
+    id: '6a98357f-e619-44eb-b5bc-48473112ee4b',
+    name: 'Algorithms',
+  },
+  DataStructures: {
+    id: 'bda525a3-9953-4b8f-aad0-bbc63f48868d',
+    name: 'Data Structures',
+  },
+  ObjectOrientedProgramming: {
+    id: '9eeb16b0-38d3-4501-b7b1-80f6bd3c91f9',
+    name: 'OOP',
   },
 }

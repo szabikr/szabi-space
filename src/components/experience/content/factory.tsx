@@ -8,6 +8,7 @@ import CoFounderWraptime from './co-founder-wraptime'
 import NetDeveloperBranded3 from './net-developer-branded3'
 import NetDeveloperComknow from './net-developer-comknow'
 import IosApprenticeReea from './ios-apprentice-reea'
+import StudentSapientia from './student-sapientia'
 
 export default function Factory(which: JobContentType) {
   switch (which) {
@@ -25,7 +26,9 @@ export default function Factory(which: JobContentType) {
       return NetDeveloperComknow
     case JOB_CONTENT.iosApprenticeReea:
       return IosApprenticeReea
+    case JOB_CONTENT.studentSapientia:
+      return StudentSapientia
     default:
-      return () => <p>ERROR! Check experience component factory.</p>
+      return () => <p>ERROR! Check job content component factory.</p>
   }
 }
