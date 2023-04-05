@@ -33,7 +33,43 @@ export default function ComponentLibrary() {
         </div>
 
         <div>
-          <a href="https://szabi.space">link text</a>
+          <h1>Hyperlinks</h1>
+          <div>
+            <h3>
+              <span className="link">:link heading</span>
+            </h3>
+            <span className="link">:link text</span>
+          </div>
+
+          <div>
+            <h3>
+              <span className="link hover">:hover link heading</span>
+            </h3>
+            <span className="link hover">:hover link text</span>
+          </div>
+
+          <div>
+            <h3>
+              <span className="link visited">:visited link heading</span>
+            </h3>
+            <span className="link visited">:visited link text</span>
+          </div>
+
+          <div>
+            <h3>
+              <span className="link visited hover ">
+                :hover visited link heading
+              </span>
+            </h3>
+            <span className="link visited hover">:hover visited link text</span>
+          </div>
+
+          <div>
+            <h3>
+              <span className="link active">:active link heading</span>
+            </h3>
+            <span className="link active">:active link text</span>
+          </div>
         </div>
 
         <BackToHomeButton />
