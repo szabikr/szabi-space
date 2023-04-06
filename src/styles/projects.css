@@ -5,12 +5,10 @@ ul.projects li {
 }
 
 ul.projects li h5 {
-  margin: 0;
-  margin-bottom: 12px;
+  margin: 0 0 0.7em;
 }
 
 ul.projects li p {
-  line-height: 24px;
-  margin: 0;
-  margin-top: 18px;
+  line-height: 1.5em;
+  margin: 1.1em 0 0;
 }
