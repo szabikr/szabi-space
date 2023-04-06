@@ -2,8 +2,8 @@ span.tech-tag {
   display: inline-block;
   margin: 4px 4px;
   padding: 4px 16px 2px;
-  background-color: yellow;
+  background-color: #f1d302;
   border-radius: 16px;
-  border: 2px solid;
+  border: 2px solid #253d5b;
   cursor: default;
 }
