@@ -1,9 +1,9 @@
 span.tech-tag {
   display: inline-block;
-  margin: 4px 4px;
-  padding: 4px 16px 2px;
-  background-color: #f1d302;
-  border-radius: 16px;
+  margin: 0.2em;
+  padding: 0.25em 1em 0.15em;
+  background-color: #f5f5f5;
+  border-radius: 1em;
   border: 2px solid #253d5b;
   cursor: default;
 }

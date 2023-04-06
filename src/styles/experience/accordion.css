@@ -1,16 +1,15 @@
 .accordion-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 1.1em;
 }
 
 .accordion-header h5 {
-  margin: 0px;
-  margin-top: 10px;
+  margin: 0.6em 0 0;
 }
 
 .accordion-body h5 {
-  margin-bottom: 12px;
+  margin-bottom: 1em;
 }
 
 .accordion .collapsed {
@@ -20,9 +19,9 @@
 .accordion .arrow {
   border: solid #18273a;
   border-width: 0 3px 3px 0;
-  border-radius: 2px;
+  border-radius: 0.15em;
   display: inline-block;
-  padding: 5px;
+  padding: 0.3em;
 }
 
 .accordion .up {

@@ -1,3 +1,7 @@
+:root {
+  font-size: 1em;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat';
@@ -9,8 +13,8 @@ main,
 header,
 footer {
   margin: auto;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 @media only screen and (max-width: 768px) {
