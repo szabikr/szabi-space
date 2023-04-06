@@ -18,7 +18,7 @@
 }
 
 .accordion .arrow {
-  border: solid black;
+  border: solid #18273a;
   border-width: 0 3px 3px 0;
   border-radius: 2px;
   display: inline-block;
