@@ -3,50 +3,50 @@
 
 /* TODO: Remove these values once the anchor element design is finilised */
 .link {
-  color: #253d5b;
+  color: var(--prussian-blue);
   text-decoration: underline;
 }
 
 .link.visited {
-  color: #8d3f63;
+  color: var(--quinacridone-magenta);
 }
 
 .link.hover {
-  background-color: #f1d302;
+  background-color: var(--school-bus-yellow);
   cursor: pointer;
 }
 
 .link.active {
-  color: #f5f5f5;
-  background-color: #253d5b;
+  color: var(--white-smoke);
+  background-color: var(--prussian-blue);
 }
 /* ^ these styles are just for the lab/component-library page */
 
 a {
-  color: #253d5b;
+  color: var(--prussian-blue);
   text-decoration: underline;
 }
 
 a:visited {
-  color: #8d3f63;
+  color: var(--quinacridone-magenta);
 }
 
 a:hover {
-  background-color: #f1d302;
+  background-color: var(--school-bus-yellow);
   cursor: pointer;
 }
 
 a:active {
-  color: #f5f5f5;
-  background-color: #253d5b;
+  color: var(--white-smoke);
+  background-color: var(--prussian-blue);
 }
 
 /* Buttons */
 /* ------- */
 
 .button {
-  border: #18273a solid 2px;
-  background-color: #f5f5f5;
+  border: var(--prussian-blue-dark) solid 2px;
+  background-color: var(--white-smoke);
 
   border-radius: 0.4em;
   font-family: Montserrat;
@@ -57,10 +57,10 @@ a:active {
 }
 
 .button:hover {
-  background-color: #f1d302;
+  background-color: var(--school-bus-yellow);
 }
 
 a.button {
   text-decoration: none;
-  color: #18273a;
+  color: var(--prussian-blue-dark);
 }

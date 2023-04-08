@@ -5,8 +5,8 @@
 body {
   margin: 0;
   font-family: 'Montserrat';
-  background-color: #f5f5f5;
-  color: #18273a;
+  background-color: var(--white-smoke);
+  color: var(--prussian-blue-dark);
 }
 
 main,
