@@ -4,6 +4,7 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import '../styles/syntax-highlight/prism-one-light.css'
 import '../styles/syntax-highlight/inline-code.css'
 
+import '../styles/common/colors.css'
 import '../styles/common/main.css'
 import '../styles/common/typography.css'
 import '../styles/common/grid.css'

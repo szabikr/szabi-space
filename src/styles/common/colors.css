@@ -1,7 +1,7 @@
-/*
-White smoke: #f5f5f5
-School bus yellow: #f1d302
-Quinacridone magenta: #8d3f63
-Prussian blue: #253d5b
-Prussian blue dark: #18273a
-*/
+:root {
+  --white-smoke: #f5f5f5;
+  --school-bus-yellow: #f1d302;
+  --quinacridone-magenta: #8d3f63;
+  --prussian-blue: #253d5b;
+  --prussian-blue-dark: #18273a;
+}
