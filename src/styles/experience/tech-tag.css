@@ -2,7 +2,7 @@ span.tech-tag {
   display: inline-block;
   margin: 0.2em;
   padding: 0.25em 1em 0.15em;
-  background-color: var(--white-smoke);
+  background-color: var(--white-smoke-dark);
   border-radius: 1em;
   border: 2px solid var(--prussian-blue);
   cursor: default;
