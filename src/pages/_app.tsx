@@ -10,6 +10,8 @@ import '../styles/common/typography.css'
 import '../styles/common/grid.css'
 import '../styles/common/button.css'
 
+import '../styles/header.css'
+
 import '../styles/experience/accordion.css'
 import '../styles/experience/tech-tag.css'
 
