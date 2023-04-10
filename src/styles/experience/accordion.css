@@ -12,6 +12,10 @@
   margin-bottom: 1em;
 }
 
+.accordion-body li {
+  line-height: 1.6;
+}
+
 .accordion .collapsed {
   display: none;
 }
