@@ -5,7 +5,7 @@ import { formatDate } from '../../utils'
 export default function Blog({ thumbnails }: BlogProps) {
   return (
     <section>
-      <h3>Blog</h3>
+      <h3 id="blog">Blog</h3>
       {thumbnails.map((thumbnail) => (
         <section key={thumbnail.title}>
           <h4>{thumbnail.title}</h4>
