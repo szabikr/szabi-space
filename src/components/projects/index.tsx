@@ -3,8 +3,8 @@ import { ProjectsProps } from '../../types/props'
 
 export default function Projects({ projects }: ProjectsProps) {
   return (
-    <section>
-      <h3 id="projects">Projects</h3>
+    <section id="projects">
+      <h3>Projects</h3>
       <ul className="grid projects">
         {projects.map((project) => (
           <li key={project.name}>

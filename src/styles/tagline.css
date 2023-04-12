@@ -1,4 +1,73 @@
-h2.subtitle {
-  font-size: 1.45rem;
+section#tagline {
+  height: 92vh;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 100%, 1) 0%,
+    hsla(0, 0%, 96%, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+section#tagline h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 8vw, 5rem);
+}
+
+section#tagline h1 span:nth-of-type(1) {
+  color: #00538f; /* Lapis Lazuli */
+}
+section#tagline h1 span:nth-of-type(2) {
+  color: #00477a; /* Indigo dye */
+}
+section#tagline h1 span:nth-of-type(3) {
+  color: #003c66; /* Indigo dye dark */
+}
+section#tagline h1 span:nth-of-type(4) {
+  color: #003052; /* Prussian blue */
+}
+
+section#tagline h2 {
+  margin: 0;
+  font-size: 1.1rem;
   font-weight: 400;
+  line-height: 1.7;
+}
+
+section#tagline p {
+  margin: 0;
+  text-align: center;
+}
+
+section#tagline > p {
+  margin-bottom: 10vh;
+}
+
+section#tagline > div {
+  margin: 12vh 0 0;
+  display: grid;
+  grid-row-gap: 5vh;
+}
+
+section#tagline p .button {
+  /* TODO: Look into if the button can be defined as inline-block in button.css */
+  display: inline-block;
+  margin-top: 5vh;
+}
+
+section#tagline .arrow {
+  border: solid var(--prussian-blue-dark);
+  border-width: 0 4px 4px 0;
+  border-radius: 0.15em;
+  display: inline-block;
+  padding: 0.4em;
+}
+
+section#tagline .down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+@media only screen and (max-width: 680px) {
 }

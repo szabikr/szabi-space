@@ -56,11 +56,21 @@ a:active {
   cursor: pointer;
 }
 
+a.button {
+  text-decoration: none;
+  color: var(--prussian-blue-dark);
+}
+
 .button:hover {
   background-color: var(--school-bus-yellow);
 }
 
-a.button {
-  text-decoration: none;
-  color: var(--prussian-blue-dark);
+a.button.primary {
+  background-color: var(--iris);
+  color: var(--white-smoke);
+  border: none;
+  box-shadow: rgba(143, 119, 207, 0.5) 0px 5px;
+}
+
+a.button.primary:hover {
 }

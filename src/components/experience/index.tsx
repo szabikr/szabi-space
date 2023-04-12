@@ -21,8 +21,8 @@ export default function Experience({
   }))
 
   return (
-    <section>
-      <h3 id="experience">Professional Experience</h3>
+    <section id="experience">
+      <h3>Professional Experience</h3>
       <Accordion items={items} openByDefault={openByDefault} />
     </section>
   )

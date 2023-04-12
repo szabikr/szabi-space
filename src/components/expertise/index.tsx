@@ -1,7 +1,7 @@
 export default function Expertise() {
   return (
-    <section>
-      <h3 id="expertise">My Expertise</h3>
+    <section id="expertise">
+      <h3>My Expertise</h3>
       <ul className="grid expertise">
         <li>
           <h5>Software Engineering</h5>
