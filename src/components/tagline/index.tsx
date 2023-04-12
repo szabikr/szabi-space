@@ -12,7 +12,7 @@ export default function Tagline() {
           and testable back-end solutions that excel in code quality.
         </h2>
         <p>
-          <div>
+          {/* <div>
             <a href="#contact-me" className="button primary">
               Contact Me
             </a>
@@ -25,16 +25,17 @@ export default function Tagline() {
             >
               Contact Me
             </a>
-          </div>
-          <div>
-            <a
-              href="#contact-me"
-              className="button primary"
-              style={{ backgroundColor: '#6c3082' }}
-            >
-              Contact Me
-            </a>
-          </div>
+          </div> */}
+          {/* <div> */}
+          {/* '#6c3082' */}
+          <a
+            href="#contact-me"
+            className="button primary"
+            style={{ backgroundColor: '#6c3082' }}
+          >
+            Contact Me
+          </a>
+          {/* </div> */}
         </p>
       </div>
       <p>
