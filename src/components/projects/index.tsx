@@ -4,7 +4,7 @@ import { ProjectsProps } from '../../types/props'
 export default function Projects({ projects }: ProjectsProps) {
   return (
     <section>
-      <h3>Projects</h3>
+      <h3 id="projects">Projects</h3>
       <ul className="grid projects">
         {projects.map((project) => (
           <li key={project.name}>

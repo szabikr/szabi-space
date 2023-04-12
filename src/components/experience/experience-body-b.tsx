@@ -6,6 +6,7 @@ import JobDescriptionComponentFactory from './content/factory'
 import TechTags from './tech-tags'
 import { Technology } from '../../types/models'
 
+// TODO: Potentially remove this
 // A-B TESTING:
 // This component displays a merged list of technical stack at the end of the fragment
 

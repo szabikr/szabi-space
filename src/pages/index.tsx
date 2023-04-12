@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 
-import ResumeButton from '../components/common/resume-button'
+import Header from '../components/header'
 import Tagline from '../components/tagline'
 import Expertise from '../components/expertise'
 import Experience from '../components/experience'
@@ -17,9 +17,7 @@ import { projects } from '../data/projects'
 export default function HomePage(props) {
   return (
     <>
-      <header>
-        <ResumeButton />
-      </header>
+      <Header />
       <main>
         <Tagline />
         <Expertise />

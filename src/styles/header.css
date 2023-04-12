@@ -1,4 +1,66 @@
 header {
-  padding-top: 2.5em;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 1em;
+}
+
+header .menu-items {
+  display: flex;
+}
+
+header .button {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+.logo {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: var(--quinacridone-magenta);
+  padding-top: 0.35em;
+  cursor: pointer;
+}
+
+.logo:hover {
+  color: var(--mulberry);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  padding: 0.8em 0;
+  margin: 0;
+  font-weight: 500;
+}
+
+nav ul li {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 1em;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+nav a:visited {
+  color: inherit;
+}
+
+nav a:hover {
+  background-color: inherit;
+}
+
+nav li:hover {
+  color: var(--lapis-lazuli);
+}
+
+@media only screen and (max-width: 800px) {
+  header nav {
+    display: none;
+  }
 }

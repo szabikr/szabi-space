@@ -19,7 +19,6 @@ footer {
 
 @media only screen and (max-width: 768px) {
   main,
-  header,
   footer {
     max-width: 520px;
   }
@@ -27,7 +26,6 @@ footer {
 
 @media only screen and (min-width: 768px) {
   main,
-  header,
   footer {
     max-width: 680px;
   }
@@ -35,7 +33,6 @@ footer {
 
 @media only screen and (min-width: 992px) {
   main,
-  header,
   footer {
     max-width: 820px;
   }
