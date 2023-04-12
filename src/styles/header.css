@@ -59,7 +59,7 @@ nav li:hover {
   color: var(--lapis-lazuli);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
   header nav {
     display: none;
   }
