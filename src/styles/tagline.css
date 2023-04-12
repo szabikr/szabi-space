@@ -1,5 +1,5 @@
 section#tagline {
-  height: 92vh;
+  min-height: 92vh;
   background: linear-gradient(
     180deg,
     hsla(0, 0%, 100%, 1) 0%,
