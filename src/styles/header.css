@@ -1,70 +1,66 @@
 header {
-  padding-top: 2.5em;
-  text-align: right;
-}
-
-header.dev {
-  width: 100%;
-  margin-top: 1em;
-  padding-top: 0;
-  text-align: left;
   display: flex;
   justify-content: space-between;
+
+  margin-top: 1em;
 }
 
-header.dev .menu-items {
+header .menu-items {
   display: flex;
-  /* padding-right: 2.2em; */
 }
 
-header.dev .logo {
+header .button {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+.logo {
   display: inline-block;
   font-weight: 700;
   font-size: 1.5em;
   color: var(--quinacridone-magenta);
-  padding-top: 0.3em;
-  /* padding: 0.3em 0.5em; */
+  padding-top: 0.35em;
   cursor: pointer;
 }
 
-header.dev .logo:hover {
+.logo:hover {
   color: var(--mulberry);
 }
 
-header.dev .button {
-  display: inline-block;
-  margin-left: 1em;
-}
-
-header.dev ul li a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: 500;
-}
-
-header.dev ul li a:hover {
-  background-color: inherit;
-}
-
-header.dev ul {
+nav ul {
   list-style-type: none;
+  padding: 0;
   padding: 0.8em 0;
   margin: 0;
   font-weight: 500;
 }
 
-header.dev ul li {
+nav ul li {
   display: inline-block;
   cursor: pointer;
   padding: 0 1em;
 }
 
-header.dev ul li:hover {
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+nav a:visited {
+  color: inherit;
+}
+
+nav a:hover {
+  background-color: inherit;
+}
+
+nav li:hover {
   color: var(--lapis-lazuli);
 }
 
 @media only screen and (max-width: 768px) {
-  header.dev .menu-items ul {
+  header nav {
     display: none;
   }
 }

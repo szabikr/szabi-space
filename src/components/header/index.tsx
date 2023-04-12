@@ -3,12 +3,10 @@ import ResumeButton from '../common/resume-button'
 
 export default function Header() {
   return (
-    <header className="dev">
-      <div>
-        <Link href="/">
-          <span className="logo">szabikr.</span>
-        </Link>
-      </div>
+    <header>
+      <Link href="/">
+        <span className="logo">szabikr.</span>
+      </Link>
       <div className="menu-items">
         <nav>
           <ul>
