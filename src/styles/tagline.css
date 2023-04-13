@@ -46,14 +46,11 @@ section#tagline > p {
 
 section#tagline > div {
   margin: 12vh 0 0;
-  display: grid;
-  grid-row-gap: 5vh;
 }
 
 section#tagline p .button {
   /* TODO: Look into if the button can be defined as inline-block in button.css */
   display: inline-block;
-  margin-top: 5vh;
 }
 
 section#tagline .arrow {
@@ -69,5 +66,44 @@ section#tagline .down {
   -webkit-transform: rotate(45deg);
 }
 
-@media only screen and (max-width: 680px) {
+section#tagline .subtitle {
+  margin-top: 5vh;
+}
+
+section#tagline .subtitle > p {
+  margin-top: 10vh;
+}
+
+section#tagline .subtitle p .button:nth-of-type(1) {
+  display: none;
+}
+
+@media only screen and (min-width: 640px) {
+  section#tagline > div {
+    padding: 0 0 0 12vw;
+  }
+
+  section#tagline .subtitle h2 {
+    max-width: 23em;
+    font-size: clamp(1.4rem, 3vw, 1.7rem);
+  }
+
+  section#tagline .subtitle p {
+    margin-top: 6vh;
+    text-align: left;
+  }
+
+  section#tagline .subtitle p .button {
+    margin-right: 1em;
+  }
+
+  section#tagline .subtitle p .button:nth-of-type(1) {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 1808px) {
+  section#tagline > div {
+    padding: 0 0 0 18vw;
+  }
 }
