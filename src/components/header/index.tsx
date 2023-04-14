@@ -23,7 +23,7 @@ export default function Header() {
               <a href="#blog">Blog</a>
             </li>
             <li>
-              <a href="#contact-me">Contact me</a>
+              <a href="#contact-me">Contact</a>
             </li>
           </ul>
         </nav>

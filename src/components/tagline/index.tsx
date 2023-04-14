@@ -7,21 +7,18 @@ export default function Tagline() {
           <br />
           <span>Software Engineer.</span>
         </h1>
-        <div className="subtitle">
-          <h2>
-            I build data driven application for the web, supported by
-            maintainable and testable back-end solutions that excel in code
-            quality.
-          </h2>
-          <p>
-            <a href="https://github.com/szabikr" className="button">
-              View GitHub Profile
-            </a>
-            <a href="#contact-me" className="button primary">
-              Contact Me
-            </a>
-          </p>
-        </div>
+        <h2>
+          I build data driven application for the web, supported by maintainable
+          and testable back-end solutions that excel in code quality.
+        </h2>
+        <p>
+          <a href="https://github.com/szabikr" className="button">
+            View GitHub Profile
+          </a>
+          <a href="#contact-me" className="button primary">
+            Contact Me
+          </a>
+        </p>
       </div>
       <p>
         <i className="arrow down" />

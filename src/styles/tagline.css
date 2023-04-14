@@ -23,7 +23,7 @@ section#tagline h1 span:nth-of-type(2) {
 }
 
 section#tagline h2 {
-  margin: 0;
+  margin: 5vh 0 0;
   font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.7;
@@ -60,15 +60,11 @@ section#tagline .down {
   -webkit-transform: rotate(45deg);
 }
 
-section#tagline .subtitle {
-  margin-top: 5vh;
-}
-
-section#tagline .subtitle > p {
+section#tagline p {
   margin-top: 10vh;
 }
 
-section#tagline .subtitle p .button:nth-of-type(1) {
+section#tagline p .button:nth-of-type(1) {
   display: none;
 }
 
@@ -77,21 +73,22 @@ section#tagline .subtitle p .button:nth-of-type(1) {
     padding: 0 0 0 12vw;
   }
 
-  section#tagline .subtitle h2 {
-    max-width: 23em;
-    font-size: clamp(1.1rem, 1.7vw, 1.7rem);
-  }
-
-  section#tagline .subtitle p {
+  section#tagline div p {
     margin-top: 6vh;
     text-align: left;
   }
 
-  section#tagline .subtitle p .button {
+  section#tagline h2 {
+    margin-top: calc(2vh + 2vw);
+    max-width: 23em;
+    font-size: clamp(1rem, 1.7vw, 1.7rem);
+  }
+
+  section#tagline p .button {
     margin-right: 1em;
   }
 
-  section#tagline .subtitle p .button:nth-of-type(1) {
+  section#tagline p .button:nth-of-type(1) {
     display: inline-block;
   }
 }
