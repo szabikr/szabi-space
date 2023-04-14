@@ -4,7 +4,7 @@ section#tagline {
     180deg,
     hsla(0, 0%, 100%, 1) 0%,
     hsla(0, 0%, 96%, 1) 100%
-  );
+  ); /* Gradient White -> White smoke*/
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,10 +16,10 @@ section#tagline h1 {
 }
 
 section#tagline h1 span:nth-of-type(1) {
-  color: var(--lapis-lazuli); /* Lapis Lazuli */
+  color: var(--lapis-lazuli);
 }
 section#tagline h1 span:nth-of-type(2) {
-  color: var(--indigo-dye); /* Indigo dye */
+  color: var(--indigo-dye);
 }
 
 section#tagline h2 {
@@ -35,7 +35,7 @@ section#tagline p {
 }
 
 section#tagline > p {
-  margin-bottom: 10vh;
+  margin-bottom: 10vh; /* This puts the arrow always in screen */
 }
 
 section#tagline > div {
@@ -48,6 +48,7 @@ section#tagline p .button {
 }
 
 section#tagline .arrow {
+  /* Code duplication, think of a way to extract it. */
   border: solid var(--prussian-blue-dark);
   border-width: 0 4px 4px 0;
   border-radius: 0.15em;
@@ -60,7 +61,7 @@ section#tagline .down {
   -webkit-transform: rotate(45deg);
 }
 
-section#tagline p {
+section#tagline div p {
   margin-top: 10vh;
 }
 
