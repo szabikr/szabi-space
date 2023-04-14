@@ -12,7 +12,7 @@ section#tagline {
 
 section#tagline h1 {
   margin: 0;
-  font-size: clamp(2.1rem, 8vw, 5rem);
+  font-size: clamp(2.1rem, 5vw, 5rem);
 }
 
 section#tagline h1 span:nth-of-type(1) {
@@ -85,7 +85,7 @@ section#tagline .subtitle p .button:nth-of-type(1) {
 
   section#tagline .subtitle h2 {
     max-width: 23em;
-    font-size: clamp(1.4rem, 3vw, 1.7rem);
+    font-size: clamp(1.1rem, 1.7vw, 1.7rem);
   }
 
   section#tagline .subtitle p {
