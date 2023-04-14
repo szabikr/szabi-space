@@ -1,4 +1,101 @@
-h2.subtitle {
-  font-size: 1.45rem;
+section#tagline {
+  min-height: 92vh;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 100%, 1) 0%,
+    hsla(0, 0%, 96%, 1) 100%
+  ); /* Gradient White -> White smoke*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+section#tagline h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 5rem);
+}
+
+section#tagline h1 span:nth-of-type(1) {
+  color: var(--lapis-lazuli);
+}
+section#tagline h1 span:nth-of-type(2) {
+  color: var(--indigo-dye);
+}
+
+section#tagline h2 {
+  margin: 5vh 0 0;
+  font-size: 1.1rem;
   font-weight: 400;
+  line-height: 1.7;
+}
+
+section#tagline p {
+  margin: 0;
+  text-align: center;
+}
+
+section#tagline > p {
+  margin-bottom: 10vh; /* This puts the arrow always in screen */
+}
+
+section#tagline > div {
+  margin: 12vh 0 0;
+}
+
+section#tagline p .button {
+  /* TODO: Look into if the button can be defined as inline-block in button.css */
+  display: inline-block;
+}
+
+section#tagline .arrow {
+  /* Code duplication, think of a way to extract it. */
+  border: solid var(--prussian-blue-dark);
+  border-width: 0 4px 4px 0;
+  border-radius: 0.15em;
+  display: inline-block;
+  padding: 0.4em;
+}
+
+section#tagline .down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+section#tagline div p {
+  margin-top: 10vh;
+}
+
+section#tagline p .button:nth-of-type(1) {
+  display: none;
+}
+
+@media only screen and (min-width: 640px) {
+  section#tagline > div {
+    padding: 0 0 0 12vw;
+  }
+
+  section#tagline div p {
+    margin-top: 6vh;
+    text-align: left;
+  }
+
+  section#tagline h2 {
+    margin-top: calc(2vh + 2vw);
+    max-width: 23em;
+    font-size: clamp(1rem, 1.7vw, 1.7rem);
+  }
+
+  section#tagline p .button {
+    margin-right: 1em;
+  }
+
+  section#tagline p .button:nth-of-type(1) {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 1808px) {
+  section#tagline > div {
+    padding: 0 0 0 18vw;
+  }
 }
