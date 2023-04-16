@@ -3,7 +3,7 @@ import Tagline from '../../components/tagline'
 export default function TaglinePage() {
   return (
     <main>
-      <Tagline />
+      <Tagline onNextSectionClick={() => {}} />
     </main>
   )
 }

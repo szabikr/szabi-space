@@ -1,8 +1,20 @@
+import { forwardRef, useRef, useImperativeHandle } from 'react'
+
 import Link from 'next/link'
 import { BlogProps } from '../../types/props'
 import { formatDate } from '../../utils'
 
-export default function Blog({ sectionRef, thumbnails }: BlogProps) {
+const Blog = forwardRef(function Blog({ thumbnails }: BlogProps, ref) {
+  const sectionRef = useRef(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      scrollIntoView() {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
+      },
+    }
+  })
+
   return (
     <section id="blog" ref={sectionRef}>
       <h3>Blog</h3>
@@ -22,4 +34,6 @@ export default function Blog({ sectionRef, thumbnails }: BlogProps) {
       ))}
     </section>
   )
-}
+})
+
+export default Blog

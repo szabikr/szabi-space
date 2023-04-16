@@ -1,6 +1,16 @@
-import { ExpertiseProps } from '../../types/props'
+import { forwardRef, useRef, useImperativeHandle } from 'react'
 
-export default function Expertise({ sectionRef }: ExpertiseProps) {
+const Expertise = forwardRef(function Expertise(props, ref) {
+  const sectionRef = useRef(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      scrollIntoView() {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
+      },
+    }
+  })
+
   return (
     <section id="expertise" ref={sectionRef}>
       <h3>My Expertise</h3>
@@ -29,4 +39,6 @@ export default function Expertise({ sectionRef }: ExpertiseProps) {
       </ul>
     </section>
   )
-}
+})
+
+export default Expertise

@@ -1,14 +1,25 @@
+import { forwardRef, useRef, useImperativeHandle } from 'react'
+
 import { ExperienceProps } from '../../types/props'
 import ExperienceHeader from './experience-header'
 import ExperienceBodyA from './experience-body-a'
 import ExperienceBodyB from './experience-body-b'
 import Accordion from './accordion'
 
-export default function Experience({
-  sectionRef,
-  experiences,
-  openByDefault,
-}: ExperienceProps) {
+const Experience = forwardRef(function Experience(
+  { experiences, openByDefault }: ExperienceProps,
+  ref,
+) {
+  const sectionRef = useRef(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      scrollIntoView() {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
+      },
+    }
+  })
+
   const items = experiences.map((exp) => ({
     id: exp.id,
     header: (isOpen = true) => (
@@ -27,4 +38,6 @@ export default function Experience({
       <Accordion items={items} openByDefault={openByDefault} />
     </section>
   )
-}
+})
+
+export default Experience

@@ -16,37 +16,51 @@ import { projects } from '../data/projects'
 
 // TODO: Define type for HomePageProps
 export default function HomePage(props) {
-  const expertiseSectionRef = useRef<HTMLElement>(null)
-  const experienceSectionRef = useRef<HTMLElement>(null)
-  const projectsSectionRef = useRef<HTMLElement>(null)
-  const blogSectionRef = useRef<HTMLElement>(null)
-  const contactSectionRef = useRef<HTMLElement>(null)
+  const expertiseSectionRef = useRef(null)
+  const experienceSectionRef = useRef(null)
+  const projectsSectionRef = useRef(null)
+  const blogSectionRef = useRef(null)
+  const contactSectionRef = useRef(null)
 
   const handleNextSectionClick = () => {
     history.pushState({}, '', `#expertise`)
     expertiseSectionRef.current.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleNavItemClick = (itemId: string) => {
+    console.log(`${itemId}`)
+    history.pushState({}, '', `#${itemId}`)
+    if (itemId === 'expertise') {
+      expertiseSectionRef.current.scrollIntoView()
+    }
+    if (itemId === 'experience') {
+      experienceSectionRef.current.scrollIntoView()
+    }
+    if (itemId === 'projects') {
+      projectsSectionRef.current.scrollIntoView()
+    }
+    if (itemId === 'blog') {
+      blogSectionRef.current.scrollIntoView()
+    }
+    if (itemId === 'contact') {
+      contactSectionRef.current.scrollIntoView()
+    }
+  }
+
   return (
     <>
-      <Header
-        expertiseSectionRef={expertiseSectionRef}
-        experienceSectionRef={experienceSectionRef}
-        projectsSectionRef={projectsSectionRef}
-        blogSectionRef={blogSectionRef}
-        contactSectionRef={contactSectionRef}
-      />
+      <Header onNavItemClick={handleNavItemClick} />
       <main>
         <Tagline onNextSectionClick={handleNextSectionClick} />
-        <Expertise sectionRef={expertiseSectionRef} />
+        <Expertise ref={expertiseSectionRef} />
         <Experience
-          sectionRef={experienceSectionRef}
+          ref={experienceSectionRef}
           experiences={props.experiences}
           openByDefault={props.experienceOpenByDefault}
         />
-        <Projects sectionRef={projectsSectionRef} projects={props.projects} />
-        <Blog sectionRef={blogSectionRef} thumbnails={props.thumbnails} />
-        <Contact sectionRef={contactSectionRef} />
+        <Projects ref={projectsSectionRef} projects={props.projects} />
+        <Blog ref={blogSectionRef} thumbnails={props.thumbnails} />
+        <Contact ref={contactSectionRef} />
       </main>
       <footer></footer>
     </>

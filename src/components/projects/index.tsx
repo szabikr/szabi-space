@@ -1,7 +1,22 @@
+import { forwardRef, useRef, useImperativeHandle } from 'react'
+
 import Link from 'next/link'
 import { ProjectsProps } from '../../types/props'
 
-export default function Projects({ sectionRef, projects }: ProjectsProps) {
+const Projects = forwardRef(function Projects(
+  { projects }: ProjectsProps,
+  ref,
+) {
+  const sectionRef = useRef(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      scrollIntoView() {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
+      },
+    }
+  })
+
   return (
     <section id="projects" ref={sectionRef}>
       <h3>Projects</h3>
@@ -32,4 +47,6 @@ export default function Projects({ sectionRef, projects }: ProjectsProps) {
       </ul>
     </section>
   )
-}
+})
+
+export default Projects

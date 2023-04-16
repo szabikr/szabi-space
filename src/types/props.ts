@@ -1,13 +1,7 @@
-import { MutableRefObject } from 'react'
-
 import { Job, Technology, Experience, Project, BlogThumbnail } from './models'
 
 export interface HeaderProps {
-  expertiseSectionRef: MutableRefObject<HTMLElement>
-  experienceSectionRef: MutableRefObject<HTMLElement>
-  projectsSectionRef: MutableRefObject<HTMLElement>
-  blogSectionRef: MutableRefObject<HTMLElement>
-  contactSectionRef: MutableRefObject<HTMLElement>
+  onNavItemClick: (itemId: string) => void
 }
 
 export interface TaglineProps {
@@ -41,12 +35,7 @@ export interface ExperienceBodyProps {
   jobs: Job[]
 }
 
-export interface ExpertiseProps {
-  sectionRef: MutableRefObject<HTMLElement>
-}
-
 export interface ExperienceProps {
-  sectionRef: MutableRefObject<HTMLElement>
   experiences: Experience[]
   // this property is for the accordion item to be open when the website loads
   openByDefault: string
@@ -62,15 +51,9 @@ export interface TechTagsProps {
 }
 
 export interface ProjectsProps {
-  sectionRef: MutableRefObject<HTMLElement>
   projects: Project[]
 }
 
 export interface BlogProps {
-  sectionRef: MutableRefObject<HTMLElement>
   thumbnails: BlogThumbnail[]
-}
-
-export interface ContactProps {
-  sectionRef: MutableRefObject<HTMLElement>
 }
