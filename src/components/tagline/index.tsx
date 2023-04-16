@@ -1,4 +1,6 @@
-export default function Tagline() {
+import { TaglineProps } from '../../types/props'
+
+export default function Tagline({ onNextSectionClick }: TaglineProps) {
   return (
     <section id="tagline">
       <div>
@@ -15,12 +17,12 @@ export default function Tagline() {
           <a href="https://github.com/szabikr" className="button">
             View GitHub Profile
           </a>
-          <a href="#contact-me" className="button primary">
+          <a href="#contact" className="button primary">
             Contact Me
           </a>
         </p>
       </div>
-      <p>
+      <p onClick={onNextSectionClick}>
         <i className="arrow down" />
       </p>
     </section>

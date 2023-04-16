@@ -1,5 +1,5 @@
 import Header from '../../components/header'
 
 export default function HeaderPage() {
-  return <Header />
+  return <Header onNavItemClick={() => {}} />
 }

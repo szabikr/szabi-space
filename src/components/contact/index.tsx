@@ -1,6 +1,12 @@
-export default function ContactMe() {
+import { forwardRef } from 'react'
+
+import { useScrollIntoViewRef } from '../../hooks'
+
+const Contact = forwardRef(function Contact(props, ref) {
+  const sectionRef = useScrollIntoViewRef(ref)
+
   return (
-    <section id="contact-me">
+    <section id="contact" ref={sectionRef}>
       <h3>Contact Me</h3>
       <p>
         I am curious to hear about your current, or next Web Project and
@@ -13,4 +19,6 @@ export default function ContactMe() {
       </p>
     </section>
   )
-}
+})
+
+export default Contact

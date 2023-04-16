@@ -1,9 +1,17 @@
+import { forwardRef } from 'react'
+import { useScrollIntoViewRef } from '../../hooks'
+
 import Link from 'next/link'
 import { ProjectsProps } from '../../types/props'
 
-export default function Projects({ projects }: ProjectsProps) {
+const Projects = forwardRef(function Projects(
+  { projects }: ProjectsProps,
+  ref,
+) {
+  const sectionRef = useScrollIntoViewRef(ref)
+
   return (
-    <section id="projects">
+    <section id="projects" ref={sectionRef}>
       <h3>Projects</h3>
       <ul className="grid projects">
         {projects.map((project) => (
@@ -32,4 +40,6 @@ export default function Projects({ projects }: ProjectsProps) {
       </ul>
     </section>
   )
-}
+})
+
+export default Projects

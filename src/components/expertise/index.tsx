@@ -1,6 +1,11 @@
-export default function Expertise() {
+import { forwardRef } from 'react'
+import { useScrollIntoViewRef } from '../../hooks'
+
+const Expertise = forwardRef(function Expertise(props, ref) {
+  const sectionRef = useScrollIntoViewRef(ref)
+
   return (
-    <section id="expertise">
+    <section id="expertise" ref={sectionRef}>
       <h3>My Expertise</h3>
       <ul className="grid expertise">
         <li>
@@ -27,4 +32,6 @@ export default function Expertise() {
       </ul>
     </section>
   )
-}
+})
+
+export default Expertise

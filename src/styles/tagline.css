@@ -35,7 +35,10 @@ section#tagline p {
 }
 
 section#tagline > p {
-  margin-bottom: 10vh; /* This puts the arrow always in screen */
+  display: flex;
+  margin: 0 auto 10vh;
+  padding: 1em;
+  cursor: pointer;
 }
 
 section#tagline > div {

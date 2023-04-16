@@ -1,5 +1,13 @@
 import { Job, Technology, Experience, Project, BlogThumbnail } from './models'
 
+export interface HeaderProps {
+  onNavItemClick: (itemId: string) => void
+}
+
+export interface TaglineProps {
+  onNextSectionClick: () => void
+}
+
 export interface GithubAnchorProps {
   repoLink: string
 }

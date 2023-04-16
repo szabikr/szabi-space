@@ -1,10 +1,15 @@
+import { forwardRef } from 'react'
+
+import { useScrollIntoViewRef } from '../../hooks'
 import Link from 'next/link'
 import { BlogProps } from '../../types/props'
 import { formatDate } from '../../utils'
 
-export default function Blog({ thumbnails }: BlogProps) {
+const Blog = forwardRef(function Blog({ thumbnails }: BlogProps, ref) {
+  const sectionRef = useScrollIntoViewRef(ref)
+
   return (
-    <section id="blog">
+    <section id="blog" ref={sectionRef}>
       <h3>Blog</h3>
       {thumbnails.map((thumbnail) => (
         <section key={thumbnail.title}>
@@ -22,4 +27,6 @@ export default function Blog({ thumbnails }: BlogProps) {
       ))}
     </section>
   )
-}
+})
+
+export default Blog
