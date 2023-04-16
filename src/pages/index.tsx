@@ -9,6 +9,9 @@ import Projects from '../components/projects'
 import Blog from '../components/blog'
 import Contact from '../components/contact'
 
+import { NavItemIdType } from '../types/ui'
+import { NAV_ITEM_ID } from '../constants/ui'
+
 import { experiences } from '../data/experience'
 import { experienceOpenByDefault } from '../data/ui'
 import { blogThumbnails } from '../data/blog'
@@ -22,27 +25,21 @@ export default function HomePage(props) {
   const blogSectionRef = useRef(null)
   const contactSectionRef = useRef(null)
 
-  const handleNextSectionClick = () => {
-    history.pushState({}, '', `#expertise`)
-    expertiseSectionRef.current.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const handleNavItemClick = (itemId: string) => {
-    console.log(`${itemId}`)
+  const handleNavItemClick = (itemId: NavItemIdType) => {
     history.pushState({}, '', `#${itemId}`)
-    if (itemId === 'expertise') {
+    if (itemId === NAV_ITEM_ID.expertise) {
       expertiseSectionRef.current.scrollIntoView()
     }
-    if (itemId === 'experience') {
+    if (itemId === NAV_ITEM_ID.experience) {
       experienceSectionRef.current.scrollIntoView()
     }
-    if (itemId === 'projects') {
+    if (itemId === NAV_ITEM_ID.projects) {
       projectsSectionRef.current.scrollIntoView()
     }
-    if (itemId === 'blog') {
+    if (itemId === NAV_ITEM_ID.blog) {
       blogSectionRef.current.scrollIntoView()
     }
-    if (itemId === 'contact') {
+    if (itemId === NAV_ITEM_ID.contact) {
       contactSectionRef.current.scrollIntoView()
     }
   }
@@ -51,7 +48,9 @@ export default function HomePage(props) {
     <>
       <Header onNavItemClick={handleNavItemClick} />
       <main>
-        <Tagline onNextSectionClick={handleNextSectionClick} />
+        <Tagline
+          onNextSectionClick={() => handleNavItemClick(NAV_ITEM_ID.expertise)}
+        />
         <Expertise ref={expertiseSectionRef} />
         <Experience
           ref={experienceSectionRef}
