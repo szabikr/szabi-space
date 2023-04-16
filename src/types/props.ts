@@ -10,6 +10,10 @@ export interface HeaderProps {
   contactSectionRef: MutableRefObject<HTMLElement>
 }
 
+export interface TaglineProps {
+  onNextSectionClick: () => void
+}
+
 export interface GithubAnchorProps {
   repoLink: string
 }

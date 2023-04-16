@@ -1,4 +1,6 @@
-export default function Tagline() {
+import { TaglineProps } from '../../types/props'
+
+export default function Tagline({ onNextSectionClick }: TaglineProps) {
   return (
     <section id="tagline">
       <div>
@@ -20,7 +22,7 @@ export default function Tagline() {
           </a>
         </p>
       </div>
-      <p>
+      <p onClick={onNextSectionClick}>
         <i className="arrow down" />
       </p>
     </section>

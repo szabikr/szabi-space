@@ -22,6 +22,11 @@ export default function HomePage(props) {
   const blogSectionRef = useRef<HTMLElement>(null)
   const contactSectionRef = useRef<HTMLElement>(null)
 
+  const handleNextSectionClick = () => {
+    history.pushState({}, '', `#expertise`)
+    expertiseSectionRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <>
       <Header
@@ -32,7 +37,7 @@ export default function HomePage(props) {
         contactSectionRef={contactSectionRef}
       />
       <main>
-        <Tagline />
+        <Tagline onNextSectionClick={handleNextSectionClick} />
         <Expertise sectionRef={expertiseSectionRef} />
         <Experience
           sectionRef={experienceSectionRef}
