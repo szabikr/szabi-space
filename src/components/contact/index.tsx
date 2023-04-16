@@ -1,6 +1,6 @@
-export default function ContactMe() {
+export default function Contact() {
   return (
-    <section id="contact-me">
+    <section id="contact">
       <h3>Contact Me</h3>
       <p>
         I am curious to hear about your current, or next Web Project and

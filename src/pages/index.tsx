@@ -6,7 +6,7 @@ import Expertise from '../components/expertise'
 import Experience from '../components/experience'
 import Projects from '../components/projects'
 import Blog from '../components/blog'
-import ContactMe from '../components/contact-me'
+import Contact from '../components/contact'
 
 import { experiences } from '../data/experience'
 import { experienceOpenByDefault } from '../data/ui'
@@ -27,7 +27,7 @@ export default function HomePage(props) {
         />
         <Projects projects={props.projects} />
         <Blog thumbnails={props.thumbnails} />
-        <ContactMe />
+        <Contact />
       </main>
       <footer></footer>
     </>
