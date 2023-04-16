@@ -1,5 +1,6 @@
-import { forwardRef, useRef, useImperativeHandle } from 'react'
+import { forwardRef } from 'react'
 
+import { useScrollIntoViewRef } from '../../hooks'
 import { ExperienceProps } from '../../types/props'
 import ExperienceHeader from './experience-header'
 import ExperienceBodyA from './experience-body-a'
@@ -10,15 +11,7 @@ const Experience = forwardRef(function Experience(
   { experiences, openByDefault }: ExperienceProps,
   ref,
 ) {
-  const sectionRef = useRef(null)
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollIntoView() {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
-      },
-    }
-  })
+  const sectionRef = useScrollIntoViewRef(ref)
 
   const items = experiences.map((exp) => ({
     id: exp.id,

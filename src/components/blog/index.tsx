@@ -1,19 +1,12 @@
-import { forwardRef, useRef, useImperativeHandle } from 'react'
+import { forwardRef } from 'react'
 
+import { useScrollIntoViewRef } from '../../hooks'
 import Link from 'next/link'
 import { BlogProps } from '../../types/props'
 import { formatDate } from '../../utils'
 
 const Blog = forwardRef(function Blog({ thumbnails }: BlogProps, ref) {
-  const sectionRef = useRef(null)
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollIntoView() {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
-      },
-    }
-  })
+  const sectionRef = useScrollIntoViewRef(ref)
 
   return (
     <section id="blog" ref={sectionRef}>

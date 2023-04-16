@@ -1,4 +1,5 @@
-import { forwardRef, useRef, useImperativeHandle } from 'react'
+import { forwardRef } from 'react'
+import { useScrollIntoViewRef } from '../../hooks'
 
 import Link from 'next/link'
 import { ProjectsProps } from '../../types/props'
@@ -7,15 +8,7 @@ const Projects = forwardRef(function Projects(
   { projects }: ProjectsProps,
   ref,
 ) {
-  const sectionRef = useRef(null)
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollIntoView() {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
-      },
-    }
-  })
+  const sectionRef = useScrollIntoViewRef(ref)
 
   return (
     <section id="projects" ref={sectionRef}>

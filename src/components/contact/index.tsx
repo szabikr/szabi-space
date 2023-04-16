@@ -1,15 +1,9 @@
-import { forwardRef, useRef, useImperativeHandle } from 'react'
+import { forwardRef } from 'react'
+
+import { useScrollIntoViewRef } from '../../hooks'
 
 const Contact = forwardRef(function Contact(props, ref) {
-  const sectionRef = useRef(null)
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollIntoView() {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
-      },
-    }
-  })
+  const sectionRef = useScrollIntoViewRef(ref)
 
   return (
     <section id="contact" ref={sectionRef}>
