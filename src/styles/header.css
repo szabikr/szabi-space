@@ -1,13 +1,13 @@
 header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 
   padding: 1em;
   background-color: white;
 }
 
-header .menu-items {
-  display: flex;
+header nav {
+  margin-left: auto;
 }
 
 header .button {
@@ -21,7 +21,6 @@ header .button {
   font-weight: 700;
   font-size: 1.5em;
   color: var(--quinacridone-magenta);
-  padding-top: 0.35em;
   cursor: pointer;
 }
 
@@ -32,7 +31,6 @@ header .button {
 nav ul {
   list-style-type: none;
   padding: 0;
-  padding: 0.8em 0;
   margin: 0;
   font-weight: 500;
 }
@@ -64,5 +62,9 @@ nav li:hover {
 @media only screen and (max-width: 800px) {
   header nav {
     display: none;
+  }
+
+  header .button {
+    margin-left: auto;
   }
 }
