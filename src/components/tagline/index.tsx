@@ -15,7 +15,7 @@ export default function Tagline() {
           <a href="https://github.com/szabikr" className="button">
             View GitHub Profile
           </a>
-          <a href="#contact-me" className="button primary">
+          <a href="#contact" className="button primary">
             Contact Me
           </a>
         </p>

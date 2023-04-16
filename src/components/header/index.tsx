@@ -1,7 +1,25 @@
 import Link from 'next/link'
 import ResumeButton from '../common/resume-button'
+import { HeaderProps } from '../../types/props'
+import { MutableRefObject } from 'react'
 
-export default function Header() {
+export default function Header({
+  expertiseSectionRef,
+  experienceSectionRef,
+  projectsSectionRef,
+  blogSectionRef,
+  contactSectionRef,
+}: HeaderProps) {
+  function handleNavItemClick(
+    e,
+    ref: MutableRefObject<HTMLElement>,
+    hashString: string,
+  ) {
+    e.preventDefault()
+    history.pushState({}, '', `#${hashString}`)
+    ref.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <header>
       <Link href="/">
@@ -10,19 +28,52 @@ export default function Header() {
       <nav>
         <ul>
           <li>
-            <a href="#expertise">Expertise</a>
+            <a
+              href="#expertise"
+              onClick={(e) =>
+                handleNavItemClick(e, expertiseSectionRef, 'expertise')
+              }
+            >
+              Expertise
+            </a>
           </li>
           <li>
-            <a href="#experience">Experience</a>
+            <a
+              href="#experience"
+              onClick={(e) =>
+                handleNavItemClick(e, experienceSectionRef, 'experience')
+              }
+            >
+              Experience
+            </a>
           </li>
           <li>
-            <a href="#projects">Projects</a>
+            <a
+              href="#projects"
+              onClick={(e) =>
+                handleNavItemClick(e, projectsSectionRef, 'projects')
+              }
+            >
+              Projects
+            </a>
           </li>
           <li>
-            <a href="#blog">Blog</a>
+            <a
+              href="#blog"
+              onClick={(e) => handleNavItemClick(e, blogSectionRef, 'blog')}
+            >
+              Blog
+            </a>
           </li>
           <li>
-            <a href="#contact-me">Contact</a>
+            <a
+              href="#contact"
+              onClick={(e) =>
+                handleNavItemClick(e, contactSectionRef, 'contact')
+              }
+            >
+              Contact
+            </a>
           </li>
         </ul>
       </nav>

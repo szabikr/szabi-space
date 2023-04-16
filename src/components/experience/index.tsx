@@ -5,6 +5,7 @@ import ExperienceBodyB from './experience-body-b'
 import Accordion from './accordion'
 
 export default function Experience({
+  sectionRef,
   experiences,
   openByDefault,
 }: ExperienceProps) {
@@ -21,7 +22,7 @@ export default function Experience({
   }))
 
   return (
-    <section id="experience">
+    <section id="experience" ref={sectionRef}>
       <h3>Professional Experience</h3>
       <Accordion items={items} openByDefault={openByDefault} />
     </section>

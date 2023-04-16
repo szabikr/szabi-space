@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { BlogProps } from '../../types/props'
 import { formatDate } from '../../utils'
 
-export default function Blog({ thumbnails }: BlogProps) {
+export default function Blog({ sectionRef, thumbnails }: BlogProps) {
   return (
-    <section id="blog">
+    <section id="blog" ref={sectionRef}>
       <h3>Blog</h3>
       {thumbnails.map((thumbnail) => (
         <section key={thumbnail.title}>

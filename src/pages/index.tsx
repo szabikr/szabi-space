@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { useRef } from 'react'
 
 import Header from '../components/header'
 import Tagline from '../components/tagline'
@@ -15,19 +16,32 @@ import { projects } from '../data/projects'
 
 // TODO: Define type for HomePageProps
 export default function HomePage(props) {
+  const expertiseSectionRef = useRef<HTMLElement>(null)
+  const experienceSectionRef = useRef<HTMLElement>(null)
+  const projectsSectionRef = useRef<HTMLElement>(null)
+  const blogSectionRef = useRef<HTMLElement>(null)
+  const contactSectionRef = useRef<HTMLElement>(null)
+
   return (
     <>
-      <Header />
+      <Header
+        expertiseSectionRef={expertiseSectionRef}
+        experienceSectionRef={experienceSectionRef}
+        projectsSectionRef={projectsSectionRef}
+        blogSectionRef={blogSectionRef}
+        contactSectionRef={contactSectionRef}
+      />
       <main>
         <Tagline />
-        <Expertise />
+        <Expertise sectionRef={expertiseSectionRef} />
         <Experience
+          sectionRef={experienceSectionRef}
           experiences={props.experiences}
           openByDefault={props.experienceOpenByDefault}
         />
-        <Projects projects={props.projects} />
-        <Blog thumbnails={props.thumbnails} />
-        <Contact />
+        <Projects sectionRef={projectsSectionRef} projects={props.projects} />
+        <Blog sectionRef={blogSectionRef} thumbnails={props.thumbnails} />
+        <Contact sectionRef={contactSectionRef} />
       </main>
       <footer></footer>
     </>

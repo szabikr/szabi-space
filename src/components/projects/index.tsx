@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { ProjectsProps } from '../../types/props'
 
-export default function Projects({ projects }: ProjectsProps) {
+export default function Projects({ sectionRef, projects }: ProjectsProps) {
   return (
-    <section id="projects">
+    <section id="projects" ref={sectionRef}>
       <h3>Projects</h3>
       <ul className="grid projects">
         {projects.map((project) => (

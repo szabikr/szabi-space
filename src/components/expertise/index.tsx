@@ -1,6 +1,8 @@
-export default function Expertise() {
+import { ExpertiseProps } from '../../types/props'
+
+export default function Expertise({ sectionRef }: ExpertiseProps) {
   return (
-    <section id="expertise">
+    <section id="expertise" ref={sectionRef}>
       <h3>My Expertise</h3>
       <ul className="grid expertise">
         <li>

@@ -21,7 +21,7 @@ export default function LabPage() {
           <Link href="/lab/blog">Blog</Link>
         </li>
         <li>
-          <Link href="/lab/contact-me">Contact Me</Link>
+          <Link href="/lab/contact">Contact Me</Link>
         </li>
         <li>
           <Link href="/lab/component-library">Component Library</Link>

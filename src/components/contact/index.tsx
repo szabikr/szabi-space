@@ -1,6 +1,8 @@
-export default function Contact() {
+import { ContactProps } from '../../types/props'
+
+export default function Contact({ sectionRef }: ContactProps) {
   return (
-    <section id="contact">
+    <section id="contact" ref={sectionRef}>
       <h3>Contact Me</h3>
       <p>
         I am curious to hear about your current, or next Web Project and
