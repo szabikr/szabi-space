@@ -7,7 +7,7 @@ import BackToHomeButton from '../../components/common/back-to-home-button'
 export default function HabitTracker({ repoLink, refactoringContentHtml }) {
   return (
     <>
-      <main>
+      <main className="blog">
         <section dangerouslySetInnerHTML={{ __html: refactoringContentHtml }} />
       </main>
       <footer>

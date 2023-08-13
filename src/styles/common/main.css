@@ -17,6 +17,7 @@ section#experience,
 section#projects,
 section#blog,
 section#contact,
+main.blog,
 footer {
   overflow: auto;
   margin: auto;
@@ -52,6 +53,7 @@ footer {
   section#projects,
   section#blog,
   section#contact,
+  main.blog,
   footer {
     max-width: 820px;
   }

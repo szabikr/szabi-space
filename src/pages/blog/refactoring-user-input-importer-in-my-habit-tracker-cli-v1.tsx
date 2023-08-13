@@ -5,7 +5,7 @@ export default function RefactoringUserInputImporterV1({
   refactoringV1ContentHtml,
 }) {
   return (
-    <main>
+    <main className="blog">
       <section dangerouslySetInnerHTML={{ __html: refactoringV1ContentHtml }} />
     </main>
   )

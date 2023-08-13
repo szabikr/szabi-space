@@ -6,7 +6,7 @@ import { getHtmlContent } from '../../lib/content-parser'
 export default function Babel({ repoLink, babelContentHtml }) {
   return (
     <>
-      <main>
+      <main className="blog">
         <section dangerouslySetInnerHTML={{ __html: babelContentHtml }} />
       </main>
       <footer>
