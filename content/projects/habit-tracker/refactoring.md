@@ -282,7 +282,7 @@ The next step is to identify well-defined units in the existing codebase that co
 
 At this point, I went on and started to fiddle with the code, built these code blocks into functions, and reduced unnecessary abstractions. Had to decide what these functions will return are they going to return the domain models that we defined earlier as data classes or should they return `NamedTuples`. Also, what are going to be the core building blocks and how will those building blocks be put together so that it constructs the User Input Importer. How should I organise the code in modules, packages, and so on.
 
-In my opinion, the best way to find a great solution for something is to try out a bunch of things and see what works best, document it, refine it, create diagrams, etc. I'll let you read about the intermediate steps [here (link not yet set)](https://szabi.space/blog/refactoring-user-input-importer-in-my-habit-tracker-cli-v1), but this article will continue with the final, refined solution.
+In my opinion, the best way to find a great solution for something is to try out a bunch of things and see what works best, document it, refine it, create diagrams, etc. I'll let you read about the intermediate steps [here](https://szabi.space/blog/refactoring-user-input-importer-in-my-habit-tracker-cli-v1), but this article will continue with the final, refined solution.
 
 ## Proposed Solution
 
