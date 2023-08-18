@@ -1,3 +1,5 @@
+# Authentication in a Single Page Application
+
 ## Motivation
 
 The idea for this proof of concept came when I was implementing a Habit Tracker web application (called Move to Done at the time). In order to release a product like this, the Authentication feature is crucial. I could have configured a Firebase authentication service or any other third party auth provider as a matter of fact, however I wanted to see what's underneath the implementation and see how difficult would it be to develop it for myself.
