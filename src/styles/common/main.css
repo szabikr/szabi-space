@@ -18,6 +18,7 @@ section#projects,
 section#blog,
 section#contact,
 main.blog,
+main.poc,
 footer {
   overflow: auto;
   margin: auto;
@@ -54,6 +55,7 @@ footer {
   section#blog,
   section#contact,
   main.blog,
+  main.poc,
   footer {
     max-width: 820px;
   }

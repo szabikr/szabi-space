@@ -10,11 +10,7 @@ export default function AuthenticationPage({
 }) {
   return (
     <>
-      <header>
-        <h1>Authentication in a Single Page Application</h1>
-        <GithubAnchor repoLink={repoLink} />
-      </header>
-      <main>
+      <main className="poc">
         <section
           dangerouslySetInnerHTML={{ __html: authenticationContentHtml }}
         />
