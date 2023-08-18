@@ -41,5 +41,6 @@ export interface Project {
   name: string
   summary: string
   url: string
-  repoLink: string
+  repoLink?: string
+  hide?: boolean
 }

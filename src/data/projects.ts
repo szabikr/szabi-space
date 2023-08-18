@@ -27,21 +27,24 @@ export const projects: Project[] = [
     summary:
       'A project from scratch that builds React applications with lates JS features and CSS support.',
     url: 'https://react-boilerplate-szabikr.vercel.app/',
-    repoLink: 'https://github.com/szabikr/sandbox-react/tree/main/boilerplate',
+    hide: true,
+  },
+  {
+    name: 'Stopwatch',
+    summary:
+      'Measure your performance against time with this simple, intuitive app.',
+    url: 'https://stop-watch-szabikr.vercel.app/',
   },
   {
     name: 'Quote Analyser',
     summary:
       'A funny little app that uses public APIs to take a quote apart and defined the words that are present.',
     url: 'https://quote-analyser-szabikr.vercel.app/',
-    repoLink:
-      'https://github.com/szabikr/sandbox-react/tree/main/quote-analyser',
   },
   {
     name: 'Todo List',
     summary:
-      'Basic todo list application that persists your list so that you can make sure to complete every todo item.',
+      'Basic todo list application that persists your list so that you can make sure to complete every task.',
     url: 'https://todo-list-szabikr.vercel.app/',
-    repoLink: 'https://github.com/szabikr/sandbox-react/tree/main/todo-list',
   },
 ]
